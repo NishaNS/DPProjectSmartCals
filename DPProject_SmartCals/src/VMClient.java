@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -16,12 +17,12 @@ import javax.swing.border.BevelBorder;
 public class VMClient extends JFrame {
 	
 	private static JPanel pnlContainer;
-	private static BorderLayout borderLayout;
+	private static GridLayout gridLayout;
 	
 	
 	public VMClient(){
 		pnlContainer = new JPanel();
-		borderLayout = new BorderLayout();
+		gridLayout = new GridLayout(3,1, 2, 2);
 	}
 	
 	private static void createAndShowGUI() {
@@ -35,6 +36,8 @@ public class VMClient extends JFrame {
 		pnlContainer.setBackground(Color.LIGHT_GRAY);
 		pnlContainer.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 		        Color.RED, Color.RED));
+		
+		pnlContainer.setLayout(gridLayout);
 		
 		vendingMachine.pack();
 		vendingMachine.setVisible(true);		
