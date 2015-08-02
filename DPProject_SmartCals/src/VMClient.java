@@ -21,6 +21,9 @@ public class VMClient extends JFrame {
 	
 	
 	public VMClient(){
+		
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
 		pnlContainer = new JPanel();
 		gridLayout = new GridLayout(3,1, 2, 2);
 	}
