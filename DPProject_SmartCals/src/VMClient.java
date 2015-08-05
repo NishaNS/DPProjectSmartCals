@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -18,11 +20,17 @@ public class VMClient extends JFrame {
 	
 	private static JPanel pnlContainer;
 	private static GridLayout gridLayout;
+	private static GridBagConstraints gridConstraints;
 	
 	
 	public VMClient(){
+		
 		pnlContainer = new JPanel();
-		gridLayout = new GridLayout(3,1, 2, 2);
+		gridLayout = new GridLayout(2, 1, 2, 2);
+		gridConstraints = new GridBagConstraints();
+		
+		sectionDetails = new VMDetails_View();
+		
 	}
 	
 	private static void createAndShowGUI() {
@@ -37,7 +45,18 @@ public class VMClient extends JFrame {
 		pnlContainer.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 		        Color.RED, Color.RED));
 		
-		pnlContainer.setLayout(gridLayout);
+		pnlContainer.setLayout(gridLayout);		
+		
+		
+		/*gridConstraints.gridx = 0;
+		gridConstraints.gridy = 0;
+		gridConstraints.fill = GridBagConstraints.BOTH;
+		gridConstraints.anchor = GridBagConstraints.LAST_LINE_START;		
+		gridConstraints.weightx = 0.5;
+		gridConstraints.weighty = 0.5;		*/
+		
+		//add display panel in bottom
+		pnlContainer.add(sectionDetails);
 		
 		vendingMachine.pack();
 		vendingMachine.setVisible(true);		
@@ -48,4 +67,6 @@ public class VMClient extends JFrame {
 		createAndShowGUI();	
 
 	}	
+	
+	private static VMDetails_View sectionDetails;
 }
