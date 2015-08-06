@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -15,33 +17,66 @@ import javax.swing.border.BevelBorder;
  *
  */
 public class VMClient extends JFrame {
-	
+
 	private static JPanel pnlContainer;
-	private static GridLayout gridLayout;
-	
-	
+	private static GridBagLayout gridLayout;
+	private static GridBagConstraints gridConstraints;
+	private static VMDetails_View sectionDetails;
+	private static JPanel sectionProdCatgeory;	//** placeholder code
+	private static JPanel sectionProdSelect;	//** placeholder code
+
+
 	public VMClient(){
-		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
+
 		pnlContainer = new JPanel();
-		gridLayout = new GridLayout(3,1, 2, 2);
+		gridLayout = new GridBagLayout();
+		gridConstraints = new GridBagConstraints();		
+		sectionDetails = new VMDetails_View();
+		sectionProdCatgeory = new JPanel();		//** placeholder code
+		sectionProdSelect = new JPanel(); //** placeholder code
+		pnlContainer.setLayout(gridLayout);
+
 	}
-	
+
+
 	private static void createAndShowGUI() {
+
 		VMClient vendingMachine = new VMClient();
-		vendingMachine.setTitle("SmartCals Vending Machine");
-		
+		vendingMachine.setTitle("SmartCals Vending Machine");		
 		vendingMachine.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		vendingMachine.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		vendingMachine.setContentPane(pnlContainer);
-		
-		pnlContainer.setBackground(Color.LIGHT_GRAY);
+		vendingMachine.setContentPane(pnlContainer);		
+
+		pnlContainer.setBackground(Color.CYAN);
 		pnlContainer.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-		        Color.RED, Color.RED));
-		
-		pnlContainer.setLayout(gridLayout);
-		
+				Color.RED, Color.RED));
+
+		//add Product category selection
+		gridConstraints.gridx = 0;
+		gridConstraints.gridy = 0;
+		gridConstraints.weightx = 0.3;
+		gridConstraints.weighty = 1;
+		gridConstraints.fill = GridBagConstraints.BOTH;
+		sectionProdCatgeory.setBackground(Color.YELLOW);
+		pnlContainer.add(sectionProdCatgeory, gridConstraints);  //** placeholder code
+
+		//add Product selection
+		gridConstraints.gridx = 0;
+		gridConstraints.gridy = 1;
+		gridConstraints.weightx = 0.3;
+		gridConstraints.weighty = 1;
+		gridConstraints.fill = GridBagConstraints.BOTH;
+		sectionProdSelect.setBackground(Color.PINK);
+		pnlContainer.add(sectionProdSelect, gridConstraints);  //** placeholder code
+
+		//add display panel in bottom
+		gridConstraints.gridx = 0;
+		gridConstraints.gridy = 2;	
+		gridConstraints.weightx = 0.3;
+		gridConstraints.weighty = 1;
+		gridConstraints.fill = GridBagConstraints.BOTH;
+		pnlContainer.add(sectionDetails, gridConstraints);
+
 		vendingMachine.pack();
 		vendingMachine.setVisible(true);		
 	}
@@ -49,6 +84,7 @@ public class VMClient extends JFrame {
 
 	public static void main(String[] args) {	
 		createAndShowGUI();	
-
 	}	
+
+
 }
