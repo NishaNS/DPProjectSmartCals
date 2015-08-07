@@ -1,4 +1,4 @@
-package abstractfactory;
+package edu.scu.dp.smartcals.product;
 
 /**
  * @author Nisha Narayanaswamy

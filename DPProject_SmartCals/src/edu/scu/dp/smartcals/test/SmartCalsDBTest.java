@@ -17,7 +17,7 @@ import edu.scu.dp.smartcals.constants.DbType;
 import edu.scu.dp.smartcals.dao.impl.ProductDaoImpl;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
-import edu.scu.dp.smartcals.exception.ProductNotFoundException;
+import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.Product;
 
 /**
@@ -40,7 +40,7 @@ public class SmartCalsDBTest {
 	}
 
 	@Test
-	public void testGetProductsById() throws SQLException, ProductNotFoundException {
+	public void testGetProductsById() throws SQLException, EmptyResultException {
 		//the productID needs to be passed from UI once the user selects one.
 		//For testing purpose productId is hardcoded
 		Product product = productDao.getProductById(1);
