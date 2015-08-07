@@ -9,7 +9,7 @@ import java.util.List;
 
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
-import edu.scu.dp.smartcals.exception.ProductNotFoundException;
+import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.Product;
 
 /**
@@ -27,7 +27,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 	@Override
-	public Product getProductById(long id) throws SQLException, ProductNotFoundException {
+	public Product getProductById(long id) throws SQLException, EmptyResultException {
 		//first get the connection, write query, return the resultset
 		Product product = null;
 		PreparedStatement statement = null;
@@ -44,12 +44,13 @@ public class ProductDaoImpl implements ProductDao {
 			System.out.println("Product Id " + productId + "ProductName" + productName);*/
 		}
 		else {
-			throw new ProductNotFoundException();
+			throw new EmptyResultException();
 		}
 		
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+			throw e;
 		}
 		finally {
 			DBUtils.closeStatement(statement);
