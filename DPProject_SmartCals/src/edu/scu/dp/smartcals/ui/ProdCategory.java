@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Thenu
+ * @author Sharadha
  */
 public class ProdCategory extends javax.swing.JPanel {
 
