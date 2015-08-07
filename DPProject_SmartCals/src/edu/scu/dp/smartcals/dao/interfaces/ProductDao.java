@@ -3,7 +3,7 @@ package edu.scu.dp.smartcals.dao.interfaces;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.scu.dp.smartcals.exception.ProductNotFoundException;
+import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.Product;
 
 /**
@@ -18,9 +18,9 @@ public interface ProductDao {
 	 * @param id
 	 * @return
 	 * @throws SQLException
-	 * @throws ProductNotFoundException 
+	 * @throws EmptyResultException 
 	 */
-	public Product getProductById(long id) throws SQLException, ProductNotFoundException;
+	public Product getProductById(long id) throws SQLException, EmptyResultException;
 	
 	public void addProduct(Product product) throws SQLException;
 	
