@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>DPProjectSmartCals</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>DPProject_SmartCals/images/Candy.jpg</name>
+			<type>1</type>
+			<location>C:/Users/Thenu/Desktop/Candy.jpg</location>
+		</link>
+		<link>
+			<name>DPProject_SmartCals/images/Snacks.jpg</name>
+			<type>1</type>
+			<location>C:/Users/Thenu/Desktop/Snacks.jpg</location>
+		</link>
+		<link>
+			<name>DPProject_SmartCals/images/bev.png</name>
+			<type>1</type>
+			<location>C:/Users/Thenu/Downloads/bev.png</location>
+		</link>
+	</linkedResources>
+</projectDescription>
