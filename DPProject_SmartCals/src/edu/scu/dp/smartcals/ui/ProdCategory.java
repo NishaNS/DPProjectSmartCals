@@ -1,3 +1,5 @@
+package edu.scu.dp.smartcals.ui;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -5,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /*
@@ -49,17 +52,18 @@ public class ProdCategory extends javax.swing.JPanel {
 
         btnBeverage.setFont(new java.awt.Font("Tahoma", 1, 27)); // NOI18N
        
-	
-		try {
+      //Nisha - 9/8 - commented section
+		/*try {
 			bevImg = ImageIO.read(new File("images\\bev.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		Image bevNewImg = bevImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
+		Image bevNewImg = bevImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;    
 	   
-        btnBeverage.setIcon(new javax.swing.ImageIcon(bevNewImg)); // NOI18N
+        btnBeverage.setIcon(new javax.swing.ImageIcon(bevNewImg)); // NOI18N	*/
+        
         btnBeverage.setText("Beverage");
         btnBeverage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,16 +74,20 @@ public class ProdCategory extends javax.swing.JPanel {
         btnSnack.setFont(new java.awt.Font("Tahoma", 1, 27)); // NOI18N
         
 		
-		try {
-			snackImg = ImageIO.read(new File("DPProjectSmartCals\DPProject_SmartCals\images\Snacks.jpg"));
+      //Nisha - 9/8 - commented section
+		/*try {
+			snackImg = ImageIO.read(new File("DPProjectSmartCals\\DPProject_SmartCals\\images\\Snacks.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
+		
 		Image snackNewImg = snackImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
 	   
-        btnSnack.setIcon(snackNewImg); // NOI18N
+		//Nisha - 9/8 - added cast to type Icon
+        btnSnack.setIcon((Icon) snackNewImg); // NOI18N */ 
+        
         btnSnack.setText("Snacks");
         btnSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +96,8 @@ public class ProdCategory extends javax.swing.JPanel {
         });
 
         btnCandy.setFont(new java.awt.Font("Tahoma", 1, 27)); // NOI18N
-        btnCandy.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thenu\\Documents\\NetBeansProjects\\Samples\\bev.png")); // NOI18N
+      //Nisha - 9/8 - commented section
+      //btnCandy.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thenu\\Documents\\NetBeansProjects\\Samples\\bev.png")); // NOI18N
         btnCandy.setText("Candy");
         btnCandy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

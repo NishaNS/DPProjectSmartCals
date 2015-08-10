@@ -23,7 +23,7 @@ public class VMClient extends JFrame {
 	private static GridBagLayout gridLayout;
 	private static GridBagConstraints gridConstraints;
 	private static VMDetails_View sectionDetails;
-	private static ProdCategory sectionProdCatgeory;	//** placeholder code
+	private static ProdCategory sectionProdCatgeory;
 	private static JPanel sectionProdSelect;	//** placeholder code
 
 
@@ -55,16 +55,16 @@ public class VMClient extends JFrame {
 		//add Product category selection
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 0;
-		gridConstraints.weightx = 0.3;
+		gridConstraints.weightx = 0.2;
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		sectionProdCatgeory.setBackground(Color.YELLOW);
-		pnlContainer.add(sectionProdCatgeory, gridConstraints);  //** placeholder code
+		pnlContainer.add(sectionProdCatgeory, gridConstraints); 
 
 		//add Product selection
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 1;
-		gridConstraints.weightx = 0.3;
+		gridConstraints.weightx = 0.2;
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		sectionProdSelect.setBackground(Color.PINK);
@@ -73,7 +73,7 @@ public class VMClient extends JFrame {
 		//add display panel in bottom
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 2;	
-		gridConstraints.weightx = 0.3;
+		gridConstraints.weightx = 0.2;
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		pnlContainer.add(sectionDetails, gridConstraints);
