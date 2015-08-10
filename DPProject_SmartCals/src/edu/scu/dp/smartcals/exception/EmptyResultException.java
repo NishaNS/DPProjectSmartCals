@@ -5,7 +5,7 @@ package edu.scu.dp.smartcals.exception;
 
 /**
  * @author Aparna Ganesh
- *
+ * User exception for Empty result set
  */
 public class EmptyResultException extends Exception {
 

@@ -3,7 +3,7 @@ package edu.scu.dp.smartcals.dao.interfaces;
 import java.sql.SQLException;
 
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.NutritionalInfo;
+import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 
 /**
  * @author Nisha Narayanaswamy
@@ -19,7 +19,7 @@ public interface NutritionalInfoDao {
 	 * @throws SQLException
 	 * @throws EmptyResultException
 	 */
-	public NutritionalInfo getNutriInfo(long prodID) throws SQLException, EmptyResultException;
+	public NutritionalInfoModel getNutriInfo(long prodID) throws SQLException, EmptyResultException;
 	
 	public void addNutriInfo(long prodID) throws SQLException;
 	

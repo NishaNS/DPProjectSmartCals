@@ -17,4 +17,6 @@ public abstract class Constants {
 	public static final String DB_USER = "user";
 	
 	public static final String DB_PASSWORD = "password";
+	
+	public static final String DB_TYPE = "dbtype";
 }

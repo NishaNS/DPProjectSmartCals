@@ -4,11 +4,11 @@
 package edu.scu.dp.smartcals.model;
 
 /**
- * Product Model
+ * Product Model representing Product DB Table
  * @author Aparna Ganesh
  *
  */
-public class Product {
+public class ProductModel {
 
 	//TODO add more product attributes here
 	private long productId;

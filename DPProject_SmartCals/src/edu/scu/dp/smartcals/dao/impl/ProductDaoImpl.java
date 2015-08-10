@@ -7,29 +7,49 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.Factory;
+
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.Product;
+import edu.scu.dp.smartcals.model.ProductModel;
 
 /**
- * 
+ * Class to perform operations from Product Table
  * @author Aparna Ganesh
  *
  */
 public class ProductDaoImpl implements ProductDao {
 
 	private DatabaseFactory databaseFactory;
+	
+	private static ProductDao INSTANCE;
 
-	public ProductDaoImpl(DatabaseFactory databaseFactory) {
-
+	private ProductDaoImpl(DatabaseFactory databaseFactory) {
 		this.databaseFactory = databaseFactory;
-
 	}
+	
+	/**
+	 * Implementation of Singleton pattern.
+	 * There should be only one ProductDAO instance for the entire application
+	 * @param databaseFactory
+	 * @return
+	 */
+	public static ProductDao getInstance(DatabaseFactory databaseFactory){
+		if(INSTANCE == null) {
+			INSTANCE = new ProductDaoImpl(databaseFactory);
+		}
+		return INSTANCE;
+	}
+	
+	/**
+	 * Returns a product for a given product ID.
+	 * Connection is opened and closed for every DB operation
+	 */
 	@Override
-	public Product getProductById(long id) throws SQLException, EmptyResultException {
-		//first get the connection, write query, return the resultset
-		Product product = null;
+	public ProductModel getProductById(long id) throws SQLException, EmptyResultException {
+		
+		ProductModel product = null;
 		PreparedStatement statement = null;
 		Connection connection = databaseFactory.getConnection();
 		
@@ -54,42 +74,43 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		finally {
 			DBUtils.closeStatement(statement);
-			DBUtils.closeConnection(connection);
+			databaseFactory.closeConnection();
 		}
 		return product;
 	}
 
 	@Override
-	public void addProduct(Product product) {
+	public void addProduct(ProductModel product) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void updateProduct(Product product) {
+	public void updateProduct(ProductModel product) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<Product> getProductByCalorieRange(int low, int high) {
+	public List<ProductModel> getProductByCalorieRange(int low, int high) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Product> getProductBySmartTag(List<String> smartTags) {
+	public List<ProductModel> getProductBySmartTag(List<String> smartTags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 /**
  * Product Row Mapper
+ * Maps every row of Resultset to Java object
  * @param resultSet
  * @return
  * @throws SQLException
  */
-	private Product mapRow(ResultSet resultSet) throws SQLException {
-		Product product = new Product();
+	private ProductModel mapRow(ResultSet resultSet) throws SQLException {
+		ProductModel product = new ProductModel();
 		product.setProductId(resultSet.getLong("ProductID"));
 		product.setProductName(resultSet.getString("ProductName"));
 		// TODO need to add more columns

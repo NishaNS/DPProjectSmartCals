@@ -6,7 +6,7 @@ package edu.scu.dp.smartcals.model;
  * NutritionalInfo Model
  *
  */
-public class NutritionalInfo {
+public class NutritionalInfoModel {
 	
 	//Builder design Pattern to be applied
 	//only getter methods added so far ****** setter methods required for Admin
@@ -102,13 +102,13 @@ public class NutritionalInfo {
 		/**
 		 * @return A builder object
 		 */
-		public NutritionalInfo buildNutriInfo(){
-			return new NutritionalInfo(this);			
+		public NutritionalInfoModel buildNutriInfo(){
+			return new NutritionalInfoModel(this);			
 		}
 		
 	}
 	
-	private NutritionalInfo(NutriBuilder nutriBuilder) {
+	private NutritionalInfoModel(NutriBuilder nutriBuilder) {
 		
 		productID = nutriBuilder.productID;		
 		servingSize = nutriBuilder.servingSize;

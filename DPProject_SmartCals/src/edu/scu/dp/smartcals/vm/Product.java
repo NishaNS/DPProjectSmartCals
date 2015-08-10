@@ -1,9 +1,9 @@
-package edu.scu.dp.smartcals.product;
+package edu.scu.dp.smartcals.vm;
 
 /**
- * @author Nisha Narayanaswamy
+ * @author Aparna Ganesh
  * 
- * Product Model
+ * Product Class to hold Product attributes
  *
  */
 public abstract class Product {

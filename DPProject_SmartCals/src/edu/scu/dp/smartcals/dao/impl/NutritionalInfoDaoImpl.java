@@ -8,20 +8,20 @@ import java.sql.SQLException;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.NutritionalInfo;
+import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 
 public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 
 	private DatabaseFactory databaseFactory;
 	private PreparedStatement statement = null;
-	private NutritionalInfo nutriInfo;
+	private NutritionalInfoModel nutriInfo;
 
 	public NutritionalInfoDaoImpl(DatabaseFactory databaseFactory) {		
 		this.databaseFactory = databaseFactory;		
 	}
 
 	@Override
-	public NutritionalInfo getNutriInfo(long prodID) throws SQLException, EmptyResultException {
+	public NutritionalInfoModel getNutriInfo(long prodID) throws SQLException, EmptyResultException {
 
 		Connection connection = databaseFactory.getConnection();
 		try {
@@ -67,7 +67,7 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 	private void mapRow(ResultSet result) throws SQLException {
 
 		//set all attributes from DB result set
-		nutriInfo = new NutritionalInfo.
+		nutriInfo = new NutritionalInfoModel.
 				NutriBuilder(result.getLong("ProductID"), result.getString("Calories"), result.getString("SmartTag")).
 				servingSize(result.getString("ServingSize")).
 				totalFat(result.getString("TotalFat")).

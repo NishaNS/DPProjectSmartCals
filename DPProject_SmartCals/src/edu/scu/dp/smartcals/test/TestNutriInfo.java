@@ -13,7 +13,7 @@ import edu.scu.dp.smartcals.dao.impl.NutritionalInfoDaoImpl;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.NutritionalInfo;
+import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 
 public class TestNutriInfo {
 	
@@ -32,7 +32,7 @@ public class TestNutriInfo {
 	public void testGetProdID() throws SQLException, EmptyResultException{
 		//the productID needs to be passed from UI once the user selects one.
 		//For testing purpose productId is hardcoded
-		NutritionalInfo nutri = nutriInfoDao.getNutriInfo(103);
+		NutritionalInfoModel nutri = nutriInfoDao.getNutriInfo(103);
 		System.out.println(nutri);
 		
 		
