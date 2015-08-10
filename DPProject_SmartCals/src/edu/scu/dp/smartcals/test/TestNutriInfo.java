@@ -33,7 +33,8 @@ public class TestNutriInfo {
 		//the productID needs to be passed from UI once the user selects one.
 		//For testing purpose productId is hardcoded
 		NutritionalInfo nutri = nutriInfoDao.getNutriInfo(103);
-		System.out.println(nutri.getProductID());
+		System.out.println(nutri);
+		
 		
 	}
 

@@ -57,6 +57,8 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 		// TODO Auto-generated method stub
 
 	}
+	
+	//maybe add method to get smart tags
 
 	/**
 	 * @param result
@@ -64,8 +66,12 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 	 */
 	private void mapRow(ResultSet result) throws SQLException {
 
-		nutriInfo = new NutritionalInfo();
-		nutriInfo.setProductID(result.getLong("ProductID"));				
+		//set all attributes from DB result set
+		nutriInfo = new NutritionalInfo.
+				NutriBuilder(result.getLong("ProductID"), result.getString("Calories"), result.getString("SmartTag")).
+				servingSize(result.getString("ServingSize")).
+				totalFat(result.getString("TotalFat")).
+				buildNutriInfo();
 	}
 
 }
