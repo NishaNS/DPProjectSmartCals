@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.Product;
+import edu.scu.dp.smartcals.model.ProductModel;
 
 /**
  * Data Access Object for Product
@@ -20,17 +20,42 @@ public interface ProductDao {
 	 * @throws SQLException
 	 * @throws EmptyResultException 
 	 */
-	public Product getProductById(long id) throws SQLException, EmptyResultException;
+	public ProductModel getProductById(long id) throws SQLException, EmptyResultException;
 	
-	public void addProduct(Product product) throws SQLException;
+	/**
+	 * Add a new product to the database
+	 * @param product
+	 * @throws SQLException
+	 */
 	
-	public void updateProduct(Product product) throws SQLException;
+	public void addProduct(ProductModel product) throws SQLException;
 	
-	public List<Product> getProductByCalorieRange(int low, int high) throws SQLException;
+	/**
+	 * Modify product information from product table
+	 * @param product
+	 * @throws SQLException
+	 */
 	
-	public List<Product> getProductBySmartTag(List<String> smartTags) throws SQLException;
+	public void updateProduct(ProductModel product) throws SQLException;
 	
-//TODO getProductByCategory(Catergory category) // fetch all the producst in all categories store it in hashmap and 
-	//when the user loads VM fetch from the map (in-momeory)
-
+	/**
+	 * List all products under given calorie range
+	 * @param low
+	 * @param high
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public List<ProductModel> getProductByCalorieRange(int low, int high) throws SQLException;
+	
+	/**
+	 * List all products when searched by their smart tag
+	 * @param smartTags
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public List<ProductModel> getProductBySmartTag(List<String> smartTags) throws SQLException;
+	
+//TODO getProductByCategory(Catergory category)
 }

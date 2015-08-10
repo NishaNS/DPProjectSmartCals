@@ -20,8 +20,10 @@ public class MySQLFactory extends DatabaseFactory {
 	private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
 
 	private Connection connection;
-
-	public MySQLFactory(Properties properties) throws ClassNotFoundException {
+	
+	private static MySQLFactory INSTANCE;
+	
+	private MySQLFactory(Properties properties) throws ClassNotFoundException {
 
 		hostname = properties.getProperty(Constants.DB_HOSTNAME);
 		dbName = properties.getProperty(Constants.DB_NAME);
@@ -31,6 +33,21 @@ public class MySQLFactory extends DatabaseFactory {
 		Class.forName(DRIVER_CLASS);
 
 	}
+	
+	/**
+	 * Returns SINGLE instance of MySQLFactory.Implementation of Singleton pattern.
+	 * There should be only one MYSQL factory for the entire application
+	 * @param properties
+	 * @return
+	 * @throws ClassNotFoundException 
+	 */
+	public static DatabaseFactory getInstance(Properties properties) throws ClassNotFoundException {
+		if (INSTANCE == null) {
+			INSTANCE = new MySQLFactory(properties);
+		}
+		return INSTANCE;
+	}
+
 
 	/**
 	 * Returns a Connection object if exists else creates a new connection
@@ -46,5 +63,19 @@ public class MySQLFactory extends DatabaseFactory {
 
 		return connection;
 	}
+	
+	public void closeConnection() {
+		if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			connection = null;
+		}
+		
+	}
 
+	
 }
