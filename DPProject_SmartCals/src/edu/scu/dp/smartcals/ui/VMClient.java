@@ -23,7 +23,7 @@ public class VMClient extends JFrame {
 	private static GridBagLayout gridLayout;
 	private static GridBagConstraints gridConstraints;
 	private static VMDetails_View sectionDetails;
-	private static ProdCategory sectionProdCatgeory;
+	private static JPanel sectionProdCatgeory;
 	private static JPanel sectionProdSelect;	//** placeholder code
 
 
@@ -33,7 +33,7 @@ public class VMClient extends JFrame {
 		gridLayout = new GridBagLayout();
 		gridConstraints = new GridBagConstraints();		
 		sectionDetails = new VMDetails_View();
-		sectionProdCatgeory = new ProdCategory();		//** placeholder code
+		sectionProdCatgeory = new JPanel();		//** placeholder code
 		sectionProdSelect = new JPanel(); //** placeholder code
 		pnlContainer.setLayout(gridLayout);
 
