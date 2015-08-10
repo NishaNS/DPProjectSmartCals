@@ -1,3 +1,5 @@
+package edu.scu.dp.smartcals.ui;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -71,7 +73,7 @@ public class ProdCategory extends javax.swing.JPanel {
         
 		
 		try {
-			snackImg = ImageIO.read(new File("DPProjectSmartCals\DPProject_SmartCals\images\Snacks.jpg"));
+			snackImg = ImageIO.read(new File("DPProjectSmartCals\\DPProject_SmartCals\\images\\Snacks.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,7 +81,7 @@ public class ProdCategory extends javax.swing.JPanel {
 	
 		Image snackNewImg = snackImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
 	   
-        btnSnack.setIcon(snackNewImg); // NOI18N
+        //btnSnack.setIcon(snackNewImg); // NOI18N
         btnSnack.setText("Snacks");
         btnSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
