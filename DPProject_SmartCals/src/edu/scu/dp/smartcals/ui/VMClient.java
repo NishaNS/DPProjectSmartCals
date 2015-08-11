@@ -17,6 +17,7 @@ import javax.swing.border.BevelBorder;
  * VMClient class is the main view for the vending machine GUI. 
  *
  */
+
 public class VMClient extends JFrame {
 
 	private static JPanel pnlContainer;
@@ -84,7 +85,13 @@ public class VMClient extends JFrame {
 
 
 	public static void main(String[] args) {	
-		createAndShowGUI();	
+		createAndShowGUI();
+		//code change in progress-Aparna
+		/*JPanel panel = new VMSelectionView();
+		VMClient vendingMachine = new VMClient();
+		vendingMachine.setContentPane(panel);
+		vendingMachine.pack();
+		vendingMachine.setVisible(true);*/	
 	}	
 
 
