@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import edu.scu.dp.smartcals.constants.VendingMachineLocationType;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
@@ -20,9 +20,9 @@ import edu.scu.dp.smartcals.model.VendingMachineModel;
  */
 public class VMController {
 	
-	VendingMachineDao vendingMachineDao;
+	private VendingMachineDao vendingMachineDao;
 	
-	VMController() {
+	public VMController() {
 		try {
 			//TODO This factory intialize part shud be done only once for the entire application. Do it where appl starts
 			//for testing purpose its here
@@ -51,7 +51,7 @@ public class VMController {
 		
 		for(VendingMachineModel vmModel : vendingMachineModels ) {
 			
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(VendingMachineLocationType.valueOf(vmModel.getLocation()));
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(VMLocationType.valueOf(vmModel.getLocation()));
 			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
