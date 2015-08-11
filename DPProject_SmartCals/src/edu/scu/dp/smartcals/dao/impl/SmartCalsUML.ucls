@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" automaticImage="PDF" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="edu.scu.dp.smartcals.dao.impl.ProductDaoImpl" project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/impl/ProductDaoImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="250" width="360" x="281" y="-17"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="edu.scu.dp.smartcals.dao.impl.VendingMachineDaoImpl" project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/impl/VendingMachineDaoImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="178" width="340" x="681" y="-17"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="edu.scu.dp.smartcals.dao.impl.NutritionalInfoDaoImpl" 
+    project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/impl/NutritionalInfoDaoImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="214" width="258" x="1061" y="-17"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao" 
+    project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/interfaces/VendingMachineDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="88" width="340" x="295" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="edu.scu.dp.smartcals.dao.interfaces.ProductDao" project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/interfaces/ProductDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="160" width="360" x="675" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao" 
+    project="DPProject_SmartCals" 
+    file="/DPProject_SmartCals/src/edu/scu/dp/smartcals/dao/interfaces/NutritionalInfoDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="124" width="240" x="1075" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <realization id="7">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="8">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="9">    
+    <end type="SOURCE" refId="2" navigable="false" variant="ASSOCIATION">      
+      <attribute id="10" name="INSTANCE"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="12">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="13">    
+    <end type="SOURCE" refId="1" navigable="false" variant="ASSOCIATION">      
+      <attribute id="14" name="INSTANCE"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

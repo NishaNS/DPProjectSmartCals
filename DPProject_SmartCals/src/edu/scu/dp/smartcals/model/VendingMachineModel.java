@@ -6,7 +6,7 @@ package edu.scu.dp.smartcals.model;
 import java.util.List;
 
 import edu.scu.dp.smartcals.constants.VMStatus;
-import edu.scu.dp.smartcals.constants.VendingMachineLocationType;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 
 /**
  * Model representing a VendingMachine DB Table
@@ -22,15 +22,15 @@ public class VendingMachineModel {
 
 	private VMStatus status;
 	
-	private VendingMachineLocationType type;
+	private VMLocationType type;
 
 	
 
-	public VendingMachineLocationType getType() {
+	public VMLocationType getType() {
 		return type;
 	}
 
-	public void setType(VendingMachineLocationType type) {
+	public void setType(VMLocationType type) {
 		this.type = type;
 	}
 

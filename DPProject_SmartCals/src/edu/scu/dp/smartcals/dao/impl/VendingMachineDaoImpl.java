@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.scu.dp.smartcals.constants.VMStatus;
-import edu.scu.dp.smartcals.constants.VendingMachineLocationType;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
@@ -90,7 +90,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 		VendingMachineModel vendingMachine = new VendingMachineModel();
 		vendingMachine.setVendingMachineId(rs.getLong("VendingMachineID"));
 		vendingMachine.setLocation(rs.getString("Location"));
-		vendingMachine.setType(VendingMachineLocationType.valueOf(rs.getString("type").toUpperCase()));
+		vendingMachine.setType(VMLocationType.valueOf(rs.getString("type").toUpperCase()));
 		vendingMachine.setStatus(VMStatus.valueOf(rs.getString("Status").toUpperCase()));
 		return vendingMachine;
 	}
