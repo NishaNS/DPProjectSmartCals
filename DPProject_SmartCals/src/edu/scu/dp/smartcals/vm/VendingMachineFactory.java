@@ -3,7 +3,7 @@
  */
 package edu.scu.dp.smartcals.vm;
 
-import edu.scu.dp.smartcals.constants.VendingMachineLocationType;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
@@ -24,7 +24,7 @@ public abstract class VendingMachineFactory {
 	 * @param vmLocationType
 	 * @return
 	 */
-	public static VendingMachineFactory getFactory(VendingMachineLocationType vmLocationType) {
+	public static VendingMachineFactory getFactory(VMLocationType vmLocationType) {
 		
 		switch(vmLocationType) {
 		case SCHOOL:
