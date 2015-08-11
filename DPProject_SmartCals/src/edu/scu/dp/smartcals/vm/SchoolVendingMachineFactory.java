@@ -3,7 +3,7 @@
  */
 package edu.scu.dp.smartcals.vm;
 
-import edu.scu.dp.smartcals.constants.VendingMachineLocationType;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
@@ -16,7 +16,7 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 	@Override
 	public VendingMachine createVendingMachine(VendingMachineModel vendingMachineModel) {
 		
-		AbstractVendingMachine schoolVendingMachine = new SchoolVendingMachine();
+		VendingMachine schoolVendingMachine = new SchoolVendingMachine();
 		schoolVendingMachine.setVendingMachineId(vendingMachineModel.getVendingMachineId());
 		schoolVendingMachine.setLocation(vendingMachineModel.getLocation());
 		schoolVendingMachine.setStatus(vendingMachineModel.getStatus());

@@ -18,7 +18,7 @@ public class HospitalVendingMachineFactory extends VendingMachineFactory {
  */
 	@Override
 	public VendingMachine createVendingMachine(VendingMachineModel vendingMachineModel) {
-		AbstractVendingMachine hospitalVendingMachine = new HospitalVendingMachine();
+		VendingMachine hospitalVendingMachine = new HospitalVendingMachine();
 		//TODO set id,location, status for hospital implementation
 		return null;
 	}

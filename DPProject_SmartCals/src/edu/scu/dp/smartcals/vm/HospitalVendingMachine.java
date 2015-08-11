@@ -6,7 +6,7 @@ package edu.scu.dp.smartcals.vm;
  * Hospital Vending Machine class
  *
  */
-public class HospitalVendingMachine extends AbstractVendingMachine {
+public class HospitalVendingMachine extends VendingMachine {
 
 	
 }

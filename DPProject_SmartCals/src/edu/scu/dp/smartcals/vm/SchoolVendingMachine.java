@@ -6,7 +6,7 @@ package edu.scu.dp.smartcals.vm;
  * 
  * SchoolVendingMachine class provides the implementation for a School Vending Machine
  */
-public class SchoolVendingMachine extends AbstractVendingMachine {
+public class SchoolVendingMachine extends VendingMachine {
 
 	public SchoolVendingMachine() {
 		
