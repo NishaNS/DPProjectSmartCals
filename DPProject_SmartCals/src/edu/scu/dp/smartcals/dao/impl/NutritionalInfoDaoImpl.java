@@ -10,14 +10,33 @@ import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 
+/**
+ * Class to perform operations from NutritionalInfo table
+ * @author Nisha Narayanaswamy
+ *
+ */
 public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 
 	private DatabaseFactory databaseFactory;
 	private PreparedStatement statement = null;
 	private NutritionalInfoModel nutriInfo;
+	private static NutritionalInfoDao INSTANCE;
 
-	public NutritionalInfoDaoImpl(DatabaseFactory databaseFactory) {		
+	private NutritionalInfoDaoImpl(DatabaseFactory databaseFactory) {		
 		this.databaseFactory = databaseFactory;		
+	}
+
+	/**
+	 * Implementation of Singleton pattern as there should be only NutritionalInfoDao for 
+	 * the entire application
+	 * @param databaseFactory
+	 * @return
+	 */
+	public static NutritionalInfoDao getInstance(DatabaseFactory databaseFactory) {
+		if(INSTANCE == null){
+			INSTANCE = new NutritionalInfoDaoImpl(databaseFactory);
+		}
+		return INSTANCE;
 	}
 
 	@Override
@@ -39,10 +58,9 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 		}
 		finally{
 			DBUtils.closeStatement(statement);
-			DBUtils.closeConnection(connection);
+			databaseFactory.closeConnection();
 		}
 		return nutriInfo;
-
 	}
 
 
@@ -57,10 +75,11 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	//maybe add method to get smart tags
 
 	/**
+	 * Map the result set data to the model object
 	 * @param result
 	 * @throws SQLException 
 	 */
@@ -71,6 +90,15 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 				NutriBuilder(result.getLong("ProductID"), result.getString("Calories"), result.getString("SmartTag")).
 				servingSize(result.getString("ServingSize")).
 				totalFat(result.getString("TotalFat")).
+				saturatedFat(result.getString("SaturatedFat")).
+				transFat(result.getString("TransFat")).
+				cholestrol(result.getString("Cholestrol")).
+				sodium(result.getString("Sodium")).
+				totalCarbs(result.getString("TotalCarbs")).
+				dietaryFiber(result.getString("DietaryFiber")).
+				sugars(result.getString("Sugars")).
+				protein(result.getString("Protein")).
+				iron(result.getString("Iron")).
 				buildNutriInfo();
 	}
 

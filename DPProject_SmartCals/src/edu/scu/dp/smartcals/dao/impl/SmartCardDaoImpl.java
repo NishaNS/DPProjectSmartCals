@@ -53,7 +53,7 @@ public class SmartCardDaoImpl implements SmartCardDao{
 		    if(rs.next()){
 		    	no = rs.getLong(1);
 		    }
-		    rs.close();
+		    rs.close(); 
 		    query = "insert into smartcalcarddetails(SmartCalCardNumber,CardBalance) values(?,?)";
 		    statement = connection.prepareStatement(query);
 		    statement.setLong(1,no);

@@ -8,6 +8,7 @@ import java.util.Properties;
 import edu.scu.dp.smartcals.constants.Constants;
 import edu.scu.dp.smartcals.constants.DbType;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
+import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
@@ -64,6 +65,10 @@ public class DaoFactory {
 	
 	public static VendingMachineDao getVendingMachineDao() {
 		return VendingMachineDaoImpl.getInstance(databaseFactory);
+	}
+	
+	public static NutritionalInfoDao getNutritionalInfoDao(){
+		return NutritionalInfoDaoImpl.getInstance(databaseFactory);
 	}
 
 }

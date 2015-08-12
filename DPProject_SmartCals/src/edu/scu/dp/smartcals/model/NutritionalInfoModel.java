@@ -34,17 +34,17 @@ public class NutritionalInfoModel {
 		private final String smartTag;
 		
 		//optional parameters	
-		private String servingSize = null;
-		private String totalFat = null;
-		private String saturatedFat = null;
-		private String transFat = null;
-		private String cholestrol = null;
-		private String sodium = null;
-		private String totalCarbs = null;
-		private String dietaryFiber = null;
-		private String sugars = null;
-		private String protein = null;
-		private String iron = null;
+		private String servingSize = "0";
+		private String totalFat = "0";
+		private String saturatedFat = "0";
+		private String transFat = "0";
+		private String cholestrol = "0";
+		private String sodium = "0";
+		private String totalCarbs = "0";
+		private String dietaryFiber = "0";
+		private String sugars = "0";
+		private String protein = "0";
+		private String iron = "0";
 		
 		public  NutriBuilder(long productID, String calories, String smartTag){
 			this.productID = productID;
