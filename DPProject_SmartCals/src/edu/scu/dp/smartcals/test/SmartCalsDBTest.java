@@ -70,7 +70,7 @@ public class SmartCalsDBTest {
 	public void testGetAllVendingMachines() throws SQLException, EmptyResultException {
 		
 		
-		List<VendingMachineModel> vendingMachines = vendingMachineDao.getAllVendingMachines();
+		List<VendingMachineModel> vendingMachines = vendingMachineDao.getAllVMBasicInfo();
 		
 		for(VendingMachineModel vmModel : vendingMachines) {
 			System.out.println(vmModel);
