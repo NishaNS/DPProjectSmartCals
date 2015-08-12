@@ -22,6 +22,15 @@ public interface VendingMachineDao {
 	 * @throws EmptyResultException
 	 * @throws SQLException
 	 */
-	public List<VendingMachineModel> getAllVendingMachines() throws EmptyResultException, SQLException;
+	public List<VendingMachineModel> getAllVMBasicInfo() throws EmptyResultException, SQLException;
+	
+	/**
+	 * Displays all products for a given VM(based on machine ID)
+	 * @param machineId
+	 * @return
+	 */
+	public VendingMachineModel getVendingMachineById(long machineId);
+	
+	
 
 }
