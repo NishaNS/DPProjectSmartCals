@@ -42,7 +42,7 @@ public class VMController {
 		List<VendingMachineModel> vendingMachineModels = null;
 		List<VendingMachine> vendingMachines = new ArrayList<>();
 		try {
-			vendingMachineModels = vendingMachineDao.getAllVendingMachines();
+			vendingMachineModels = vendingMachineDao.getAllVMBasicInfo();
 		} catch (EmptyResultException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class VMController {
 		
 		for(VendingMachineModel vmModel : vendingMachineModels ) {
 			
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(VMLocationType.valueOf(vmModel.getLocation()));
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
 			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
