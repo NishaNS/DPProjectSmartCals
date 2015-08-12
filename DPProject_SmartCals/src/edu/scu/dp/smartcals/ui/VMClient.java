@@ -85,8 +85,9 @@ public class VMClient extends JFrame {
 
 
 	public static void main(String[] args) {	
-		createAndShowGUI();
-		//code change in progress-Aparna
+		////code change in progress-Aparna
+		//createAndShowGUI();
+		
 		JPanel panel = new VMSelectionView();
 		VMClient vendingMachine = new VMClient();
 		vendingMachine.setContentPane(panel);
