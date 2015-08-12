@@ -20,6 +20,7 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 		schoolVendingMachine.setVendingMachineId(vendingMachineModel.getVendingMachineId());
 		schoolVendingMachine.setLocation(vendingMachineModel.getLocation());
 		schoolVendingMachine.setStatus(vendingMachineModel.getStatus());
+		schoolVendingMachine.setLocationType(vendingMachineModel.getType());
 		return schoolVendingMachine;
 	}
 
