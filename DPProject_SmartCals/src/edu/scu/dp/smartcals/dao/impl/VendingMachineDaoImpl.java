@@ -25,6 +25,8 @@ import edu.scu.dp.smartcals.model.VendingMachineModel;
  */
 public class VendingMachineDaoImpl implements VendingMachineDao {
 
+	
+
 	DatabaseFactory databaseFactory;
 	
 	private static VendingMachineDao INSTANCE;
@@ -48,11 +50,11 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 	}
 	 
 	/**
-	 * Returns all the vending machines.
+	 * Returns all the vending machines basic info.
 	 */
 
 	@Override
-	public List<VendingMachineModel> getAllVendingMachines() throws EmptyResultException, SQLException {
+	public List<VendingMachineModel> getAllVMBasicInfo() throws EmptyResultException, SQLException {
 		PreparedStatement statement = null;
 		Connection connection = databaseFactory.getConnection();
 		List<VendingMachineModel> vendingMachines = new ArrayList<>();
@@ -79,7 +81,17 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 		return vendingMachines;
 
 	}
-
+	
+	// TODO Pull all the products for the given VM id. 
+	//Functionality- user selects a shcool/hospital and products for that particular VM shud b displayed
+//Code change in progress -Aparna
+	@Override
+	public VendingMachineModel getVendingMachineById(long machineId) {
+		
+		return null;
+	}
+	
+	
 	/**
 	 * VendingMachine Row Mapper
 	 * @param resultSet
