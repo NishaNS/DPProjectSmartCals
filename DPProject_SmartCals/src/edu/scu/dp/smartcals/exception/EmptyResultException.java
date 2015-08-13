@@ -12,4 +12,11 @@ public class EmptyResultException extends Exception {
 	public EmptyResultException() {
 		super("Result Not found");
 	}
+
+	/**
+	 * @param string
+	 */
+	public EmptyResultException(String string) {
+		super(string);
+	}
 }
