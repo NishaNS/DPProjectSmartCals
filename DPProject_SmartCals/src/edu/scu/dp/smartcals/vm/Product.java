@@ -1,5 +1,7 @@
 package edu.scu.dp.smartcals.vm;
 
+import java.util.List;
+
 /**
  * @author Aparna Ganesh
  * 
@@ -11,8 +13,7 @@ public abstract class Product {
 	private String prodCategory;
 	private String productName;
 	private long productID;
-	private String productPrice;
-	private long itemCode;
+	private double productPrice;
 	
 	
 	public String getProdCategory() {
@@ -33,18 +34,13 @@ public abstract class Product {
 	public void setProductID(long productID) {
 		this.productID = productID;
 	}
-	public String getProductPrice() {
+	public double getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
-	public long getItemCode() {
-		return itemCode;
-	}
-	public void setItemCode(long itemCode) {
-		this.itemCode = itemCode;
-	}
+	
 	
 
 }
