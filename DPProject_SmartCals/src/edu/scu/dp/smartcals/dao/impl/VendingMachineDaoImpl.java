@@ -82,16 +82,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 
 	}
 	
-	// TODO Pull all the products for the given VM id. 
-	//Functionality- user selects a shcool/hospital and products for that particular VM shud b displayed
-//Code change in progress -Aparna
-	@Override
-	public VendingMachineModel getVendingMachineById(long machineId) {
 		
-		return null;
-	}
-	
-	
 	/**
 	 * VendingMachine Row Mapper
 	 * @param resultSet
