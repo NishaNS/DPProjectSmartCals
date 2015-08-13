@@ -3,12 +3,12 @@
  */
 package edu.scu.dp.smartcals.vm;
 
-import edu.scu.dp.smartcals.constants.VMLocationType;
+import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
  * @author Aparna Ganesh
- * Factory method pattern to return School Vending Machine
+ * Factory method pattern to return School Vending Machine, with Beverage,Snack and Candy
  */
 public class SchoolVendingMachineFactory extends VendingMachineFactory {
 
@@ -22,6 +22,40 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 		schoolVendingMachine.setStatus(vendingMachineModel.getStatus());
 		schoolVendingMachine.setLocationType(vendingMachineModel.getType());
 		return schoolVendingMachine;
+	}
+
+	
+	@Override
+	public Beverage createBreverage(ProductModel productModel) {
+		Beverage beverageProduct = new Beverage();
+		beverageProduct.setProductID(productModel.getProductId());
+		beverageProduct.setProductName(productModel.getProductName());
+		beverageProduct.setProductPrice(productModel.getProductPrice());
+		
+		return beverageProduct;
+		
+	}
+
+	
+	@Override
+	public Candy createCandy(ProductModel productModel) {
+		Candy candyProduct = new Candy();
+		candyProduct.setProductID(productModel.getProductId());
+		candyProduct.setProductName(productModel.getProductName());
+		candyProduct.setProductPrice(productModel.getProductPrice());
+		
+		return candyProduct;
+	}
+
+	
+	@Override
+	public Snack createSnack(ProductModel productModel) {
+		Snack snackProduct = new Snack();
+		snackProduct.setProductID(productModel.getProductId());
+		snackProduct.setProductName(productModel.getProductName());
+		snackProduct.setProductPrice(productModel.getProductPrice());
+		
+		return snackProduct;
 	}
 
 	
