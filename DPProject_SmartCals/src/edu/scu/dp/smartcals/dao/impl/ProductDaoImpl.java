@@ -9,70 +9,71 @@ import java.util.List;
 
 import org.hamcrest.Factory;
 
+import edu.scu.dp.smartcals.constants.ProductCategory;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.ProductModel;
+import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
  * Class to perform operations from Product Table
+ * 
  * @author Aparna Ganesh
  *
  */
 public class ProductDaoImpl implements ProductDao {
 
 	private DatabaseFactory databaseFactory;
-	
+
 	private static ProductDao INSTANCE;
 
 	private ProductDaoImpl(DatabaseFactory databaseFactory) {
 		this.databaseFactory = databaseFactory;
 	}
-	
+
 	/**
-	 * Implementation of Singleton pattern.
-	 * There should be only one ProductDAO instance for the entire application
+	 * Implementation of Singleton pattern. There should be only one ProductDAO
+	 * instance for the entire application
+	 * 
 	 * @param databaseFactory
 	 * @return
 	 */
-	public static ProductDao getInstance(DatabaseFactory databaseFactory){
-		if(INSTANCE == null) {
+	public static ProductDao getInstance(DatabaseFactory databaseFactory) {
+		if (INSTANCE == null) {
 			INSTANCE = new ProductDaoImpl(databaseFactory);
 		}
 		return INSTANCE;
 	}
-	
+
 	/**
-	 * Returns a product for a given product ID.
-	 * Connection is opened and closed for every DB operation
+	 * Returns a product for a given product ID. Connection is opened and closed
+	 * for every DB operation
 	 */
 	@Override
-	public ProductModel getProductById(long id) throws SQLException, EmptyResultException {
-		
+	public ProductModel getProductById(long id) throws SQLException,
+			EmptyResultException {
+
 		ProductModel product = null;
 		PreparedStatement statement = null;
 		Connection connection = databaseFactory.getConnection();
-		
+
 		try {
-			statement = connection.prepareStatement("select * from product where productID =?");
-		statement.setLong(1, id);
-		ResultSet rs = statement.executeQuery();
-		if(rs.next()) {
-			product = mapRow(rs);
-			/*long productId = rs.getLong("ProductID");
-			String productName = rs.getString("ProductName");
-			System.out.println("Product Id " + productId + "ProductName" + productName);*/
-		}
-		else {
-			throw new EmptyResultException();
-		}
-		
-		}
-		catch(SQLException e) {
+			statement = connection
+					.prepareStatement("select * from product where productID =?");
+			statement.setLong(1, id);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				product = ProductRowMapper.mapRow(rs);
+				
+			} else {
+				throw new EmptyResultException();
+			}
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
-		}
-		finally {
+		} finally {
 			DBUtils.closeStatement(statement);
 			databaseFactory.closeConnection();
 		}
@@ -102,19 +103,8 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-/**
- * Product Row Mapper
- * Maps every row of Resultset to Java object
- * @param resultSet
- * @return
- * @throws SQLException
- */
-	private ProductModel mapRow(ResultSet resultSet) throws SQLException {
-		ProductModel product = new ProductModel();
-		product.setProductId(resultSet.getLong("ProductID"));
-		product.setProductName(resultSet.getString("ProductName"));
-		// TODO need to add more columns
 
-		return product;
-	}
+	
+	
+
 }
