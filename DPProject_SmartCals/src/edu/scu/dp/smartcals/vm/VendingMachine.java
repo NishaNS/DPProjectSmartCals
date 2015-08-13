@@ -23,11 +23,30 @@ public abstract class VendingMachine {
 	
 	private VMLocationType locationType;
 
-	private List<Beverage> beverage;
+	private List<Beverage> beverages;
 
 	private List<Candy> candies;
 
 	private List<Snack> snacks;
+	
+	public List<Beverage> getBeverages() {
+		return beverages;
+	}
+	public void setBeverages(List<Beverage> beverages) {
+		this.beverages = beverages;
+	}
+	public List<Candy> getCandies() {
+		return candies;
+	}
+	public void setCandies(List<Candy> candies) {
+		this.candies = candies;
+	}
+	public List<Snack> getSnacks() {
+		return snacks;
+	}
+	public void setSnacks(List<Snack> snacks) {
+		this.snacks = snacks;
+	}
 
 	
 	public void buyFood() {
@@ -60,31 +79,12 @@ public abstract class VendingMachine {
 		
 	}
 
-	public List<Beverage> getBeverage() {
-		return beverage;
-	}
-
-	public void setBeverage(List<Beverage> beverage) {
-		this.beverage = beverage;
-	}
+	
+	
 
 	
 
-	public List<Candy> getCandies() {
-		return candies;
-	}
-
-	public void setCandies(List<Candy> candies) {
-		this.candies = candies;
-	}
-
-	public List<Snack> getSnacks() {
-		return snacks;
-	}
-
-	public void setSnacks(List<Snack> snacks) {
-		this.snacks = snacks;
-	}
+	
 
 	public long getVendingMachineId() {
 		return vendingMachineId;
