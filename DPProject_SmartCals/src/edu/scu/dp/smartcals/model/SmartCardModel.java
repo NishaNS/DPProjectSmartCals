@@ -1,3 +1,5 @@
+
+
 /**
  * 
  */
@@ -8,7 +10,7 @@ package edu.scu.dp.smartcals.model;
  * @author Sharadha Ramaswamy
  *
  */
-public class SmartCard {
+public class SmartCardModel {
 
 	//TODO add more product attributes here
 	private long smartCardId;
