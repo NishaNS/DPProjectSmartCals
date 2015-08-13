@@ -65,7 +65,7 @@ public class SmartCalsDBTest {
 	 * Test case to display all products from Vending Machine table
 	 * @throws SQLException
 	 * @throws EmptyResultException
-	 */
+	 *//*
 	@Test
 	public void testGetAllVendingMachines() throws SQLException, EmptyResultException {
 		
@@ -76,6 +76,25 @@ public class SmartCalsDBTest {
 			System.out.println(vmModel);
 		}
 		assertTrue(vendingMachines.size() == 3);
+
+
+	}
+	
+	/**
+	 * Test case to display all products from for a given VM ID
+	 * @throws SQLException
+	 * @throws EmptyResultException
+	 */
+	@Test
+	public void testGetProductsByVMId() throws SQLException, EmptyResultException {
+		
+		
+		List<ProductModel> products = vendingMachineDao.getProductsByVMId(1000);
+		
+		for(ProductModel prodModel : products) {
+			System.out.println(prodModel);
+		}
+		assertTrue(products.size() != 0);
 
 
 	}
