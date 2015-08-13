@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.scu.dp.smartcals.exception.EmptyResultException;
+import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
@@ -25,7 +26,25 @@ public interface VendingMachineDao {
 	public List<VendingMachineModel> getAllVMBasicInfo() throws EmptyResultException, SQLException;
 	
 	
+	/**
+	 * Retrieve the vending machine given the vending machine ID 
+	 * @param vmId
+	 * @return
+	 * @throws EmptyResultException
+	 * @throws SQLException
+	 */
 	
+	public VendingMachineModel getVendingMachine(long vmId) throws EmptyResultException, SQLException;
+	
+	
+	/**
+	 * Returns all products for a selected VM
+	 * @param vmId
+	 * @return
+	 * @throws SQLException 
+	 * @throws EmptyResultException 
+	 */
+		public List<ProductModel> getProductsByVMId(long vmId) throws SQLException;
 	
 
 }
