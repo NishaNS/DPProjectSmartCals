@@ -24,7 +24,7 @@ public class VendingMachineModel {
 	
 	private VMLocationType type;
 
-	
+	private List<ProductModel> productModels;
 
 	public VMLocationType getType() {
 		return type;
@@ -63,6 +63,20 @@ public class VendingMachineModel {
 		return "VendingMachineModel [vendingMachineId=" + vendingMachineId
 				+ ", location=" + location + ", status=" + status + ", type="
 				+ type + "]";
+	}
+
+	/**
+	 * @return the productModels
+	 */
+	public List<ProductModel> getProductModels() {
+		return productModels;
+	}
+
+	/**
+	 * @param productModels the productModels to set
+	 */
+	public void setProductModels(List<ProductModel> productModels) {
+		this.productModels = productModels;
 	}
 
 	}
