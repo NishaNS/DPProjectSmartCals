@@ -4,6 +4,7 @@
 package edu.scu.dp.smartcals.vm;
 
 import edu.scu.dp.smartcals.constants.VMLocationType;
+import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
@@ -18,6 +19,28 @@ public abstract class VendingMachineFactory {
 	 * @return
 	 */
 	public abstract VendingMachine createVendingMachine(VendingMachineModel vendingMachineModel);
+	
+	/**
+	 * Method to create Beverage products
+	 * @param productModel
+	 * @return
+	 */
+	public abstract Beverage createBreverage(ProductModel productModel);
+	
+	/**
+	 * Method to create Candy products
+	 * @param productModel
+	 * @return
+	 */
+	public abstract Candy createCandy(ProductModel productModel);
+
+	/**
+	 * Method to create Snack products
+	 * @param productModel
+	 * @return
+	 */
+	public abstract Snack createSnack(ProductModel productModel);
+	
 	
 	/**
 	 * Returns either SchoolVMFactory or HospitalVMFactory based on user requirement
