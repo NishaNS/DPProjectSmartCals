@@ -53,8 +53,7 @@ public class SmartCalsDBTest {
 
 	@Test
 	public void testGetProductsById() throws SQLException, EmptyResultException {
-		//the productID needs to be passed from UI once the user selects one.
-		//For testing purpose productId is hardcoded
+		
 
 
 		ProductModel product = productDao.getProductById(101);

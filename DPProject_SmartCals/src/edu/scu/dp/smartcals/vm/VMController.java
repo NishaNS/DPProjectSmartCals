@@ -64,10 +64,8 @@ public class VMController {
 
 		for (VendingMachineModel vmModel : vendingMachineModels) {
 
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory
-					.getFactory(vmModel.getType());
-			VendingMachine vendingMachine = vendingMachineFactory
-					.createVendingMachine(vmModel);
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
+			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
 		return vendingMachines;
@@ -105,7 +103,7 @@ public class VMController {
 		VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 
 		List<ProductModel> productModels = vmModel.getProductModels();
-
+System.out.println("Product Model contains "+productModels.toString());
 		for (ProductModel productModel : productModels) {
 			
 			switch (productModel.getCategory()) {

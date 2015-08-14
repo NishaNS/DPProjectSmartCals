@@ -7,4 +7,11 @@ package edu.scu.dp.smartcals.vm;
  */
 public class Candy extends Product {
 
+	@Override
+	public String toString() {
+		return "Candy [getProductName()=" + getProductName()
+				+ ", getProductID()=" + getProductID() + ", getProductPrice()="
+				+ getProductPrice() + "]";
+	}
+
 }

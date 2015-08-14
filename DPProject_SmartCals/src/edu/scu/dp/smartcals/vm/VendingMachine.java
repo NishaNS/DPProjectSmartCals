@@ -49,6 +49,7 @@ public abstract class VendingMachine {
 	}
 
 	
+	
 	public void buyFood() {
 		// TODO Auto-generated method stub
 		
@@ -78,13 +79,6 @@ public abstract class VendingMachine {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	
-
-	
-
-	
 
 	public long getVendingMachineId() {
 		return vendingMachineId;

@@ -1,21 +1,42 @@
 package edu.scu.dp.smartcals.ui;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+import edu.scu.dp.smartcals.vm.VMController;
+import edu.scu.dp.smartcals.vm.VendingMachine;
+
 
 /**
- *
+ *@author Aparna Ganesh
  * @author Nisha
  */
 public class VMDetails_View extends javax.swing.JPanel {
+	
+	
+	private VendingMachine vendingMachine;
+	
+	private VMController vmController;
 
     /**
      * Creates new form panel3
+     * Passing the vmId to the controller.
      */
-    public VMDetails_View() {
+    public VMDetails_View(VMController vmController, long vmId) {
+    	this.vmController = vmController;
         initComponents();
+        loadVM(vmId); // Call this method to load all products for a given VM id
+        System.out.println("Beverages = " + vendingMachine.getBeverages());
+        System.out.println("Snacks = " + vendingMachine.getSnacks());
+        System.out.println("Candies = " + vendingMachine.getCandies());
+    }
+    
+    	
+	/**
+     * Gets VendingMachine Products for a given Id from Controller
+     * To display in UI.
+     * @param vmId
+     */
+   
+    private void loadVM(long vmId) {
+    	vendingMachine = vmController.getVendingMachine(vmId); 
     }
 
     /**

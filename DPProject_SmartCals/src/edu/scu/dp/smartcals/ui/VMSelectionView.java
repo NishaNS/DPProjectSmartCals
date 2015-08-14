@@ -1,5 +1,8 @@
 package edu.scu.dp.smartcals.ui;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,17 +20,17 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
  * @author Aparna Ganesh
  * @author Nisha
  */
-public class VMSelectionView extends javax.swing.JPanel {
+public class VMSelectionView extends javax.swing.JPanel  {
 
 	// code change done Aparna
-	VMController controller;
+	private VMController vmController;
 
 	/**
 	 * Creates new form SelectVM
 	 */
 	public VMSelectionView() {
 		// code change done -Aparna
-		controller = new VMController();
+		vmController = new VMController();
 		initComponents();
 	}
 
@@ -38,7 +41,7 @@ public class VMSelectionView extends javax.swing.JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
-		setLayout(new java.awt.GridBagLayout());
+		/*setLayout(new java.awt.GridBagLayout());
 		java.awt.GridBagConstraints gridBagConstraints;
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -49,21 +52,42 @@ public class VMSelectionView extends javax.swing.JPanel {
 		gridBagConstraints.ipady = 10;
 		gridBagConstraints.weightx = 0.3;
 		gridBagConstraints.weighty = 0.3;
-		gridBagConstraints.insets = new java.awt.Insets(10, 10, 60, 80);
-
+		gridBagConstraints.insets = new java.awt.Insets(10, 10, 60, 80);*/
+	
+		//code change done Aparna
+		FlowLayout experimentLayout = new FlowLayout();
+		setLayout(experimentLayout);
 		/**
 		 * Code change done -Aparna
 		 * To display all the VM to the user view
 		 */
-		List<VendingMachine> vendingMachines = controller
-				.getAllVendingMachines();
+		List<VendingMachine> vendingMachines = vmController.getAllVendingMachines();
 
+		VMButtonActionListener vmButtonActionListener = new VMButtonActionListener();
+		
 		for (VendingMachine vm : vendingMachines) {
-			JButton button = new JButton(vm.getLocationType() + "@"
-					+ vm.getLocation());
-			add(button, gridBagConstraints);
+			JButton button = new JButton(vm.getLocationType() + "@"+ vm.getLocation());
+			button.setActionCommand(vm.getVendingMachineId() + "");
+			add(button, experimentLayout);
+			button.addActionListener(vmButtonActionListener);
+			
 		}
+		}// </editor-fold>
+	
+	/**
+	 * On button click of School/Hospital VM its Id shud be passed to Controller
+	 * @author Aparna Ganesh
+	 *
+	 */
+	class VMButtonActionListener implements ActionListener{
 
-	}// </editor-fold>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			long vmId = Long.parseLong(e.getActionCommand());
+			new VMDetails_View(vmController, vmId); // needs to be done in VMClientView
+			
+		}
+		
+	}
 
 }

@@ -19,6 +19,7 @@ public class VendingMachineProductInventoryModel {
 	private int quantity;
 	
 	private InventoryStatus status;
+	
 
 	public long getVendingMachineId() {
 		return vendingMachineId;
