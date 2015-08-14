@@ -4,11 +4,16 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
+
+import edu.scu.dp.smartcals.exception.EmptyResultException;
+import edu.scu.dp.smartcals.test.SmartCardTest;
 
 
 /**
@@ -24,7 +29,7 @@ public class VMClient extends JFrame {
 	private static GridBagLayout gridLayout;
 	private static GridBagConstraints gridConstraints;
 	private static VMDetails_View sectionDetails;
-	private static JPanel sectionProdCatgeory;
+	private static VMProdCategory sectionProdCatgeory;
 	private static JPanel sectionProdSelect;	//** placeholder code
 
 
@@ -33,8 +38,8 @@ public class VMClient extends JFrame {
 		pnlContainer = new JPanel();
 		gridLayout = new GridBagLayout();
 		gridConstraints = new GridBagConstraints();		
-		//sectionDetails = new VMDetails_View();// TODO need to change constructor arguments
-		sectionProdCatgeory = new JPanel();		//** placeholder code
+		//sectionDetails = new VMDetails_View();
+		sectionProdCatgeory = new VMProdCategory();		//** placeholder code
 		sectionProdSelect = new JPanel(); //** placeholder code
 		pnlContainer.setLayout(gridLayout);
 
@@ -57,7 +62,6 @@ public class VMClient extends JFrame {
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 0;
 		gridConstraints.weightx = 0.2;
-		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		sectionProdCatgeory.setBackground(Color.YELLOW);
 		pnlContainer.add(sectionProdCatgeory, gridConstraints); 
@@ -85,9 +89,9 @@ public class VMClient extends JFrame {
 
 
 	public static void main(String[] args) {	
-		//code change in progress-Aparna
-		//createAndShowGUI();
-		
+		////code change in progress-Aparna
+		createAndShowGUI();
+				
 		JPanel panel = new VMSelectionView();
 		VMClient vendingMachine = new VMClient();
 		vendingMachine.setContentPane(panel);

@@ -1,5 +1,7 @@
 package edu.scu.dp.smartcals.test;
 
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import edu.scu.dp.smartcals.dao.impl.SmartCardDaoImpl;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.model.SmartCard;
+import edu.scu.dp.smartcals.model.SmartCardModel;
 
 public class SmartCardTest {
 
@@ -27,21 +29,22 @@ public class SmartCardTest {
 
 	@BeforeClass
 	public static void init() throws IOException, ClassNotFoundException {
-		System.out.println("hhh");
+	
 		FileInputStream f = new FileInputStream("db.properties");
 		Properties properties = new Properties();
 		properties.load(f);
 		DatabaseFactory factory = DatabaseFactory.getFactory(properties,
 				DbType.MYSQL);
-		System.out.println("ddd");
-		smctDao = new SmartCardDaoImpl(factory);
+		
+		//smctDao = new SmartCardDaoImpl(factory);
+		smctDao = SmartCardDaoImpl.getInstance(factory);
 	}
 
 	@Test
 	public void testGetProductsById() throws SQLException, EmptyResultException {
-		SmartCard smct = smctDao.buySmartCard();
-		System.out.println(smct.getBalance());
-		smct = smctDao.loadSmartCard(12, 25.00);
+		/*SmartCardModel smct = smctDao.buySmartCard();
+		System.out.println(smct.getBalance());*/
+		SmartCardModel smct = smctDao.loadSmartCard(14, 50.0);
 		System.out.println(smct.getBalance());
 	
 	}
