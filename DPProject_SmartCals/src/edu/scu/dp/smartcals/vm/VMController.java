@@ -14,6 +14,10 @@ import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
+import edu.scu.dp.smartcals.ui.VMClient;
+import edu.scu.dp.smartcals.ui.VMDetails_View;
+import edu.scu.dp.smartcals.ui.VMProdCategory;
+import edu.scu.dp.smartcals.ui.VMSelectionView;
 
 /**
  * @author Aparna Ganesh
@@ -26,10 +30,34 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 
 	private ProductDao productDao;
+	
+	//start - Nisha - 8/15
+	
+	private VMClient mainWindow;
+	private VMSelectionView vmSelectionView;	
+	
+	//end - Nisha 8/15
 
 	
 
 	public VMController() {
+		
+		//start - Nisha - 8/15
+		
+		//launch in following sequence - JFrame, SelectionView..etc
+		if(mainWindow == null)
+			this.mainWindow = new VMClient();
+		if(vmSelectionView == null)
+			this.vmSelectionView = new VMSelectionView(this);
+		
+		//$$$$$$ add obj for other views here - only 1 obj per view in entire application $$$$$$
+		
+		//load first view from this page only 
+		mainWindow.addPanels(vmSelectionView);
+	
+		//end - Nisha - 8/15	
+		
+		
 		try {
 			// TODO This factory intialize part shud be done only once for the
 			// entire application. Do it where appl starts
@@ -43,6 +71,22 @@ public class VMController {
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
 	}
+	
+	//start - Nisha - 8/15 - new methods
+	/**
+	 * @return vendingMachineView Return the view holding the JFrame object
+	 */
+	public VMClient getView(){
+		return mainWindow;
+	}
+	
+	public VMSelectionView getSelectView(){
+		return this.vmSelectionView;
+	}
+	
+	//$$$$$$ add getter methods for other views here  $$$$$$
+	
+	//end - Nisha - 8/15
 
 	/**
 	 * Returns all the Vending Machines from Database to ViewAllVendingMachines
@@ -130,5 +174,11 @@ System.out.println("Product Model contains "+productModels.toString());
 		return vendingMachine;
 
 	}
+	
+	//start - Nisha - 8/15
+	public static void main(String[] args){
+		new VMController();
+	}
+	//end - Nisha - 8/15
 
 }
