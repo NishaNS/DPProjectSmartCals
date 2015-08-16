@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.scu.dp.smartcals.vm.VMController;
 import edu.scu.dp.smartcals.vm.VendingMachine;
@@ -28,13 +27,17 @@ public class VMSelectionView extends javax.swing.JPanel  {
 	
 	/**
 	 * Creates new form SelectVM
-	 * @param parent 
 	 */
-	public VMSelectionView() {
+	public VMSelectionView(VMController vmController) {		//Nisha - 8/15 - added argument to constr
 		
-		// code change done -Aparna
-		vmController = new VMController();
+		//start - Nisha - 8/15 - old line of code for controller object init deleted
+		
+		this.vmController = vmController;
+		
+		//Nisha - 8/16 commented out code as null pointer exception thrown
 		initComponents();
+		
+		//end - Nisha - 8/15
 	}
 
 	/**
@@ -87,8 +90,17 @@ public class VMSelectionView extends javax.swing.JPanel  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			long vmId = Long.parseLong(e.getActionCommand());
-			// need to pass the vm id to VMViewProductsPanel
-		//	new VMDetails_View(vmController, vmId); // needs to be done in VMClientView
+			
+			//code change done-Aparna
+			//Load the Vending Machine object corresponding to the VM selection
+			VendingMachine vendingMachine = vmController.getVendingMachine(vmId);
+			
+			//Set the Vending Machine object in the Vending Machine view
+			VendingMachineView vmView = vmController.getVendingMachineView();
+			vmView.setVendingMachine(vendingMachine);
+			
+			vmController.getSelectView().setVisible(false);
+			vmController.getView().addPanels(vmController.getVendingMachineView());
 			
 		}
 		

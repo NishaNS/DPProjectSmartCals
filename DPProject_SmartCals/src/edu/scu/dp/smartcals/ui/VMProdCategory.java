@@ -1,5 +1,19 @@
 package edu.scu.dp.smartcals.ui;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import edu.scu.dp.smartcals.ui.VMViewProductsFrame.ProductInfoPanel;
+import edu.scu.dp.smartcals.ui.VMViewProductsFrame.VMProductCategoryActionListener;
+import edu.scu.dp.smartcals.vm.Beverage;
+import edu.scu.dp.smartcals.vm.VendingMachine;
+
 
 
 /*
@@ -13,11 +27,25 @@ package edu.scu.dp.smartcals.ui;
  * @author Thenu
  */
 public class VMProdCategory extends javax.swing.JPanel {
+	
+	private VendingMachineView parentView;
+	// Variables declaration - do not modify                     
+	private javax.swing.JButton btnCandy;
+	private javax.swing.JButton btnSnack;
+	private javax.swing.JButton btnBev;
+	private javax.swing.JPanel pnlCategory;
+	//Aparna
+	private JPanel viewAllProductsPanel;
+	
+	// End of variables declaration 
+
+
 
     /**
      * Creates new form NewJPanel
      */
-    public VMProdCategory() {
+    public VMProdCategory(VendingMachineView parentView) {
+    	this.parentView = parentView;
         initComponents();
     }
 
@@ -32,94 +60,177 @@ public class VMProdCategory extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         pnlCategory = new javax.swing.JPanel();
+      //Aparna
+        viewAllProductsPanel = new JPanel();
         btnBev = new javax.swing.JButton();
         btnSnack = new javax.swing.JButton();
         btnCandy = new javax.swing.JButton();
 
+        VMProductCategoryActionListener prodBtnActionListener = new VMProductCategoryActionListener();
+
+		
+		btnBev.setText("Beverage");
+		btnBev.setActionCommand("Beverage");
+		btnBev.addActionListener(prodBtnActionListener);
+
+		
         setLayout(new java.awt.GridBagLayout());
 
         pnlCategory.setLayout(new java.awt.GridBagLayout());
+        //Aparna
+        viewAllProductsPanel.setLayout(new java.awt.GridBagLayout());
+        
 
-        btnBev.setText("Beverage");
+        /*btnBev.setText("Beverage");
         btnBev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBevActionPerformed(evt);
             }
-        });
+        });*/
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.ipady = 40;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(76, 235, 86, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 235, 86, 0);
+        
         pnlCategory.add(btnBev, gridBagConstraints);
+        
 
-        btnSnack.setText("Snack");
+       /* btnSnack.setText("Snack");
         btnSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSnackActionPerformed(evt);
             }
-        });
+        });*/
+        
+		btnSnack.setText("Snack");
+		btnSnack.setActionCommand("Snack");
+		btnSnack.addActionListener(prodBtnActionListener);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 119;
-        gridBagConstraints.ipady = 40;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(76, 199, 86, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 199, 86, 0);
         pnlCategory.add(btnSnack, gridBagConstraints);
+        
 
-        btnCandy.setText("Candy");
+
+       /* btnCandy.setText("Candy");
         btnCandy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCandyActionPerformed(evt);
             }
-        });
+        });*/
+        
+        btnCandy.setText("Candy");
+		btnCandy.setActionCommand("Candy");
+		btnCandy.addActionListener(prodBtnActionListener);
+		
+		
+		
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 115;
-        gridBagConstraints.ipady = 40;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(76, 203, 86, 353);
+        gridBagConstraints.insets = new java.awt.Insets(20, 203, 86, 353);
         pnlCategory.add(btnCandy, gridBagConstraints);
+        
+
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 258;
-        gridBagConstraints.ipady = 58;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 0.5;
+        
         add(pnlCategory, gridBagConstraints);
+      
+        /**
+         * Code change-Aparna
+         */
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.5;
+        
+        add(viewAllProductsPanel,gridBagConstraints);
+        
     }// </editor-fold>                        
 
-    private void btnBevActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+        
+    
+    /**
+	 * On button click of Beverage,Snack,Candy products shuold be displayed
+	 * 
+	 * @author Aparna Ganesh
+	 *
+	 */
+	class VMProductCategoryActionListener implements ActionListener {
 
-    private void btnSnackActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+		@Override
+		public void actionPerformed(ActionEvent e) {
 
-    private void btnCandyActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+			String actionCommand = e.getActionCommand();
+			if (actionCommand.equals("Beverage")) {
+				//code change done-Aparna
+				VendingMachine vendingMachine = parentView.getVendingMachine();
+				
+				List<Beverage> beverageList = vendingMachine.getBeverages();
 
+				for (Beverage beverage : beverageList) {
+					JPanel prodInfoPanel = new ProductInfoPanel(beverage.getProductID()+ "",beverage.getProductName(),beverage.getProductPrice()+"");
+					viewAllProductsPanel.add(prodInfoPanel);
+					System.out.println(beverage.getProductID());
+				}
+				viewAllProductsPanel.revalidate();
+			}
+		}
 
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton btnCandy;
-    private javax.swing.JButton btnSnack;
-    private javax.swing.JButton btnBev;
-    private javax.swing.JPanel pnlCategory;
-    // End of variables declaration                   
+	}
+	
+	/**
+	 * Inner panel class to hold Product ID, Name and Price
+	 * @author Aparna Ganesh
+	 *
+	 */
+	class ProductInfoPanel extends JPanel {
+		
+		private JLabel productIdLbl;
+		private JLabel productNameLbl;
+		private JLabel productPriceLbl;
+		
+		public ProductInfoPanel(String id,String name,String price) {
+			productIdLbl = new JLabel(id);
+			productNameLbl = new JLabel(name);
+			productPriceLbl = new JLabel(price);
+			setLayout(new GridLayout(3,1));
+			add(productIdLbl);
+			add(productNameLbl);
+			add(productPriceLbl);
+		}
+		
+	}
+
+    
 }
 

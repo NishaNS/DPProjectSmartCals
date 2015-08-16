@@ -10,15 +10,15 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
  */
 public class VMDetails_View extends javax.swing.JPanel {
 	
-	
+	private VendingMachineView parentView;
 	
 
     /**
      * Creates new form panel3
      * Passing the vmId to the controller.
      */
-    public VMDetails_View() {
-    	
+    public VMDetails_View(VendingMachineView parentView) {
+    	this.parentView = parentView;
         initComponents();
         
     }
