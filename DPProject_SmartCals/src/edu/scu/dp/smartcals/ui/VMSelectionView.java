@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import edu.scu.dp.smartcals.vm.VMController;
 import edu.scu.dp.smartcals.vm.VendingMachine;
@@ -24,11 +25,13 @@ public class VMSelectionView extends javax.swing.JPanel  {
 
 	// code change done Aparna
 	private VMController vmController;
-
+	
 	/**
 	 * Creates new form SelectVM
+	 * @param parent 
 	 */
 	public VMSelectionView() {
+		
 		// code change done -Aparna
 		vmController = new VMController();
 		initComponents();
@@ -84,7 +87,8 @@ public class VMSelectionView extends javax.swing.JPanel  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			long vmId = Long.parseLong(e.getActionCommand());
-			new VMDetails_View(vmController, vmId); // needs to be done in VMClientView
+			// need to pass the vm id to VMViewProductsPanel
+		//	new VMDetails_View(vmController, vmId); // needs to be done in VMClientView
 			
 		}
 		
