@@ -18,6 +18,7 @@ import edu.scu.dp.smartcals.ui.VMClient;
 import edu.scu.dp.smartcals.ui.VMDetails_View;
 import edu.scu.dp.smartcals.ui.VMProdCategory;
 import edu.scu.dp.smartcals.ui.VMSelectionView;
+import edu.scu.dp.smartcals.ui.VendingMachineView;
 
 /**
  * @author Aparna Ganesh
@@ -35,6 +36,7 @@ public class VMController {
 	
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;	
+	private VendingMachineView vendingMachineView; 
 	
 	//end - Nisha 8/15
 
@@ -49,6 +51,8 @@ public class VMController {
 			this.mainWindow = new VMClient();
 		if(vmSelectionView == null)
 			this.vmSelectionView = new VMSelectionView(this);
+		if(vendingMachineView == null)
+			this.vendingMachineView = new VendingMachineView(this);
 		
 		//$$$$$$ add obj for other views here - only 1 obj per view in entire application $$$$$$
 		

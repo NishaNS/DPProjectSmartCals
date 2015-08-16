@@ -65,9 +65,7 @@ public class VMClient extends JFrame {
 		this.setTitle("SmartCals Vending Machine");		
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		this.setContentPane(pnlContainer);		
-		this.pack();
-		this.setVisible(true);	
+		this.setContentPane(pnlContainer);			
 		//end - Nisha - 8/15 
 	}
 	
@@ -76,6 +74,7 @@ public class VMClient extends JFrame {
 		pnlContainer.add(pnlChild);
 		pnlChild.setVisible(true);
 		pnlChild.requestFocusInWindow();
+		this.setVisible(true);	
 	}
 	//end - Nisha - 8/15
 
