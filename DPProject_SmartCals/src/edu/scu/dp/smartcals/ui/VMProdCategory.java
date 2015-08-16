@@ -189,6 +189,8 @@ public class VMProdCategory extends javax.swing.JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			viewAllProductsPanel.removeAll();
+			
 			String actionCommand = e.getActionCommand();
 			if (actionCommand.equals("Beverage")) {
 				//code change done-Aparna
@@ -201,8 +203,9 @@ public class VMProdCategory extends javax.swing.JPanel {
 					viewAllProductsPanel.add(prodInfoPanel);
 					System.out.println(beverage.getProductID());
 				}
-				viewAllProductsPanel.revalidate();
 			}
+			
+			viewAllProductsPanel.revalidate();
 		}
 
 	}
