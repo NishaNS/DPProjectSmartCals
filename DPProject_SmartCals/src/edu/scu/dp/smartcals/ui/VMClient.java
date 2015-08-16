@@ -30,7 +30,8 @@ public class VMClient extends JFrame {
 	private static GridBagConstraints gridConstraints;
 	private static VMDetails_View sectionDetails;
 	private static VMProdCategory sectionProdCatgeory;
-	private static JPanel sectionProdSelect;	//** placeholder code
+	//code change done Aparna
+	private static VMViewProductsPanel listAllProductsPanel;
 
 
 	public VMClient(){
@@ -38,9 +39,9 @@ public class VMClient extends JFrame {
 		pnlContainer = new JPanel();
 		gridLayout = new GridBagLayout();
 		gridConstraints = new GridBagConstraints();		
-		//sectionDetails = new VMDetails_View();
+		sectionDetails = new VMDetails_View();
 		sectionProdCatgeory = new VMProdCategory();		//** placeholder code
-		sectionProdSelect = new JPanel(); //** placeholder code
+		//listAllProductsPanel = new VMViewProductsPanel(); //** placeholder code
 		pnlContainer.setLayout(gridLayout);
 
 	}
@@ -72,8 +73,8 @@ public class VMClient extends JFrame {
 		gridConstraints.weightx = 0.2;
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
-		sectionProdSelect.setBackground(Color.PINK);
-		pnlContainer.add(sectionProdSelect, gridConstraints);  //** placeholder code
+		listAllProductsPanel.setBackground(Color.PINK);
+		pnlContainer.add(listAllProductsPanel, gridConstraints);  //** placeholder code
 
 		//add display panel in bottom
 		gridConstraints.gridx = 0;
@@ -92,11 +93,11 @@ public class VMClient extends JFrame {
 		////code change in progress-Aparna
 		createAndShowGUI();
 				
-		JPanel panel = new VMSelectionView();
+		/*JPanel panel = new VMSelectionView();
 		VMClient vendingMachine = new VMClient();
 		vendingMachine.setContentPane(panel);
 		vendingMachine.pack();
-		vendingMachine.setVisible(true);
+		vendingMachine.setVisible(true);*/
 	}	
 
 
