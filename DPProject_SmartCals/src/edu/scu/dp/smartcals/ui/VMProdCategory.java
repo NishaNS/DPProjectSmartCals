@@ -9,8 +9,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.scu.dp.smartcals.ui.VMViewProductsFrame.ProductInfoPanel;
-import edu.scu.dp.smartcals.ui.VMViewProductsFrame.VMProductCategoryActionListener;
+
 import edu.scu.dp.smartcals.vm.Beverage;
 import edu.scu.dp.smartcals.vm.VendingMachine;
 
