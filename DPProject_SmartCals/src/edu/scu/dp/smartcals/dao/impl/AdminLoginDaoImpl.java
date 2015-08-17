@@ -45,7 +45,7 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 			statement.setString(1, username);
 			statement.setString(2, password);
 			ResultSet result = statement.executeQuery();
-			
+
 			if(result.next() && (result != null)){
 				//if result set not null then login credentials match
 				System.out.println("Login Successful");				
@@ -54,11 +54,11 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 			else {
 				System.out.println("Login attempt failed! Please try again.");
 				//clear any old model data
-				adminLogin.resetModel();
-				
+				//adminLogin.resetModel();
+
 				//$$$$$$$$$ Code to write failed attempt to DB pending $$$$$$$$
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
@@ -68,6 +68,51 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 		}		
 		return adminLogin;
 	}
+
+	//start - Nisha - 8/17
+	@Override
+	public void setLastLoginTime(String username) throws SQLException {
+		try {
+			Connection connection = databaseFactory.getConnection();
+			statement = connection.prepareStatement("Update AdministratorLogin Set LoginTimeStamp = CURRENT_TIMESTAMP Where UserName = ?");
+			statement.setString(1, username);
+			int updateStatus = statement.executeUpdate();
+			//$$$$$$$$$$$$$$ add logger fucntionality here  $$$$$$$$$$$$
+			if(updateStatus != 1)
+				System.out.println("Could not udpate DB with login timestamp");	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			DBUtils.closeStatement(statement);
+			databaseFactory.closeConnection();
+		}	
+	}
+
+	@Override
+	public void setLoginFailedAttempt(String username) throws SQLException {
+		try {
+			Connection connection = databaseFactory.getConnection();
+			statement = connection.prepareStatement("Update AdministratorLogin Set LoginAttempts = LoginAttempts + 1, LoginTimeStamp = CURRENT_TIMESTAMP Where UserName = ?");
+			statement.setString(1, username);
+			int updateStatus = statement.executeUpdate();
+			
+			//$$$$$$$$$$$$$$$ add logger fucntionality here $$$$$$$$$$
+			if(updateStatus != 1)
+				System.out.println("Could not udpate DB");
+			
+			//$$$$$$$$$$$$$$$ apply Strategy pattern to this code $$$$$$$$$$
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			DBUtils.closeStatement(statement);
+			databaseFactory.closeConnection();
+		}	
+	}
+	//end - Nisha - 8/17
 
 	/**
 	 * Map the result set data to the model object
@@ -85,8 +130,7 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 		adminLogin.setLocation(result.getString("Location"));
 		adminLogin.setLoginTimeStamp(result.getTimestamp("LoginTimeStamp"));			
 
-}
-
+	}
 
 
 }
