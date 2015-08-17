@@ -35,7 +35,7 @@ public class VMSelectionView extends javax.swing.JPanel  {
 		this.vmController = vmController;
 		
 		//Nisha - 8/16 commented out code as null pointer exception thrown
-		initComponents();
+		//initComponents();
 		
 		//end - Nisha - 8/15
 	}

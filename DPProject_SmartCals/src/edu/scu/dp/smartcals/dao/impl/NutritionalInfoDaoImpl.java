@@ -27,7 +27,7 @@ public class NutritionalInfoDaoImpl implements NutritionalInfoDao {
 	}
 
 	/**
-	 * Implementation of Singleton pattern as there should be only NutritionalInfoDao for 
+	 * Implementation of Singleton pattern as there should be only one NutritionalInfoDao for 
 	 * the entire application
 	 * @param databaseFactory
 	 * @return

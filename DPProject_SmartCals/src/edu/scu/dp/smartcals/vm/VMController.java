@@ -8,12 +8,15 @@ import java.util.List;
 import edu.scu.dp.smartcals.constants.ProductCategory;
 import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
+import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
+import edu.scu.dp.smartcals.model.AdminLoginModel;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
+import edu.scu.dp.smartcals.ui.LoginView;
 import edu.scu.dp.smartcals.ui.VMClient;
 import edu.scu.dp.smartcals.ui.VMDetails_View;
 import edu.scu.dp.smartcals.ui.VMProdCategory;
@@ -31,6 +34,10 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 
 	private ProductDao productDao;
+	
+	//start - Nisha - 8/17
+	private AdminLoginDao adminLoginDao;
+	//end - Nisha - 8/17
 
 	// start - Nisha - 8/15
 
@@ -39,11 +46,15 @@ public class VMController {
 	private VendingMachineView vendingMachineView;
 
 	// end - Nisha 8/15
+	
+	//start - Nisha - 8/17
+	private LoginView loginView;
+	//end - Nisha
 
 	public VMController() {
 		// Code change done-Aparna
 		initialiseDao();
-		// start - Nisha - 8/15
+		
 		// launch in following sequence - JFrame, SelectionView..etc
 		if (mainWindow == null)
 			this.mainWindow = new VMClient();
@@ -51,12 +62,14 @@ public class VMController {
 			this.vmSelectionView = new VMSelectionView(this);
 		if (vendingMachineView == null)
 			this.vendingMachineView = new VendingMachineView(this);
-
-		// $$$$$$ add obj for other views here - only 1 obj per view in entire
-		// application $$$$$$
+		
+		//start - Nisha - 8/17
+		if (loginView==null)
+			this.loginView = new LoginView(this);
+		
 		// load first view from this page only
-		mainWindow.addPanels(vmSelectionView);
-		// end - Nisha - 8/15
+		mainWindow.addPanels(loginView);
+		// end - Nisha - 8/17
 
 	}
 
@@ -74,6 +87,10 @@ public class VMController {
 		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
+		
+		//start - Nisha - 8/17
+		adminLoginDao = DaoFactory.getAdminLoginDao();
+		//end - Nisha - 8/17
 	}
 
 	// start - Nisha - 8/15 - new methods
@@ -186,11 +203,42 @@ public class VMController {
 		return vendingMachine;
 
 	}
+	
+	//start - Nisha - 8/17
+	/**
+	 * Authenticates the user login with database
+	 * @param username The value entered in Username field in Login view
+	 * @param password The value entered in Password field in Login view
+	 */
+	public void authenticateUser(String username, String password) {
+		
+		try {
+			AdminLoginModel adminLoginModel = adminLoginDao.getAdminDetails(username, password);
+			if(adminLoginModel != null) {
+				System.out.println("valid");
+				//update DB table with time of latest login
+				adminLoginDao.setLastLoginTime(username);
+				//load next view
+			}
+			else {
+				System.out.println("invalid");
+				//update table with number of failed attempts
+				adminLoginDao.setLoginFailedAttempt(username);
+			}
+				
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	//end - Nisha - 8/17
 
 	// start - Nisha - 8/15
 	public static void main(String[] args) {
 		new VMController();
 	}
 	// end - Nisha - 8/15
+
+	
 
 }
