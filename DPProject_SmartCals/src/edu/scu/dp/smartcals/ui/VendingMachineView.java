@@ -22,7 +22,6 @@ public class VendingMachineView extends JPanel {
 	private GridBagLayout gridLayout;
 	private GridBagConstraints gridConstraints;
 	
-	
 	public VendingMachineView(VMController vmController){
 		this.vmController = vmController;
 		gridLayout = new GridBagLayout();
