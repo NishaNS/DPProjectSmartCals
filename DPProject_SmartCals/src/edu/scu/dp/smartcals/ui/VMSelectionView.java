@@ -24,7 +24,7 @@ public class VMSelectionView extends javax.swing.JPanel  {
 
 	// code change done Aparna
 	private VMController vmController;
-
+	
 	/**
 	 * Creates new form SelectVM
 	 */
@@ -90,7 +90,17 @@ public class VMSelectionView extends javax.swing.JPanel  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			long vmId = Long.parseLong(e.getActionCommand());
-			new VMDetails_View(vmController, vmId); // needs to be done in VMClientView
+			
+			//code change done-Aparna
+			//Load the Vending Machine object corresponding to the VM selection
+			VendingMachine vendingMachine = vmController.getVendingMachine(vmId);
+			
+			//Set the Vending Machine object in the Vending Machine view
+			VendingMachineView vmView = vmController.getVendingMachineView();
+			vmView.setVendingMachine(vendingMachine);
+			
+			vmController.getSelectView().setVisible(false);
+			vmController.getView().addPanels(vmController.getVendingMachineView());
 			
 		}
 		

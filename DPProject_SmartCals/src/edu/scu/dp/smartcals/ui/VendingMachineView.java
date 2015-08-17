@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.scu.dp.smartcals.vm.VMController;
+import edu.scu.dp.smartcals.vm.VendingMachine;
 
 /**
  * @author Nisha Narayanaswamy 
@@ -17,16 +18,23 @@ import edu.scu.dp.smartcals.vm.VMController;
 public class VendingMachineView extends JPanel {
 	
 	private VMController vmController;
+	//code change - Aparna
+	// Holds the vending machine object for this vending machine view 
+	private VendingMachine vendingMachine;
 	private VMProdCategory vmProdCategory;
+	
 	private VMDetails_View vmDetailsView;
 	private GridBagLayout gridLayout;
 	private GridBagConstraints gridConstraints;
+	
 	
 	public VendingMachineView(VMController vmController){
 		this.vmController = vmController;
 		gridLayout = new GridBagLayout();
 		gridConstraints = new GridBagConstraints();
-		vmProdCategory = new VMProdCategory();		
+		//code change in Aparna
+		vmProdCategory = new VMProdCategory(this);	
+		vmDetailsView = new VMDetails_View(this);
 		addVMSubPanels();		
 	}
 
@@ -52,7 +60,7 @@ public class VendingMachineView extends JPanel {
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		sectionProdSelect.setBackground(Color.PINK);
-		pnlContainer.add(sectionProdSelect, gridConstraints);  //** placeholder code
+		pnlContainer.add(sectionProdSelect, gridConstraints);  //** placeholder code */
 
 		//add display panel in bottom
 		gridConstraints.gridx = 0;
@@ -60,8 +68,22 @@ public class VendingMachineView extends JPanel {
 		gridConstraints.weightx = 0.2;
 		gridConstraints.weighty = 1;
 		gridConstraints.fill = GridBagConstraints.BOTH;
-		pnlContainer.add(sectionDetails, gridConstraints);*/
+		this.add(vmDetailsView, gridConstraints);
 		
 	}
+
+	/**
+	 * Get VendingMachine object
+	 * @return
+	 */
+	public VendingMachine getVendingMachine() {
+		return vendingMachine;
+	}
+
+	public void setVendingMachine(VendingMachine vendingMachine) {
+		this.vendingMachine = vendingMachine;
+	}
+	
+	
 
 }

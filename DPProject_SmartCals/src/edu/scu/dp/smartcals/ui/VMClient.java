@@ -29,25 +29,12 @@ public class VMClient extends JFrame {
 	private static GridBagLayout gridLayout;
 	private static GridBagConstraints gridConstraints;
 	
-	//start - Nisha - 8/15 - commented code - this will be deleted
-		/*private static VMDetails_View sectionDetails;
-		private static VMProdCategory sectionProdCatgeory;
-		private static JPanel sectionProdSelect;	//** placeholder code
-		*/	
-	//end - Nisha - 8/15
-
 	public VMClient(){
 
 		pnlContainer = new JPanel();
 		gridLayout = new GridBagLayout();
 		gridConstraints = new GridBagConstraints();		
 		
-		//start - Nisha - 8/15 - commented - this will be deleted
-		
-		/*sectionDetails = new VMDetails_View();
-		sectionProdCatgeory = new VMProdCategory();		//** placeholder code
-		sectionProdSelect = new JPanel(); //** placeholder code
-		 */	
 		
 		createAndShowGUI();
 		pnlContainer.setLayout(gridLayout);
@@ -55,7 +42,7 @@ public class VMClient extends JFrame {
 		pnlContainer.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 				Color.RED, Color.RED));
 	
-		//end - Nisha - 8/15
+
 
 	}
 	

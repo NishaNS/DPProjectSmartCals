@@ -31,66 +31,69 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 
 	private ProductDao productDao;
-	
-	//start - Nisha - 8/15
-	
-	private VMClient mainWindow;
-	private VMSelectionView vmSelectionView;	
-	private VendingMachineView vendingMachineView; 
-	
-	//end - Nisha 8/15
 
-	
+	// start - Nisha - 8/15
+
+	private VMClient mainWindow;
+	private VMSelectionView vmSelectionView;
+	private VendingMachineView vendingMachineView;
+
+	// end - Nisha 8/15
 
 	public VMController() {
-		
-		//start - Nisha - 8/15
-		
-		//launch in following sequence - JFrame, SelectionView..etc
-		if(mainWindow == null)
+		// Code change done-Aparna
+		initialiseDao();
+		// start - Nisha - 8/15
+		// launch in following sequence - JFrame, SelectionView..etc
+		if (mainWindow == null)
 			this.mainWindow = new VMClient();
-		if(vmSelectionView == null)
+		if (vmSelectionView == null)
 			this.vmSelectionView = new VMSelectionView(this);
-		if(vendingMachineView == null)
+		if (vendingMachineView == null)
 			this.vendingMachineView = new VendingMachineView(this);
-		
-		//$$$$$$ add obj for other views here - only 1 obj per view in entire application $$$$$$
-		
-		//load first view from this page only 
+
+		// $$$$$$ add obj for other views here - only 1 obj per view in entire
+		// application $$$$$$
+		// load first view from this page only
 		mainWindow.addPanels(vmSelectionView);
-	
-		//end - Nisha - 8/15	
-		
-		
+		// end - Nisha - 8/15
+
+	}
+
+	/**
+	 * code change-Aparna Method to initialize DB connection and Dao
+	 */
+	private void initialiseDao() {
 		try {
-			// TODO This factory intialize part shud be done only once for the
-			// entire application. Do it where appl starts
-			// for testing purpose its here
+
 			DaoFactory.initialize();
 		} catch (DatabaseInitializationException e) {
-			
+
 			e.printStackTrace();
 		}
-		//initializing the daos' used here
+		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
 	}
-	
-	//start - Nisha - 8/15 - new methods
+
+	// start - Nisha - 8/15 - new methods
 	/**
 	 * @return vendingMachineView Return the view holding the JFrame object
 	 */
-	public VMClient getView(){
+	public VMClient getView() {
 		return mainWindow;
 	}
-	
-	public VMSelectionView getSelectView(){
+
+	public VMSelectionView getSelectView() {
 		return this.vmSelectionView;
 	}
-	
-	//$$$$$$ add getter methods for other views here  $$$$$$
-	
-	//end - Nisha - 8/15
+
+	public VendingMachineView getVendingMachineView() {
+		return vendingMachineView;
+	}
+	// $$$$$$ add getter methods for other views here $$$$$$
+
+	// end - Nisha - 8/15
 
 	/**
 	 * Returns all the Vending Machines from Database to ViewAllVendingMachines
@@ -112,8 +115,10 @@ public class VMController {
 
 		for (VendingMachineModel vmModel : vendingMachineModels) {
 
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
-			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory
+					.getFactory(vmModel.getType());
+			VendingMachine vendingMachine = vendingMachineFactory
+					.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
 		return vendingMachines;
@@ -140,24 +145,27 @@ public class VMController {
 		try {
 			vmModel = vendingMachineDao.getVendingMachine(vmId);
 		} catch (SQLException | EmptyResultException e) {
-			
+
 			e.printStackTrace();
 			return null;
 
 		}
-		
-		VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
 
-		VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
+		VendingMachineFactory vendingMachineFactory = VendingMachineFactory
+				.getFactory(vmModel.getType());
+
+		VendingMachine vendingMachine = vendingMachineFactory
+				.createVendingMachine(vmModel);
 
 		List<ProductModel> productModels = vmModel.getProductModels();
-System.out.println("Product Model contains "+productModels.toString());
+		System.out
+				.println("Product Model contains " + productModels.toString());
 		for (ProductModel productModel : productModels) {
-			
+
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
 				Beverage breverage = vendingMachineFactory
-				.createBreverage(productModel);
+						.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -178,11 +186,11 @@ System.out.println("Product Model contains "+productModels.toString());
 		return vendingMachine;
 
 	}
-	
-	//start - Nisha - 8/15
-	public static void main(String[] args){
+
+	// start - Nisha - 8/15
+	public static void main(String[] args) {
 		new VMController();
 	}
-	//end - Nisha - 8/15
+	// end - Nisha - 8/15
 
 }
