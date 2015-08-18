@@ -7,7 +7,7 @@ import edu.scu.dp.smartcals.vm.Product;
 
 /**
  * @author Aparna Ganesh
- *
+ * Interface to define Admin operations
  */
 public interface AdminOperations {
 
