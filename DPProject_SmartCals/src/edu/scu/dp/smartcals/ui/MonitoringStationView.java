@@ -1,5 +1,7 @@
 package edu.scu.dp.smartcals.ui;
 
+import edu.scu.dp.smartcals.vm.VMController;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,11 +13,14 @@ package edu.scu.dp.smartcals.ui;
  * @author Nisha
  */
 public class MonitoringStationView extends javax.swing.JPanel {
+	
+	private VMController vmController;
 
     /**
      * Creates new form MonitoringStationDashboard
      */
-    public MonitoringStationView() {
+    public MonitoringStationView(VMController vmController) {
+    	this.vmController = vmController;
         initComponents();
     }
 

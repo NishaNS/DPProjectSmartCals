@@ -27,42 +27,32 @@ public class VMClient extends JFrame {
 
 	private static JPanel pnlContainer;
 	private static GridBagLayout gridLayout;
-	private static GridBagConstraints gridConstraints;
 	
 	public VMClient(){
 
 		pnlContainer = new JPanel();
-		gridLayout = new GridBagLayout();
-		gridConstraints = new GridBagConstraints();		
-		
+		gridLayout = new GridBagLayout();		
 		
 		createAndShowGUI();
 		pnlContainer.setLayout(gridLayout);
 		pnlContainer.setBackground(Color.CYAN);
 		pnlContainer.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 				Color.RED, Color.RED));
-	
-
-
 	}
 	
-	private void createAndShowGUI() {
-		
-		//start - Nisha - 8/15 - removed some lines
+	private void createAndShowGUI() {		
 		this.setTitle("SmartCals Vending Machine");		
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		this.setContentPane(pnlContainer);			
-		//end - Nisha - 8/15 
 	}
-	
-	//start - Nisha - 8/15 - new method added 
+	 
 	public void addPanels(JPanel pnlChild){
 		pnlContainer.add(pnlChild);
+		pnlChild.setSize(this.getWidth(), this.getHeight());
 		pnlChild.setVisible(true);
 		pnlChild.requestFocusInWindow();
 		this.setVisible(true);	
 	}
-	//end - Nisha - 8/15
 
 }

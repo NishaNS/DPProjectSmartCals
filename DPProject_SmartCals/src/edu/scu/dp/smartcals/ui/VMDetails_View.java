@@ -23,7 +23,6 @@ public class VMDetails_View extends javax.swing.JPanel {
         
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,21 +34,16 @@ public class VMDetails_View extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         pnlSelectOrder = new javax.swing.JPanel();
-        btnCancelOrder = new javax.swing.JButton();
-        pnlPayment = new javax.swing.JPanel();
-        btnPayCoin = new javax.swing.JButton();
-        btnPayCash = new javax.swing.JButton();
-        btnPayCard = new javax.swing.JButton();
-        pnlDisplay = new javax.swing.JPanel();
-        lblDisplay = new javax.swing.JLabel();
-        pnlSmartCard = new javax.swing.JPanel();
+        btnNutritionalInfo = new javax.swing.JButton();
         btnLoadCard = new javax.swing.JButton();
         btnBuySmartCard = new javax.swing.JButton();
-        pnlDispenser = new javax.swing.JPanel();
-        lblCoinDispense = new javax.swing.JLabel();
-        lblCashDispense = new javax.swing.JLabel();
-        lblCardDispense = new javax.swing.JLabel();
-        lblItemDispense = new javax.swing.JLabel();
+        btnBuy = new javax.swing.JButton();
+        pnlDisplay = new javax.swing.JPanel();
+        lblDisplay = new javax.swing.JLabel();
+        pnlEnterProduct = new javax.swing.JPanel();
+        lblEnterProdID = new javax.swing.JLabel();
+        txtEnterProdID = new javax.swing.JTextField();
+        btnOK = new javax.swing.JButton();
         pnlQuery = new javax.swing.JPanel();
         btnFilter = new javax.swing.JButton();
         chkLowFat = new javax.swing.JCheckBox();
@@ -58,69 +52,58 @@ public class VMDetails_View extends javax.swing.JPanel {
         chkHighProtein = new javax.swing.JCheckBox();
         chkGlutenFree = new javax.swing.JCheckBox();
         sliderCalorie = new javax.swing.JSlider();
+        lblCalorieRange = new javax.swing.JLabel();
+        pnlDispenser = new javax.swing.JPanel();
+        lblCoinDispense = new javax.swing.JLabel();
+        lblCashDispense = new javax.swing.JLabel();
+        lblCardDispense = new javax.swing.JLabel();
+        lblItemDispense = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
         pnlSelectOrder.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pnlSelectOrder.setName("pnlSelectOrder"); // NOI18N
 
-        btnCancelOrder.setText("Cancel Order");
-        btnCancelOrder.setName("btnCancelOrder"); // NOI18N
+        btnNutritionalInfo.setText("Nutritional Information");
+        btnNutritionalInfo.setName("btnNutritionalInfo"); // NOI18N
+        btnNutritionalInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNutritionalInfoActionPerformed(evt);
+            }
+        });
 
-        pnlPayment.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payment Via", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        pnlPayment.setName("pnlPayment"); // NOI18N
+        btnLoadCard.setText("Load Smart Card");
+        btnLoadCard.setName("btnLoadCard"); // NOI18N
 
-        btnPayCoin.setText("Coins");
-        btnPayCoin.setName("btnPayCoin"); // NOI18N
+        btnBuySmartCard.setText("Buy Smart Card");
+        btnBuySmartCard.setName("btnBuySmartCard"); // NOI18N
 
-        btnPayCash.setText("Cash");
-        btnPayCash.setName("btnPayCash"); // NOI18N
-
-        btnPayCard.setText("SmartCard");
-        btnPayCard.setName("btnPayCard"); // NOI18N
-
-        javax.swing.GroupLayout pnlPaymentLayout = new javax.swing.GroupLayout(pnlPayment);
-        pnlPayment.setLayout(pnlPaymentLayout);
-        pnlPaymentLayout.setHorizontalGroup(
-            pnlPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPaymentLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(btnPayCoin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPayCash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlPaymentLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(btnPayCard)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlPaymentLayout.setVerticalGroup(
-            pnlPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPaymentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnPayCoin)
-                    .addComponent(btnPayCash))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPayCard))
-        );
+        btnBuy.setText("Buy");
 
         javax.swing.GroupLayout pnlSelectOrderLayout = new javax.swing.GroupLayout(pnlSelectOrder);
         pnlSelectOrder.setLayout(pnlSelectOrderLayout);
         pnlSelectOrderLayout.setHorizontalGroup(
             pnlSelectOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCancelOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-            .addComponent(pnlPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLoadCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBuySmartCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnNutritionalInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
         pnlSelectOrderLayout.setVerticalGroup(
             pnlSelectOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSelectOrderLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(pnlPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectOrderLayout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addComponent(btnNutritionalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnBuySmartCard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnLoadCard, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
+
+        btnBuy.getAccessibleContext().setAccessibleDescription("");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -137,19 +120,53 @@ public class VMDetails_View extends javax.swing.JPanel {
         lblDisplay.setText("SmartCals Vending Machine");
         lblDisplay.setName("lblDisplay"); // NOI18N
 
+        pnlEnterProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblEnterProdID.setText("Enter a Product ID");
+
+        btnOK.setText("OK");
+
+        javax.swing.GroupLayout pnlEnterProductLayout = new javax.swing.GroupLayout(pnlEnterProduct);
+        pnlEnterProduct.setLayout(pnlEnterProductLayout);
+        pnlEnterProductLayout.setHorizontalGroup(
+            pnlEnterProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEnterProductLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(lblEnterProdID)
+                .addGap(20, 20, 20)
+                .addComponent(txtEnterProdID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnOK)
+                .addContainerGap(218, Short.MAX_VALUE))
+        );
+        pnlEnterProductLayout.setVerticalGroup(
+            pnlEnterProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEnterProductLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(pnlEnterProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEnterProdID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEnterProdID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOK))
+                .addGap(15, 15, 15))
+        );
+
         javax.swing.GroupLayout pnlDisplayLayout = new javax.swing.GroupLayout(pnlDisplay);
         pnlDisplay.setLayout(pnlDisplayLayout);
         pnlDisplayLayout.setHorizontalGroup(
             pnlDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
+            .addComponent(pnlEnterProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lblDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
+                .addComponent(lblDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
         );
         pnlDisplayLayout.setVerticalGroup(
             pnlDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 261, Short.MAX_VALUE)
+            .addGroup(pnlDisplayLayout.createSequentialGroup()
+                .addComponent(pnlEnterProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 263, Short.MAX_VALUE))
             .addGroup(pnlDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lblDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDisplayLayout.createSequentialGroup()
+                    .addGap(0, 72, Short.MAX_VALUE)
+                    .addComponent(lblDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -162,102 +179,8 @@ public class VMDetails_View extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.4;
         add(pnlDisplay, gridBagConstraints);
 
-        pnlSmartCard.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlSmartCard.setName("pnlSmartCard"); // NOI18N
-
-        btnLoadCard.setText("Load Smart Card");
-        btnLoadCard.setName("btnLoadCard"); // NOI18N
-
-        btnBuySmartCard.setText("Buy Smart Card");
-        btnBuySmartCard.setName("btnBuySmartCard"); // NOI18N
-
-        javax.swing.GroupLayout pnlSmartCardLayout = new javax.swing.GroupLayout(pnlSmartCard);
-        pnlSmartCard.setLayout(pnlSmartCardLayout);
-        pnlSmartCardLayout.setHorizontalGroup(
-            pnlSmartCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnBuySmartCard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSmartCardLayout.createSequentialGroup()
-                .addComponent(btnLoadCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
-        );
-        pnlSmartCardLayout.setVerticalGroup(
-            pnlSmartCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSmartCardLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(btnLoadCard, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBuySmartCard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.weighty = 0.6;
-        add(pnlSmartCard, gridBagConstraints);
-
-        pnlDispenser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlDispenser.setName("pnlDispenser"); // NOI18N
-
-        lblCoinDispense.setText("Dispense Coin");
-        lblCoinDispense.setName("lblCoinDispense"); // NOI18N
-
-        lblCashDispense.setText("Dispense Cash");
-        lblCashDispense.setName("lblCashDispense"); // NOI18N
-
-        lblCardDispense.setBackground(new java.awt.Color(0, 0, 0));
-        lblCardDispense.setText("Card");
-        lblCardDispense.setName("lblCardDispense"); // NOI18N
-
-        lblItemDispense.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItemDispense.setText("Item Dispenser");
-
-        javax.swing.GroupLayout pnlDispenserLayout = new javax.swing.GroupLayout(pnlDispenser);
-        pnlDispenser.setLayout(pnlDispenserLayout);
-        pnlDispenserLayout.setHorizontalGroup(
-            pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDispenserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCashDispense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblCoinDispense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(lblCardDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(pnlDispenserLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lblItemDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlDispenserLayout.setVerticalGroup(
-            pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDispenserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlDispenserLayout.createSequentialGroup()
-                        .addComponent(lblCoinDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCashDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCardDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(lblItemDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.weighty = 0.3;
-        add(pnlDispenser, gridBagConstraints);
-
-        pnlQuery.setMinimumSize(new java.awt.Dimension(50, 50));
-        pnlQuery.setName("Query"); // NOI18N
+        pnlQuery.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        pnlQuery.setName("pnlQuery"); // NOI18N
 
         btnFilter.setText("Filter Products");
         btnFilter.setName("btnFilter"); // NOI18N
@@ -267,6 +190,11 @@ public class VMDetails_View extends javax.swing.JPanel {
         chkLowFat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         chkLowFat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         chkLowFat.setName("chkLowFat"); // NOI18N
+        chkLowFat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLowFatActionPerformed(evt);
+            }
+        });
 
         chkLowSugar.setText("Low Sugar");
         chkLowSugar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -297,92 +225,159 @@ public class VMDetails_View extends javax.swing.JPanel {
         sliderCalorie.setPaintLabels(true);
         sliderCalorie.setPaintTicks(true);
         sliderCalorie.setSnapToTicks(true);
-        sliderCalorie.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sliderCalorie.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Calorie Range"));
+
+        lblCalorieRange.setText("You selected");
 
         javax.swing.GroupLayout pnlQueryLayout = new javax.swing.GroupLayout(pnlQuery);
         pnlQuery.setLayout(pnlQueryLayout);
         pnlQueryLayout.setHorizontalGroup(
             pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQueryLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlQueryLayout.createSequentialGroup()
-                        .addComponent(sliderCalorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(pnlQueryLayout.createSequentialGroup()
-                        .addComponent(chkLowFat)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlQueryLayout.createSequentialGroup()
-                        .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkLowSugar)
-                            .addComponent(chkLowCarb))
-                        .addGap(35, 35, 35)
-                        .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlQueryLayout.createSequentialGroup()
-                                .addComponent(chkHighProtein)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlQueryLayout.createSequentialGroup()
-                                .addComponent(chkGlutenFree)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))))))
+                .addGap(25, 25, 25)
+                .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
+                            .addComponent(chkLowFat)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chkGlutenFree))
+                        .addComponent(chkLowCarb, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblCalorieRange, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(sliderCalorie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
+                        .addComponent(chkLowSugar)
+                        .addGap(44, 44, 44)
+                        .addComponent(chkHighProtein)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         pnlQueryLayout.setVerticalGroup(
             pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlQueryLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(pnlQueryLayout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkLowFat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(chkHighProtein, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(chkLowFat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkGlutenFree, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkLowSugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(chkGlutenFree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chkLowCarb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                    .addComponent(chkLowSugar)
+                    .addComponent(chkHighProtein))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chkLowCarb)
+                .addGap(23, 23, 23)
                 .addComponent(sliderCalorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(2, 2, 2)
+                .addComponent(lblCalorieRange, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.6;
         add(pnlQuery, gridBagConstraints);
+
+        pnlDispenser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        pnlDispenser.setName("pnlDispenser"); // NOI18N
+
+        lblCoinDispense.setBackground(new java.awt.Color(0, 0, 0));
+        lblCoinDispense.setText("Dispense Coin");
+        lblCoinDispense.setName("lblCoinDispense"); // NOI18N
+
+        lblCashDispense.setText("Dispense Cash");
+        lblCashDispense.setName("lblCashDispense"); // NOI18N
+
+        lblCardDispense.setBackground(new java.awt.Color(0, 0, 0));
+        lblCardDispense.setText("Card");
+        lblCardDispense.setName("lblCardDispense"); // NOI18N
+
+        lblItemDispense.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblItemDispense.setText("Item Dispenser");
+
+        javax.swing.GroupLayout pnlDispenserLayout = new javax.swing.GroupLayout(pnlDispenser);
+        pnlDispenser.setLayout(pnlDispenserLayout);
+        pnlDispenserLayout.setHorizontalGroup(
+            pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblItemDispense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlDispenserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDispenserLayout.createSequentialGroup()
+                        .addComponent(lblCoinDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(lblCardDispense, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                    .addGroup(pnlDispenserLayout.createSequentialGroup()
+                        .addComponent(lblCashDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlDispenserLayout.setVerticalGroup(
+            pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDispenserLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(pnlDispenserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCardDispense, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDispenserLayout.createSequentialGroup()
+                        .addComponent(lblCoinDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
+                .addGap(20, 20, 20)
+                .addComponent(lblCashDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lblItemDispense, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.3;
+        add(pnlDispenser, gridBagConstraints);
     }// </editor-fold>                        
+
+    private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        // TODO add your handling code here:
+    }                                                  
+
+    private void chkLowFatActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+    }                                         
 
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton btnBuy;
     private javax.swing.JButton btnBuySmartCard;
-    private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnLoadCard;
-    private javax.swing.JButton btnPayCard;
-    private javax.swing.JButton btnPayCash;
-    private javax.swing.JButton btnPayCoin;
+    private javax.swing.JButton btnNutritionalInfo;
+    private javax.swing.JButton btnOK;
     private javax.swing.JCheckBox chkGlutenFree;
     private javax.swing.JCheckBox chkHighProtein;
     private javax.swing.JCheckBox chkLowCarb;
     private javax.swing.JCheckBox chkLowFat;
     private javax.swing.JCheckBox chkLowSugar;
+    private javax.swing.JLabel lblCalorieRange;
     private javax.swing.JLabel lblCardDispense;
     private javax.swing.JLabel lblCashDispense;
     private javax.swing.JLabel lblCoinDispense;
     private javax.swing.JLabel lblDisplay;
+    private javax.swing.JLabel lblEnterProdID;
     private javax.swing.JLabel lblItemDispense;
     private javax.swing.JPanel pnlDispenser;
     private javax.swing.JPanel pnlDisplay;
-    private javax.swing.JPanel pnlPayment;
+    private javax.swing.JPanel pnlEnterProduct;
     private javax.swing.JPanel pnlQuery;
     private javax.swing.JPanel pnlSelectOrder;
-    private javax.swing.JPanel pnlSmartCard;
     private javax.swing.JSlider sliderCalorie;
+    private javax.swing.JTextField txtEnterProdID;
     // End of variables declaration                   
 }

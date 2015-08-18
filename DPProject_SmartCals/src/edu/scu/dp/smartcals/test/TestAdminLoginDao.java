@@ -28,12 +28,12 @@ public class TestAdminLoginDao {
 	@Test
 	public void testAdminDetails() throws SQLException {
 		//valid user
-		AdminLoginModel adminLoginModel = adminLoginDao.getAdminDetails("admin", "test123");
+		AdminLoginModel adminLoginModel = adminLoginDao.validateLogin("admin", "test123");
 		System.out.println(adminLoginModel.getUsername());
 		System.out.println(adminLoginModel.getPassword());
 
 		//incorrect user test
-		adminLoginModel = adminLoginDao.getAdminDetails("nisha", "test123");
+		adminLoginModel = adminLoginDao.validateLogin("nisha", "test123");
 		System.out.println(adminLoginModel.getUsername());
 		System.out.println(adminLoginModel.getPassword());
 

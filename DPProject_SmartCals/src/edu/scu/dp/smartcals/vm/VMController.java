@@ -17,6 +17,7 @@ import edu.scu.dp.smartcals.model.AdminLoginModel;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 import edu.scu.dp.smartcals.ui.LoginView;
+import edu.scu.dp.smartcals.ui.MonitoringStationView;
 import edu.scu.dp.smartcals.ui.VMClient;
 import edu.scu.dp.smartcals.ui.VMDetails_View;
 import edu.scu.dp.smartcals.ui.VMProdCategory;
@@ -49,6 +50,9 @@ public class VMController {
 	
 	//start - Nisha - 8/17
 	private LoginView loginView;
+	private MonitoringStationView monitoringStationView;
+
+	private LoginCheckPointStrategy loginStrategy;
 	//end - Nisha
 
 	public VMController() {
@@ -66,7 +70,9 @@ public class VMController {
 		//start - Nisha - 8/17
 		if (loginView==null)
 			this.loginView = new LoginView(this);
-		
+		if(monitoringStationView == null)
+			this.monitoringStationView = new MonitoringStationView(this);
+
 		//TODO load Selection View to run-Aparna
 		// load first view from this page only
 		mainWindow.addPanels(loginView);
@@ -212,22 +218,35 @@ public class VMController {
 	public void authenticateUser(String username, String password) {
 		
 		try {
-			AdminLoginModel adminLoginModel = adminLoginDao.getAdminDetails(username, password);
+			AdminLoginModel adminLoginModel = adminLoginDao.validateLogin(username, password);
 			if(adminLoginModel != null) {
 				System.out.println("valid");
 				//update DB table with time of latest login
 				adminLoginDao.setLastLoginTime(username);
 				//load next view
+				loginView.setVisible(false);
+				this.getView().addPanels(monitoringStationView);
 			}
 			else {
-				System.out.println("invalid");
 				//update table with number of failed attempts
 				adminLoginDao.setLoginFailedAttempt(username);
+				//set strategy
+				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
+				System.out.println(loginStrategy.performSecurityCheck(username));
+								 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}
+
+	/**
+	 * @param strategy Client to provide the strategy for failed login attempts
+	 */
+	public void setLoginCheckPointStrategy(LoginCheckPointStrategy loginStrategy) {
+		this.loginStrategy = loginStrategy;
+	}
+
 	//end - Nisha - 8/17
 
 	// start - Nisha - 8/15
