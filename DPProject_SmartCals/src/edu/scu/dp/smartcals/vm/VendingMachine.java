@@ -3,8 +3,10 @@
  */
 package edu.scu.dp.smartcals.vm;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import edu.scu.dp.smartcals.admin.VMUpdateListener;
 import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.constants.VMStatus;
 
@@ -28,6 +30,36 @@ public abstract class VendingMachine {
 	private List<Candy> candies;
 
 	private List<Snack> snacks;
+	
+	/*
+	 * Implementing Observer pattern for Admin monitoring
+	 * Holds VMUpdateListeners to notify Admin when product is out of stock
+	 * code change -Aparna 8/18
+	 */
+	
+	private List<VMUpdateListener> vmListener;
+	
+	//Registering Admin as VM Listeners
+	
+	public void addListeners(VMUpdateListener listener) {
+		vmListener = new ArrayList<>();
+		vmListener.add(listener);
+	}
+	
+	/**
+	 * Notifies Admin if the product is out of Stock
+	 * @param productId
+	 */
+	public void notifyOutOfStock(long productId,long vmId) {
+		
+		for(VMUpdateListener listener : vmListener) {
+			listener.updateOutOfStock(vmId, productId);
+		}
+		
+	}
+//----------code change-Aparna 8/18
+	
+	
 	
 	public List<Beverage> getBeverages() {
 		return beverages;
