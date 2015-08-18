@@ -22,7 +22,7 @@ public class TabbedView extends JPanel {
 	private JTabbedPane tabPane;
 	
 	//temp 
-	private JPanel ms = new MonitoringStationView();
+	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	
 	public TabbedView(){
@@ -33,10 +33,10 @@ public class TabbedView extends JPanel {
 		//this layout step is important - decide # of rows,cols for span width,height
 		this.setLayout(new GridLayout(1,1));
 		
-		ms.setBackground(Color.PINK);
+		p1.setBackground(Color.PINK);
 		p2.setBackground(Color.YELLOW);
 		
-		tabPane.addTab("panel1", ms);
+		tabPane.addTab("panel1", p1);
 		tabPane.addTab("panel2", p2);
 		
 		this.add(tabPane);

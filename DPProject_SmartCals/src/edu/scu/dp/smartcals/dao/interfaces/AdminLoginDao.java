@@ -11,7 +11,9 @@ import edu.scu.dp.smartcals.model.AdminLoginModel;
  */
 public interface AdminLoginDao {
 	
-	public AdminLoginModel getAdminDetails(String username, String password) throws SQLException;
+	public AdminLoginModel validateLogin(String username, String password) throws SQLException;
+	
+	public AdminLoginModel getLoginDetails(String username) throws SQLException;
 	
 	public void setLastLoginTime(String username) throws SQLException;
 	

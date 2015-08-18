@@ -17,6 +17,7 @@ import edu.scu.dp.smartcals.model.AdminLoginModel;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 import edu.scu.dp.smartcals.ui.LoginView;
+import edu.scu.dp.smartcals.ui.MonitoringStationView;
 import edu.scu.dp.smartcals.ui.VMClient;
 import edu.scu.dp.smartcals.ui.VMDetails_View;
 import edu.scu.dp.smartcals.ui.VMProdCategory;
@@ -34,7 +35,7 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 
 	private ProductDao productDao;
-	
+
 	//start - Nisha - 8/17
 	private AdminLoginDao adminLoginDao;
 	//end - Nisha - 8/17
@@ -46,15 +47,18 @@ public class VMController {
 	private VendingMachineView vendingMachineView;
 
 	// end - Nisha 8/15
-	
+
 	//start - Nisha - 8/17
 	private LoginView loginView;
+	private MonitoringStationView monitoringStationView;
+
+	private LoginCheckPointStrategy loginStrategy;
 	//end - Nisha
 
 	public VMController() {
 		// Code change done-Aparna
 		initialiseDao();
-		
+
 		// launch in following sequence - JFrame, SelectionView..etc
 		if (mainWindow == null)
 			this.mainWindow = new VMClient();
@@ -62,11 +66,13 @@ public class VMController {
 			this.vmSelectionView = new VMSelectionView(this);
 		if (vendingMachineView == null)
 			this.vendingMachineView = new VendingMachineView(this);
-		
+
 		//start - Nisha - 8/17
 		if (loginView==null)
 			this.loginView = new LoginView(this);
-		
+		if(monitoringStationView == null)
+			this.monitoringStationView = new MonitoringStationView(this);
+
 		// load first view from this page only
 		mainWindow.addPanels(loginView);
 		// end - Nisha - 8/17
@@ -87,7 +93,7 @@ public class VMController {
 		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
-		
+
 		//start - Nisha - 8/17
 		adminLoginDao = DaoFactory.getAdminLoginDao();
 		//end - Nisha - 8/17
@@ -176,13 +182,13 @@ public class VMController {
 
 		List<ProductModel> productModels = vmModel.getProductModels();
 		System.out
-				.println("Product Model contains " + productModels.toString());
+		.println("Product Model contains " + productModels.toString());
 		for (ProductModel productModel : productModels) {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
 				Beverage breverage = vendingMachineFactory
-						.createBreverage(productModel);
+				.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -203,7 +209,7 @@ public class VMController {
 		return vendingMachine;
 
 	}
-	
+
 	//start - Nisha - 8/17
 	/**
 	 * Authenticates the user login with database
@@ -211,26 +217,36 @@ public class VMController {
 	 * @param password The value entered in Password field in Login view
 	 */
 	public void authenticateUser(String username, String password) {
-		
+
 		try {
-			AdminLoginModel adminLoginModel = adminLoginDao.getAdminDetails(username, password);
+			AdminLoginModel adminLoginModel = adminLoginDao.validateLogin(username, password);
 			if(adminLoginModel != null) {
-				System.out.println("valid");
 				//update DB table with time of latest login
 				adminLoginDao.setLastLoginTime(username);
 				//load next view
+				loginView.setVisible(false);
+				this.getView().addPanels(monitoringStationView);
 			}
 			else {
-				System.out.println("invalid");
 				//update table with number of failed attempts
 				adminLoginDao.setLoginFailedAttempt(username);
+				//set strategy
+				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
+				System.out.println(loginStrategy.performSecurityCheck(username));
+								 
 			}
-				
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}
+
+	/**
+	 * @param strategy Client to provide the strategy for failed login attempts
+	 */
+	public void setLoginCheckPointStrategy(LoginCheckPointStrategy loginStrategy) {
+		this.loginStrategy = loginStrategy;
+	}
+
 	//end - Nisha - 8/17
 
 	// start - Nisha - 8/15
@@ -239,6 +255,6 @@ public class VMController {
 	}
 	// end - Nisha - 8/15
 
-	
+
 
 }
