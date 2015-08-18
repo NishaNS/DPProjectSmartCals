@@ -67,6 +67,7 @@ public class VMController {
 		if (loginView==null)
 			this.loginView = new LoginView(this);
 		
+		//TODO load Selection View to run-Aparna
 		// load first view from this page only
 		mainWindow.addPanels(loginView);
 		// end - Nisha - 8/17
@@ -181,8 +182,7 @@ public class VMController {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
-				Beverage breverage = vendingMachineFactory
-						.createBreverage(productModel);
+				Beverage breverage = vendingMachineFactory.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -201,7 +201,6 @@ public class VMController {
 		vendingMachine.setSnacks(snacks);
 
 		return vendingMachine;
-
 	}
 	
 	//start - Nisha - 8/17
@@ -225,8 +224,6 @@ public class VMController {
 				//update table with number of failed attempts
 				adminLoginDao.setLoginFailedAttempt(username);
 			}
-				
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
@@ -238,7 +235,4 @@ public class VMController {
 		new VMController();
 	}
 	// end - Nisha - 8/15
-
-	
-
 }
