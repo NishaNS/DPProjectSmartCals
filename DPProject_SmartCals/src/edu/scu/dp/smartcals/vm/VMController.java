@@ -35,10 +35,10 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 
 	private ProductDao productDao;
-	
-	//start - Nisha - 8/17
+
+	// start - Nisha - 8/17
 	private AdminLoginDao adminLoginDao;
-	//end - Nisha - 8/17
+	// end - Nisha - 8/17
 
 	// start - Nisha - 8/15
 
@@ -47,18 +47,19 @@ public class VMController {
 	private VendingMachineView vendingMachineView;
 
 	// end - Nisha 8/15
-	
-	//start - Nisha - 8/17
+
+	// start - Nisha - 8/17
 	private LoginView loginView;
 	private MonitoringStationView monitoringStationView;
 
 	private LoginCheckPointStrategy loginStrategy;
-	//end - Nisha
+
+	// end - Nisha
 
 	public VMController() {
 		// Code change done-Aparna
 		initialiseDao();
-		
+
 		// launch in following sequence - JFrame, SelectionView..etc
 		if (mainWindow == null)
 			this.mainWindow = new VMClient();
@@ -66,14 +67,14 @@ public class VMController {
 			this.vmSelectionView = new VMSelectionView(this);
 		if (vendingMachineView == null)
 			this.vendingMachineView = new VendingMachineView(this);
-		
-		//start - Nisha - 8/17
-		if (loginView==null)
+
+		// start - Nisha - 8/17
+		if (loginView == null)
 			this.loginView = new LoginView(this);
-		if(monitoringStationView == null)
+		if (monitoringStationView == null)
 			this.monitoringStationView = new MonitoringStationView(this);
 
-		//TODO load Selection View to run-Aparna
+		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 		mainWindow.addPanels(loginView);
 		// end - Nisha - 8/17
@@ -94,10 +95,10 @@ public class VMController {
 		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
-		
-		//start - Nisha - 8/17
+
+		// start - Nisha - 8/17
 		adminLoginDao = DaoFactory.getAdminLoginDao();
-		//end - Nisha - 8/17
+		// end - Nisha - 8/17
 	}
 
 	// start - Nisha - 8/15 - new methods
@@ -115,6 +116,7 @@ public class VMController {
 	public VendingMachineView getVendingMachineView() {
 		return vendingMachineView;
 	}
+
 	// $$$$$$ add getter methods for other views here $$$$$$
 
 	// end - Nisha - 8/15
@@ -188,7 +190,8 @@ public class VMController {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
-				Beverage breverage = vendingMachineFactory.createBreverage(productModel);
+				Beverage breverage = vendingMachineFactory
+						.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -208,46 +211,51 @@ public class VMController {
 
 		return vendingMachine;
 	}
-	
-	//start - Nisha - 8/17
+
+	// start - Nisha - 8/17
 	/**
 	 * Authenticates the user login with database
-	 * @param username The value entered in Username field in Login view
-	 * @param password The value entered in Password field in Login view
+	 * 
+	 * @param username
+	 *            The value entered in Username field in Login view
+	 * @param password
+	 *            The value entered in Password field in Login view
 	 */
 	public void authenticateUser(String username, String password) {
-		
+
 		try {
-			AdminLoginModel adminLoginModel = adminLoginDao.validateLogin(username, password);
-			if(adminLoginModel != null) {
+			AdminLoginModel adminLoginModel = adminLoginDao.validateLogin(
+					username, password);
+			if (adminLoginModel != null) {
 				System.out.println("valid");
-				//update DB table with time of latest login
+				// update DB table with time of latest login
 				adminLoginDao.setLastLoginTime(username);
-				//load next view
+				// load next view
 				loginView.setVisible(false);
 				this.getView().addPanels(monitoringStationView);
-			}
-			else {
-				//update table with number of failed attempts
+			} else {
+				// update table with number of failed attempts
 				adminLoginDao.setLoginFailedAttempt(username);
-				//set strategy
+				// set strategy
 				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
-				System.out.println(loginStrategy.performSecurityCheck(username));
-								 
+				System.out
+						.println(loginStrategy.performSecurityCheck(username));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	/**
-	 * @param strategy Client to provide the strategy for failed login attempts
+	 * @param strategy
+	 *            Client to provide the strategy for failed login attempts
 	 */
 	public void setLoginCheckPointStrategy(LoginCheckPointStrategy loginStrategy) {
 		this.loginStrategy = loginStrategy;
 	}
 
-	//end - Nisha - 8/17
+	// end - Nisha - 8/17
 
 	// start - Nisha - 8/15
 	public static void main(String[] args) {
