@@ -52,22 +52,75 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlViewVM = new javax.swing.JPanel();
         btnVM1 = new javax.swing.JButton();
         btnVM2 = new javax.swing.JButton();
-        btnVM3 = new javax.swing.JButton();
+        btnAll = new javax.swing.JButton();
         pnlAlerts = new javax.swing.JPanel();
         lblAlerts = new javax.swing.JLabel();
         pnlRevenueStat = new javax.swing.JPanel();
         scrollTable = new javax.swing.JScrollPane();
         tblRevenue = new javax.swing.JTable();
-        pnlInventory = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblInventory = new javax.swing.JTable();
-        pnlModifyData = new javax.swing.JPanel();
         pnlOtherStats = new javax.swing.JPanel();
         lblOtherStats = new javax.swing.JLabel();
+        pnlProduct = new javax.swing.JPanel();
+        lblProductID = new javax.swing.JLabel();
+        lblProductCategory = new javax.swing.JLabel();
+        lblProductName = new javax.swing.JLabel();
+        lblProductPrice = new javax.swing.JLabel();
+        txtProductID = new javax.swing.JTextField();
+        txtProductCategory = new javax.swing.JTextField();
+        txtProductName = new javax.swing.JTextField();
+        txtProductPrice = new javax.swing.JTextField();
+        btnAddProd = new javax.swing.JButton();
+        btnUpdateProd = new javax.swing.JButton();
+        btnDeleteProd = new javax.swing.JButton();
+        pnlInventory = new javax.swing.JPanel();
+        lblInvenProdID = new javax.swing.JLabel();
+        lblVendingMachineID = new javax.swing.JLabel();
+        lblInvenPrice = new javax.swing.JLabel();
+        txtInvenProdID = new javax.swing.JTextField();
+        txtVendingMachineID = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
+        txtInvenPrice = new javax.swing.JTextField();
+        lblQuantity = new javax.swing.JLabel();
+        btnAddInventory = new javax.swing.JButton();
+        btnUpdateInventory = new javax.swing.JButton();
+        btnDeleteInventory = new javax.swing.JButton();
+        pnlNutriInfo = new javax.swing.JPanel();
+        lblNutriProdID = new javax.swing.JLabel();
+        txtNutriProdID = new javax.swing.JTextField();
+        lblServingSize = new javax.swing.JLabel();
+        lblCalories = new javax.swing.JLabel();
+        lblTotalFat = new javax.swing.JLabel();
+        lblSaturatedFat = new javax.swing.JLabel();
+        txtServingSize = new javax.swing.JTextField();
+        txtCalories = new javax.swing.JTextField();
+        txtTotalFat = new javax.swing.JTextField();
+        txtSaturatedFat = new javax.swing.JTextField();
+        lblTransFat = new javax.swing.JLabel();
+        lblCholestrol = new javax.swing.JLabel();
+        lblSodium = new javax.swing.JLabel();
+        lblTotalCarbs = new javax.swing.JLabel();
+        lblDietaryFiber = new javax.swing.JLabel();
+        txtTransFat = new javax.swing.JTextField();
+        txtCholestrol = new javax.swing.JTextField();
+        txtSodium = new javax.swing.JTextField();
+        txtTotalCarbs = new javax.swing.JTextField();
+        txtDietaryFiber = new javax.swing.JTextField();
+        lblSugars = new javax.swing.JLabel();
+        lblProtein = new javax.swing.JLabel();
+        lblIron = new javax.swing.JLabel();
+        lblSmartTag = new javax.swing.JLabel();
+        txtSugars = new javax.swing.JTextField();
+        txtProtein = new javax.swing.JTextField();
+        txtIron = new javax.swing.JTextField();
+        txtSmartTag = new javax.swing.JTextField();
+        btnAddNutriInfo = new javax.swing.JButton();
+        btnUpdateNutriInfo = new javax.swing.JButton();
+        btnDeleteNutriInfo = new javax.swing.JButton();
 
         setAutoscrolls(true);
         setLayout(new java.awt.GridBagLayout());
 
+        pnlViewVM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Vending Machine(s)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         pnlViewVM.setName("ViewVM"); // NOI18N
 
         btnVM1.setText("VM1");
@@ -81,11 +134,11 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         btnVM2.setText("VM2");
         btnVM2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        btnVM3.setText("VM3");
-        btnVM3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnVM3.addActionListener(new java.awt.event.ActionListener() {
+        btnAll.setText("All");
+        btnAll.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVM3ActionPerformed(evt);
+                btnAllActionPerformed(evt);
             }
         });
 
@@ -93,28 +146,33 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlViewVM.setLayout(pnlViewVMLayout);
         pnlViewVMLayout.setHorizontalGroup(
             pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlViewVMLayout.createSequentialGroup()
+            .addGroup(pnlViewVMLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVM1)
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addComponent(btnVM2)
-                .addGap(32, 32, 32)
-                .addComponent(btnVM3)
+                .addGap(25, 25, 25)
+                .addComponent(btnAll)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlViewVMLayout.setVerticalGroup(
             pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlViewVMLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVM2)
-                    .addComponent(btnVM1)
-                    .addComponent(btnVM3))
-                .addGap(29, 29, 29))
+                    .addComponent(btnVM2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVM1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         add(pnlViewVM, new java.awt.GridBagConstraints());
 
+        pnlAlerts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alerts!", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 0, 0))); // NOI18N
+        pnlAlerts.setPreferredSize(new java.awt.Dimension(561, 78));
+
+        lblAlerts.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblAlerts.setForeground(new java.awt.Color(255, 102, 102));
         //lblAlerts.setText("All alerts from Observer shld be displayed here by appending text.");
         //lblAlerts.setName("Alerts"); // NOI18N
 
@@ -122,23 +180,20 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlAlerts.setLayout(pnlAlertsLayout);
         pnlAlertsLayout.setHorizontalGroup(
             pnlAlertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlertsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblAlerts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblAlerts, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
         pnlAlertsLayout.setVerticalGroup(
             pnlAlertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAlertsLayout.createSequentialGroup()
-                .addComponent(lblAlerts, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(lblAlerts, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.2;
         add(pnlAlerts, gridBagConstraints);
@@ -172,93 +227,31 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlRevenueStatLayout.setHorizontalGroup(
             pnlRevenueStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueStatLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         pnlRevenueStatLayout.setVerticalGroup(
             pnlRevenueStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRevenueStatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueStatLayout.createSequentialGroup()
+                .addGap(0, 59, Short.MAX_VALUE)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.ipady = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        add(pnlRevenueStat, gridBagConstraints);
-
-        pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 0, 153))); // NOI18N
-        pnlInventory.setMinimumSize(new java.awt.Dimension(0, 0));
-        pnlInventory.setPreferredSize(new java.awt.Dimension(396, 364));
-        pnlInventory.setLayout(new java.awt.GridBagLayout());
-
-        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"test", "test", "test", "test"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblInventory.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblInventory.setFillsViewportHeight(true);
-        jScrollPane1.setViewportView(tblInventory);
-        if (tblInventory.getColumnModel().getColumnCount() > 0) {
-            tblInventory.getColumnModel().getColumn(0).setResizable(false);
-            tblInventory.getColumnModel().getColumn(1).setResizable(false);
-            tblInventory.getColumnModel().getColumn(2).setResizable(false);
-            tblInventory.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.gridheight = 20;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlInventory.add(jScrollPane1, gridBagConstraints);
-        jScrollPane1.getAccessibleContext().setAccessibleName("tblInventory");
-
-        javax.swing.GroupLayout pnlModifyDataLayout = new javax.swing.GroupLayout(pnlModifyData);
-        pnlModifyData.setLayout(pnlModifyDataLayout);
-        pnlModifyDataLayout.setHorizontalGroup(
-            pnlModifyDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlModifyDataLayout.setVerticalGroup(
-            pnlModifyDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlInventory.add(pnlModifyData, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        add(pnlInventory, gridBagConstraints);
+        add(pnlRevenueStat, gridBagConstraints);
+
+        pnlOtherStats.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Other Statistics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         lblOtherStats.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOtherStats.setText("Show other stats like Best Seller here");
@@ -268,61 +261,670 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlOtherStats.setLayout(pnlOtherStatsLayout);
         pnlOtherStatsLayout.setHorizontalGroup(
             pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
-            .addGroup(pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOtherStatsLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblOtherStats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(lblOtherStats, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
         pnlOtherStatsLayout.setVerticalGroup(
             pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-            .addGroup(pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOtherStatsLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblOtherStats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOtherStatsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblOtherStats, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(pnlOtherStats, gridBagConstraints);
+
+        pnlProduct.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlProduct.setLayout(new java.awt.GridBagLayout());
+
+        lblProductID.setText("Product ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(lblProductID, gridBagConstraints);
+
+        lblProductCategory.setText("Product Category");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(lblProductCategory, gridBagConstraints);
+
+        lblProductName.setText("Product Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(lblProductName, gridBagConstraints);
+
+        lblProductPrice.setText("Product Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(lblProductPrice, gridBagConstraints);
+
+        txtProductID.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        pnlProduct.add(txtProductID, gridBagConstraints);
+
+        txtProductCategory.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(txtProductCategory, gridBagConstraints);
+
+        txtProductName.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(txtProductName, gridBagConstraints);
+
+        txtProductPrice.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(txtProductPrice, gridBagConstraints);
+
+        btnAddProd.setText("Add Product");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(btnAddProd, gridBagConstraints);
+
+        btnUpdateProd.setText("Update Product");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(btnUpdateProd, gridBagConstraints);
+
+        btnDeleteProd.setText("Delete Product");
+        btnDeleteProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteProdActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlProduct.add(btnDeleteProd, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(pnlProduct, gridBagConstraints);
+
+        pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlInventory.setLayout(new java.awt.GridBagLayout());
+
+        lblInvenProdID.setText("Product ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(lblInvenProdID, gridBagConstraints);
+
+        lblVendingMachineID.setText("Vending Machine ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(lblVendingMachineID, gridBagConstraints);
+
+        lblInvenPrice.setText("Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(lblInvenPrice, gridBagConstraints);
+
+        txtInvenProdID.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(txtInvenProdID, gridBagConstraints);
+
+        txtVendingMachineID.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(txtVendingMachineID, gridBagConstraints);
+
+        txtQuantity.setColumns(14);
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(txtQuantity, gridBagConstraints);
+
+        txtInvenPrice.setColumns(14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(txtInvenPrice, gridBagConstraints);
+
+        lblQuantity.setText("Quantity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(lblQuantity, gridBagConstraints);
+
+        btnAddInventory.setText("Add Inventory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(btnAddInventory, gridBagConstraints);
+
+        btnUpdateInventory.setText("Update Inventory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(btnUpdateInventory, gridBagConstraints);
+
+        btnDeleteInventory.setText("Delete Inventory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(btnDeleteInventory, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
-        add(pnlOtherStats, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(pnlInventory, gridBagConstraints);
+
+        pnlNutriInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nutritional Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlNutriInfo.setAutoscrolls(true);
+        pnlNutriInfo.setLayout(new java.awt.GridBagLayout());
+
+        lblNutriProdID.setText("Product ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblNutriProdID, gridBagConstraints);
+
+        txtNutriProdID.setColumns(8);
+        txtNutriProdID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNutriProdIDActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtNutriProdID, gridBagConstraints);
+
+        lblServingSize.setText("Serving Size");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblServingSize, gridBagConstraints);
+
+        lblCalories.setText("Calories");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblCalories, gridBagConstraints);
+
+        lblTotalFat.setText("Total Fat");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblTotalFat, gridBagConstraints);
+
+        lblSaturatedFat.setText("Saturated Fat");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblSaturatedFat, gridBagConstraints);
+
+        txtServingSize.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtServingSize, gridBagConstraints);
+
+        txtCalories.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtCalories, gridBagConstraints);
+
+        txtTotalFat.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtTotalFat, gridBagConstraints);
+
+        txtSaturatedFat.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtSaturatedFat, gridBagConstraints);
+
+        lblTransFat.setText("Trans Fat");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblTransFat, gridBagConstraints);
+
+        lblCholestrol.setText("Cholestrol");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblCholestrol, gridBagConstraints);
+
+        lblSodium.setText("Sodium");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblSodium, gridBagConstraints);
+
+        lblTotalCarbs.setText("Total Carbs");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblTotalCarbs, gridBagConstraints);
+
+        lblDietaryFiber.setText("Dietary Fiber");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblDietaryFiber, gridBagConstraints);
+
+        txtTransFat.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtTransFat, gridBagConstraints);
+
+        txtCholestrol.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtCholestrol, gridBagConstraints);
+
+        txtSodium.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtSodium, gridBagConstraints);
+
+        txtTotalCarbs.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtTotalCarbs, gridBagConstraints);
+
+        txtDietaryFiber.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtDietaryFiber, gridBagConstraints);
+
+        lblSugars.setText("Sugars");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblSugars, gridBagConstraints);
+
+        lblProtein.setText("Protein");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblProtein, gridBagConstraints);
+
+        lblIron.setText("Iron");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblIron, gridBagConstraints);
+
+        lblSmartTag.setText("Smart Tag");
+        lblSmartTag.setToolTipText("Please provide comma seperated values");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(lblSmartTag, gridBagConstraints);
+
+        txtSugars.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtSugars, gridBagConstraints);
+
+        txtProtein.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtProtein, gridBagConstraints);
+
+        txtIron.setColumns(8);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtIron, gridBagConstraints);
+
+        txtSmartTag.setColumns(8);
+        txtSmartTag.setToolTipText("Please provide comma seperated values");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(txtSmartTag, gridBagConstraints);
+
+        btnAddNutriInfo.setText("Add Nutritional Info");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(btnAddNutriInfo, gridBagConstraints);
+
+        btnUpdateNutriInfo.setText("Update Nutritional Info");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(btnUpdateNutriInfo, gridBagConstraints);
+
+        btnDeleteNutriInfo.setText("Delete Nutritional Info");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(btnDeleteNutriInfo, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(pnlNutriInfo, gridBagConstraints);
     }// </editor-fold>                        
 
     private void btnVM1ActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
     }                                      
 
-    private void btnVM3ActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    private void btnAllActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
     }                                      
 
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
+    private void txtNutriProdIDActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+    }                                              
+
+    private void btnDeleteProdActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton btnAddInventory;
+    private javax.swing.JButton btnAddNutriInfo;
+    private javax.swing.JButton btnAddProd;
+    private javax.swing.JButton btnAll;
+    private javax.swing.JButton btnDeleteInventory;
+    private javax.swing.JButton btnDeleteNutriInfo;
+    private javax.swing.JButton btnDeleteProd;
+    private javax.swing.JButton btnUpdateInventory;
+    private javax.swing.JButton btnUpdateNutriInfo;
+    private javax.swing.JButton btnUpdateProd;
     private javax.swing.JButton btnVM1;
     private javax.swing.JButton btnVM2;
-    private javax.swing.JButton btnVM3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlerts;
+    private javax.swing.JLabel lblCalories;
+    private javax.swing.JLabel lblCholestrol;
+    private javax.swing.JLabel lblDietaryFiber;
+    private javax.swing.JLabel lblInvenPrice;
+    private javax.swing.JLabel lblInvenProdID;
+    private javax.swing.JLabel lblIron;
+    private javax.swing.JLabel lblNutriProdID;
     private javax.swing.JLabel lblOtherStats;
+    private javax.swing.JLabel lblProductCategory;
+    private javax.swing.JLabel lblProductID;
+    private javax.swing.JLabel lblProductName;
+    private javax.swing.JLabel lblProductPrice;
+    private javax.swing.JLabel lblProtein;
+    private javax.swing.JLabel lblQuantity;
+    private javax.swing.JLabel lblSaturatedFat;
+    private javax.swing.JLabel lblServingSize;
+    private javax.swing.JLabel lblSmartTag;
+    private javax.swing.JLabel lblSodium;
+    private javax.swing.JLabel lblSugars;
+    private javax.swing.JLabel lblTotalCarbs;
+    private javax.swing.JLabel lblTotalFat;
+    private javax.swing.JLabel lblTransFat;
+    private javax.swing.JLabel lblVendingMachineID;
     private javax.swing.JPanel pnlAlerts;
     private javax.swing.JPanel pnlInventory;
-    private javax.swing.JPanel pnlModifyData;
+    private javax.swing.JPanel pnlNutriInfo;
     private javax.swing.JPanel pnlOtherStats;
+    private javax.swing.JPanel pnlProduct;
     private javax.swing.JPanel pnlRevenueStat;
     private javax.swing.JPanel pnlViewVM;
     private javax.swing.JScrollPane scrollTable;
-    private javax.swing.JTable tblInventory;
     private javax.swing.JTable tblRevenue;
+    private javax.swing.JTextField txtCalories;
+    private javax.swing.JTextField txtCholestrol;
+    private javax.swing.JTextField txtDietaryFiber;
+    private javax.swing.JTextField txtInvenPrice;
+    private javax.swing.JTextField txtInvenProdID;
+    private javax.swing.JTextField txtIron;
+    private javax.swing.JTextField txtNutriProdID;
+    private javax.swing.JTextField txtProductCategory;
+    private javax.swing.JTextField txtProductID;
+    private javax.swing.JTextField txtProductName;
+    private javax.swing.JTextField txtProductPrice;
+    private javax.swing.JTextField txtProtein;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtSaturatedFat;
+    private javax.swing.JTextField txtServingSize;
+    private javax.swing.JTextField txtSmartTag;
+    private javax.swing.JTextField txtSodium;
+    private javax.swing.JTextField txtSugars;
+    private javax.swing.JTextField txtTotalCarbs;
+    private javax.swing.JTextField txtTotalFat;
+    private javax.swing.JTextField txtTransFat;
+    private javax.swing.JTextField txtVendingMachineID;
     // End of variables declaration                   
-
-	/* (non-Javadoc)
-	 * @see edu.scu.dp.smartcals.admin.AlertListener#update(edu.scu.dp.smartcals.admin.Alert)
-	 */
-	
 }

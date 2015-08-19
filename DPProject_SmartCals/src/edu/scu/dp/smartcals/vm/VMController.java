@@ -36,25 +36,15 @@ public class VMController {
 
 	private ProductDao productDao;
 
-	// start - Nisha - 8/17
 	private AdminLoginDao adminLoginDao;
-	// end - Nisha - 8/17
-
-	// start - Nisha - 8/15
 
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;
 	private VendingMachineView vendingMachineView;
-
-	// end - Nisha 8/15
-
-	// start - Nisha - 8/17
 	private LoginView loginView;
 	private MonitoringStationView monitoringStationView;
-
+	
 	private LoginCheckPointStrategy loginStrategy;
-
-	// end - Nisha
 
 	public VMController() {
 		// Code change done-Aparna
@@ -67,8 +57,6 @@ public class VMController {
 			this.vmSelectionView = new VMSelectionView(this);
 		if (vendingMachineView == null)
 			this.vendingMachineView = new VendingMachineView(this);
-
-		// start - Nisha - 8/17
 		if (loginView == null)
 			this.loginView = new LoginView(this);
 		if (monitoringStationView == null)
@@ -76,8 +64,7 @@ public class VMController {
 
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
-		mainWindow.addPanels(loginView);
-		// end - Nisha - 8/17
+		mainWindow.addPanels(vmSelectionView);
 
 	}
 

@@ -37,13 +37,13 @@ public abstract class VendingMachine {
 	 * code change -Aparna 8/18
 	 */
 	
-	private List<VMUpdateListener> vmListener;
+	private List<VMUpdateListener> vmListeners = new ArrayList<>();
 	
 	//Registering Admin as VM Listeners
 	
-	public void addListeners(VMUpdateListener listener) {
-		vmListener = new ArrayList<>();
-		vmListener.add(listener);
+	public void addListener(VMUpdateListener listener) {
+		 
+		vmListeners.add(listener);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public abstract class VendingMachine {
 	 */
 	public void notifyOutOfStock(long productId,long vmId) {
 		
-		for(VMUpdateListener listener : vmListener) {
+		for(VMUpdateListener listener : vmListeners) {
 			listener.updateOutOfStock(vmId, productId);
 		}
 		
