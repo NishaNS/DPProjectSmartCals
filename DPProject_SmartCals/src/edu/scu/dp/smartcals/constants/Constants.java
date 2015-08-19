@@ -19,4 +19,9 @@ public abstract class Constants {
 	public static final String DB_PASSWORD = "password";
 	
 	public static final String DB_TYPE = "dbtype";
+	
+	//Alert property keys
+	public static final String VM_ID_KEY = "VM_ID";
+	
+	public static final String PRODUCT_ID_KEY = "PRODUCT_ID";
 }
