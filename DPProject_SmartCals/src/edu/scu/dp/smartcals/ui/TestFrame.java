@@ -5,6 +5,8 @@
  */
 package edu.scu.dp.smartcals.ui;
 
+import edu.scu.dp.smartcals.vm.VMController;
+
 /**
  *
  * @author apar.sri
@@ -18,7 +20,7 @@ public class TestFrame extends javax.swing.JFrame {
         initComponents();
         
         MonitoringStationView mView = new MonitoringStationView();
-        setContentPane(mView);
+       setContentPane(mView);
     }
 
     /**
