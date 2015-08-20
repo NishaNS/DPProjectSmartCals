@@ -18,6 +18,7 @@ import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 import edu.scu.dp.smartcals.ui.LoginView;
 import edu.scu.dp.smartcals.ui.MonitoringStationView;
+import edu.scu.dp.smartcals.ui.TabbedView;
 import edu.scu.dp.smartcals.ui.VMClient;
 import edu.scu.dp.smartcals.ui.VMDetails_View;
 import edu.scu.dp.smartcals.ui.VMProdCategory;
@@ -33,18 +34,17 @@ import edu.scu.dp.smartcals.ui.VendingMachineView;
 public class VMController {
 
 	private VendingMachineDao vendingMachineDao;
-
 	private ProductDao productDao;
-
 	private AdminLoginDao adminLoginDao;
 
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;
 	private VendingMachineView vendingMachineView;
 	private LoginView loginView;
-	private MonitoringStationView monitoringStationView;
-	
+	private MonitoringStationView monitoringStationView;	
 	private LoginCheckPointStrategy loginStrategy;
+	
+	private TabbedView tabbedView;
 
 	public VMController() {
 		// Code change done-Aparna
@@ -61,10 +61,15 @@ public class VMController {
 			this.loginView = new LoginView(this);
 		if (monitoringStationView == null)
 			this.monitoringStationView = new MonitoringStationView(this);
-
+		
+		//start - Nisha - 8/19
+		if(tabbedView == null)
+			this.tabbedView = new TabbedView(this);
+		//end - Nisha - 8/19
+		
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
-		mainWindow.addPanels(vendingMachineView);
+		mainWindow.addPanels(tabbedView);
 
 	}
 
@@ -88,7 +93,6 @@ public class VMController {
 		// end - Nisha - 8/17
 	}
 
-	// start - Nisha - 8/15 - new methods
 	/**
 	 * @return vendingMachineView Return the view holding the JFrame object
 	 */
@@ -103,10 +107,19 @@ public class VMController {
 	public VendingMachineView getVendingMachineView() {
 		return vendingMachineView;
 	}
-
+	
+	//start - Nisha - 8/19 - new methods
+	public MonitoringStationView getMonitoringStationView() {
+		return monitoringStationView;
+	}
+	
+	public LoginView getLoginView() {
+		return loginView;
+	}
+	//end - Nisha - 8/19
+	
 	// $$$$$$ add getter methods for other views here $$$$$$
 
-	// end - Nisha - 8/15
 
 	/**
 	 * Returns all the Vending Machines from Database to ViewAllVendingMachines
@@ -199,7 +212,6 @@ public class VMController {
 		return vendingMachine;
 	}
 
-	// start - Nisha - 8/17
 	/**
 	 * Authenticates the user login with database
 	 * 
@@ -211,18 +223,30 @@ public class VMController {
 	public void authenticateUser(String username, String password) {
 
 		try {
+
 			AdminLoginModel adminLoginModel = adminLoginDao.validateLogin(
 					username, password);
+
 			if (adminLoginModel != null) {
-				System.out.println("valid");
+
 				// update DB table with time of latest login
 				adminLoginDao.setLastLoginTime(username);
-				// load next view
-				loginView.setVisible(false);
-				this.getView().addPanels(monitoringStationView);
+
+				//start - Nisha - 8/19 - tabbed view
+				
+				// load next view in tabbed view
+				tabbedView.getTabPane().removeTabAt(1);
+				tabbedView.getTabPane().setSelectedIndex(1);
+				tabbedView.getTabPane().addTab("Monitoring Station",
+						monitoringStationView);
+				
+				//end - Nisha - 8/19
+
 			} else {
+
 				// update table with number of failed attempts
 				adminLoginDao.setLoginFailedAttempt(username);
+
 				// set strategy
 				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
 				System.out
@@ -235,18 +259,15 @@ public class VMController {
 	}
 
 	/**
-	 * @param strategy
+	 * @param strategy 
 	 *            Client to provide the strategy for failed login attempts
 	 */
 	public void setLoginCheckPointStrategy(LoginCheckPointStrategy loginStrategy) {
 		this.loginStrategy = loginStrategy;
 	}
 
-	// end - Nisha - 8/17
-
-	// start - Nisha - 8/15
 	public static void main(String[] args) {
 		new VMController();
 	}
-	// end - Nisha - 8/15
+
 }
