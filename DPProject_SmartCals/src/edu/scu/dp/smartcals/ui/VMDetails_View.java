@@ -1,5 +1,10 @@
 package edu.scu.dp.smartcals.ui;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JPanel;
+
 import edu.scu.dp.smartcals.vm.VMController;
 import edu.scu.dp.smartcals.vm.VendingMachine;
 
@@ -23,6 +28,18 @@ public class VMDetails_View extends javax.swing.JPanel {
         
     }
     
+    //start - Nisha - 8/19 - new method
+    /**
+     * @param pnlChild Add inner child panels dynamically
+     */
+    public void addDynamicChildPanels (JPanel pnlChild){
+		pnlPayment.add(pnlChild);
+		pnlChild.setSize(pnlPayment.getWidth(), pnlPayment.getHeight());
+		pnlChild.setBackground(Color.GREEN);
+		pnlChild.setVisible(true);	
+	}
+    //end - Nisha - 8/19
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +75,7 @@ public class VMDetails_View extends javax.swing.JPanel {
         lblCashDispense = new javax.swing.JLabel();
         lblCardDispense = new javax.swing.JLabel();
         lblItemDispense = new javax.swing.JLabel();
+        pnlPayment = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -73,7 +91,14 @@ public class VMDetails_View extends javax.swing.JPanel {
         });
 
         btnLoadCard.setText("Load Smart Card");
-        btnLoadCard.setName("btnLoadCard"); // NOI18N
+        btnLoadCard.setName("btnLoadCard"); // NOI18N        
+        //start - Nisha - 8/19 - new method
+        btnLoadCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadCardActionPerformed(evt);
+            }
+        });
+        //end - Nisha
 
         btnBuySmartCard.setText("Buy Smart Card");
         btnBuySmartCard.setName("btnBuySmartCard"); // NOI18N
@@ -236,9 +261,6 @@ public class VMDetails_View extends javax.swing.JPanel {
             .addGroup(pnlQueryLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
                             .addComponent(chkLowFat)
@@ -250,13 +272,16 @@ public class VMDetails_View extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
                         .addComponent(chkLowSugar)
                         .addGap(44, 44, 44)
-                        .addComponent(chkHighProtein)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addComponent(chkHighProtein))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlQueryLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         pnlQueryLayout.setVerticalGroup(
             pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQueryLayout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(pnlQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkLowFat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkGlutenFree, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
@@ -342,17 +367,43 @@ public class VMDetails_View extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.3;
         add(pnlDispenser, gridBagConstraints);
+
+        javax.swing.GroupLayout pnlPaymentLayout = new javax.swing.GroupLayout(pnlPayment);
+        pnlPayment.setLayout(pnlPaymentLayout);
+        pnlPaymentLayout.setHorizontalGroup(
+            pnlPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlPaymentLayout.setVerticalGroup(
+            pnlPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(pnlPayment, gridBagConstraints);
     }// </editor-fold>                        
 
-    private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    
+    //start - Nisha - 8/19 - method body defined
+    protected void btnLoadCardActionPerformed(ActionEvent evt) {
+		this.addDynamicChildPanels(new JPanel());		
+	}
+    //end - Nisha 
+
+	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         // TODO add your handling code here:
     }                                                  
 
     private void chkLowFatActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }                                         
-
-
+    }   
+    
+    
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnBuy;
     private javax.swing.JButton btnBuySmartCard;
@@ -375,6 +426,7 @@ public class VMDetails_View extends javax.swing.JPanel {
     private javax.swing.JPanel pnlDispenser;
     private javax.swing.JPanel pnlDisplay;
     private javax.swing.JPanel pnlEnterProduct;
+    private javax.swing.JPanel pnlPayment;
     private javax.swing.JPanel pnlQuery;
     private javax.swing.JPanel pnlSelectOrder;
     private javax.swing.JSlider sliderCalorie;
