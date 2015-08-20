@@ -1,5 +1,9 @@
 package edu.scu.dp.smartcals.ui;
 
+import java.awt.image.ColorModel;
+
+import edu.scu.dp.smartcals.admin.Alert;
+import edu.scu.dp.smartcals.admin.AlertListener;
 import edu.scu.dp.smartcals.vm.VMController;
 
 /*
@@ -12,7 +16,7 @@ import edu.scu.dp.smartcals.vm.VMController;
  *
  * @author Nisha
  */
-public class MonitoringStationView extends javax.swing.JPanel {
+public class MonitoringStationView extends javax.swing.JPanel implements AlertListener {
 	
 	private VMController vmController;
 
@@ -23,7 +27,18 @@ public class MonitoringStationView extends javax.swing.JPanel {
     	this.vmController = vmController;
         initComponents();
     }
-
+/**
+ * Code change-Aparna 8/18
+ * Updates User Interface with the out of stock alert
+ */
+    @Override
+	public void update(Alert alert) {
+		// TODO set the label with the alert received
+    	lblAlerts.setText(alert.getMessage());
+    	//lblAlerts.setForeground(ColorModel.getRGBdefault().getRed());
+		
+	}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,8 +173,8 @@ public class MonitoringStationView extends javax.swing.JPanel {
 
         lblAlerts.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAlerts.setForeground(new java.awt.Color(255, 102, 102));
-        lblAlerts.setText("All alerts from Observer shld be displayed here by appending text.");
-        lblAlerts.setName("Alerts"); // NOI18N
+        //lblAlerts.setText("All alerts from Observer shld be displayed here by appending text.");
+        //lblAlerts.setName("Alerts"); // NOI18N
 
         javax.swing.GroupLayout pnlAlertsLayout = new javax.swing.GroupLayout(pnlAlerts);
         pnlAlerts.setLayout(pnlAlertsLayout);
