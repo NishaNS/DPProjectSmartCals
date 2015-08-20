@@ -19,8 +19,8 @@ public class TestFrame extends javax.swing.JFrame {
     public TestFrame() {
         initComponents();
         
-        MonitoringStationView mView = new MonitoringStationView();
-       setContentPane(mView);
+       //MonitoringStationView mView = new MonitoringStationView();
+       //setContentPane(mView);
     }
 
     /**
