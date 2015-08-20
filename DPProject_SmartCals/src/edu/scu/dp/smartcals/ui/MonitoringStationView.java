@@ -38,7 +38,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
     	//lblAlerts.setForeground(ColorModel.getRGBdefault().getRed());
 		
 	}
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,10 +49,11 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        radioBtnGroup = new javax.swing.ButtonGroup();
         pnlViewVM = new javax.swing.JPanel();
-        btnVM1 = new javax.swing.JButton();
-        btnVM2 = new javax.swing.JButton();
-        btnAll = new javax.swing.JButton();
+        radioAll = new javax.swing.JRadioButton();
+        radioVM1 = new javax.swing.JRadioButton();
+        radioVM2 = new javax.swing.JRadioButton();
         pnlAlerts = new javax.swing.JPanel();
         lblAlerts = new javax.swing.JLabel();
         pnlRevenueStat = new javax.swing.JPanel();
@@ -69,6 +70,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         txtProductCategory = new javax.swing.JTextField();
         txtProductName = new javax.swing.JTextField();
         txtProductPrice = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
         btnAddProd = new javax.swing.JButton();
         btnUpdateProd = new javax.swing.JButton();
         btnDeleteProd = new javax.swing.JButton();
@@ -81,6 +83,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         txtQuantity = new javax.swing.JTextField();
         txtInvenPrice = new javax.swing.JTextField();
         lblQuantity = new javax.swing.JLabel();
+        btnSearchInventory = new javax.swing.JButton();
         btnAddInventory = new javax.swing.JButton();
         btnUpdateInventory = new javax.swing.JButton();
         btnDeleteInventory = new javax.swing.JButton();
@@ -113,6 +116,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         txtProtein = new javax.swing.JTextField();
         txtIron = new javax.swing.JTextField();
         txtSmartTag = new javax.swing.JTextField();
+        btnSearchNutriInfo = new javax.swing.JButton();
         btnAddNutriInfo = new javax.swing.JButton();
         btnUpdateNutriInfo = new javax.swing.JButton();
         btnDeleteNutriInfo = new javax.swing.JButton();
@@ -123,24 +127,14 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlViewVM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Vending Machine(s)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         pnlViewVM.setName("ViewVM"); // NOI18N
 
-        btnVM1.setText("VM1");
-        btnVM1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnVM1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVM1ActionPerformed(evt);
-            }
-        });
+        radioBtnGroup.add(radioAll);
+        radioAll.setText("All VM");
 
-        btnVM2.setText("VM2");
-        btnVM2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        radioBtnGroup.add(radioVM1);
+        radioVM1.setText("VM1");
 
-        btnAll.setText("All");
-        btnAll.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAllActionPerformed(evt);
-            }
-        });
+        radioBtnGroup.add(radioVM2);
+        radioVM2.setText("VM2");
 
         javax.swing.GroupLayout pnlViewVMLayout = new javax.swing.GroupLayout(pnlViewVM);
         pnlViewVM.setLayout(pnlViewVMLayout);
@@ -148,39 +142,43 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
             pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlViewVMLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnVM1)
-                .addGap(25, 25, 25)
-                .addComponent(btnVM2)
-                .addGap(25, 25, 25)
-                .addComponent(btnAll)
+                .addComponent(radioAll)
+                .addGap(56, 56, 56)
+                .addComponent(radioVM1)
+                .addGap(63, 63, 63)
+                .addComponent(radioVM2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlViewVMLayout.setVerticalGroup(
             pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlViewVMLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlViewVMLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlViewVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVM2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVM1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(radioAll)
+                    .addComponent(radioVM1)
+                    .addComponent(radioVM2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(pnlViewVM, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.weightx = 0.2;
+        add(pnlViewVM, gridBagConstraints);
 
         pnlAlerts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alerts!", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 0, 0))); // NOI18N
         pnlAlerts.setPreferredSize(new java.awt.Dimension(561, 78));
 
         lblAlerts.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAlerts.setForeground(new java.awt.Color(255, 102, 102));
-        //lblAlerts.setText("All alerts from Observer shld be displayed here by appending text.");
-        //lblAlerts.setName("Alerts"); // NOI18N
+        lblAlerts.setText("All alerts from Observer shld be displayed here by appending text.");
+        lblAlerts.setName("Alerts"); // NOI18N
 
         javax.swing.GroupLayout pnlAlertsLayout = new javax.swing.GroupLayout(pnlAlerts);
         pnlAlerts.setLayout(pnlAlertsLayout);
         pnlAlertsLayout.setHorizontalGroup(
             pnlAlertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAlerts, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+            .addComponent(lblAlerts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlAlertsLayout.setVerticalGroup(
             pnlAlertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,13 +186,12 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.2;
         add(pnlAlerts, gridBagConstraints);
 
@@ -226,24 +223,25 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlRevenueStat.setLayout(pnlRevenueStatLayout);
         pnlRevenueStatLayout.setHorizontalGroup(
             pnlRevenueStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueStatLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(pnlRevenueStatLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         pnlRevenueStatLayout.setVerticalGroup(
             pnlRevenueStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueStatLayout.createSequentialGroup()
-                .addGap(0, 59, Short.MAX_VALUE)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
@@ -261,21 +259,19 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         pnlOtherStats.setLayout(pnlOtherStatsLayout);
         pnlOtherStatsLayout.setHorizontalGroup(
             pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblOtherStats, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+            .addComponent(lblOtherStats, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlOtherStatsLayout.setVerticalGroup(
             pnlOtherStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOtherStatsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblOtherStats, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lblOtherStats, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.4;
         add(pnlOtherStats, gridBagConstraints);
 
         pnlProduct.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -294,7 +290,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -304,7 +299,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -314,7 +308,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -353,20 +346,22 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlProduct.add(txtProductPrice, gridBagConstraints);
 
+        btnSearch.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        pnlProduct.add(btnSearch, gridBagConstraints);
+
         btnAddProd.setText("Add Product");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         pnlProduct.add(btnAddProd, gridBagConstraints);
 
         btnUpdateProd.setText("Update Product");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         pnlProduct.add(btnUpdateProd, gridBagConstraints);
 
         btnDeleteProd.setText("Delete Product");
@@ -377,15 +372,16 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         pnlProduct.add(btnDeleteProd, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.4;
         add(pnlProduct, gridBagConstraints);
 
         pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -469,37 +465,41 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlInventory.add(lblQuantity, gridBagConstraints);
 
+        btnSearchInventory.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlInventory.add(btnSearchInventory, gridBagConstraints);
+
         btnAddInventory.setText("Add Inventory");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlInventory.add(btnAddInventory, gridBagConstraints);
 
         btnUpdateInventory.setText("Update Inventory");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlInventory.add(btnUpdateInventory, gridBagConstraints);
 
         btnDeleteInventory.setText("Delete Inventory");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlInventory.add(btnDeleteInventory, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.4;
         add(pnlInventory, gridBagConstraints);
 
         pnlNutriInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nutritional Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -510,13 +510,12 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(lblNutriProdID, gridBagConstraints);
 
-        txtNutriProdID.setColumns(8);
+        txtNutriProdID.setColumns(10);
         txtNutriProdID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNutriProdIDActionPerformed(evt);
@@ -525,8 +524,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -536,7 +533,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -555,7 +551,6 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -565,51 +560,42 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(lblSaturatedFat, gridBagConstraints);
 
-        txtServingSize.setColumns(8);
+        txtServingSize.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtServingSize, gridBagConstraints);
 
-        txtCalories.setColumns(8);
+        txtCalories.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtCalories, gridBagConstraints);
 
-        txtTotalFat.setColumns(8);
+        txtTotalFat.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtTotalFat, gridBagConstraints);
 
-        txtSaturatedFat.setColumns(8);
+        txtSaturatedFat.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -617,7 +603,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblTransFat.setText("Trans Fat");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
@@ -626,9 +612,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblCholestrol.setText("Cholestrol");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -636,7 +621,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblSodium.setText("Sodium");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
@@ -645,9 +630,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblTotalCarbs.setText("Total Carbs");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -655,63 +639,53 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblDietaryFiber.setText("Dietary Fiber");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(lblDietaryFiber, gridBagConstraints);
 
-        txtTransFat.setColumns(8);
+        txtTransFat.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtTransFat, gridBagConstraints);
 
-        txtCholestrol.setColumns(8);
+        txtCholestrol.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtCholestrol, gridBagConstraints);
 
-        txtSodium.setColumns(8);
+        txtSodium.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtSodium, gridBagConstraints);
 
-        txtTotalCarbs.setColumns(8);
+        txtTotalCarbs.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtTotalCarbs, gridBagConstraints);
 
-        txtDietaryFiber.setColumns(8);
+        txtDietaryFiber.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -719,7 +693,7 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblSugars.setText("Sugars");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
@@ -728,9 +702,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblProtein.setText("Protein");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -738,9 +711,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         lblIron.setText("Iron");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -749,60 +721,63 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         lblSmartTag.setText("Smart Tag");
         lblSmartTag.setToolTipText("Please provide comma seperated values");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(lblSmartTag, gridBagConstraints);
 
-        txtSugars.setColumns(8);
+        txtSugars.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtSugars, gridBagConstraints);
 
-        txtProtein.setColumns(8);
+        txtProtein.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtProtein, gridBagConstraints);
 
-        txtIron.setColumns(8);
+        txtIron.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtIron, gridBagConstraints);
 
-        txtSmartTag.setColumns(8);
+        txtSmartTag.setColumns(10);
         txtSmartTag.setToolTipText("Please provide comma seperated values");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlNutriInfo.add(txtSmartTag, gridBagConstraints);
 
+        btnSearchNutriInfo.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlNutriInfo.add(btnSearchNutriInfo, gridBagConstraints);
+
         btnAddNutriInfo.setText("Add Nutritional Info");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -810,9 +785,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         btnUpdateNutriInfo.setText("Update Nutritional Info");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -820,9 +794,8 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
 
         btnDeleteNutriInfo.setText("Delete Nutritional Info");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -831,19 +804,12 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.4;
         add(pnlNutriInfo, gridBagConstraints);
     }// </editor-fold>                        
-
-    private void btnVM1ActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
-
-    private void btnAllActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
@@ -862,15 +828,15 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
     private javax.swing.JButton btnAddInventory;
     private javax.swing.JButton btnAddNutriInfo;
     private javax.swing.JButton btnAddProd;
-    private javax.swing.JButton btnAll;
     private javax.swing.JButton btnDeleteInventory;
     private javax.swing.JButton btnDeleteNutriInfo;
     private javax.swing.JButton btnDeleteProd;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSearchInventory;
+    private javax.swing.JButton btnSearchNutriInfo;
     private javax.swing.JButton btnUpdateInventory;
     private javax.swing.JButton btnUpdateNutriInfo;
     private javax.swing.JButton btnUpdateProd;
-    private javax.swing.JButton btnVM1;
-    private javax.swing.JButton btnVM2;
     private javax.swing.JLabel lblAlerts;
     private javax.swing.JLabel lblCalories;
     private javax.swing.JLabel lblCholestrol;
@@ -902,6 +868,10 @@ public class MonitoringStationView extends javax.swing.JPanel implements AlertLi
     private javax.swing.JPanel pnlProduct;
     private javax.swing.JPanel pnlRevenueStat;
     private javax.swing.JPanel pnlViewVM;
+    private javax.swing.JRadioButton radioAll;
+    private javax.swing.ButtonGroup radioBtnGroup;
+    private javax.swing.JRadioButton radioVM1;
+    private javax.swing.JRadioButton radioVM2;
     private javax.swing.JScrollPane scrollTable;
     private javax.swing.JTable tblRevenue;
     private javax.swing.JTextField txtCalories;
