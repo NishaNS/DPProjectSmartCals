@@ -30,12 +30,15 @@ public class VMSelectionView extends javax.swing.JPanel  {
 	 */
 	public VMSelectionView(VMController vmController) {		//Nisha - 8/15 - added argument to constr
 		
-		//start - Nisha - 8/15 - old line of code for controller object init deleted
-		
 		this.vmController = vmController;
+
 		initComponents();
 		
 		//end - Nisha - 8/15
+
+		
+		//initComponents();
+
 	}
 
 	/**
