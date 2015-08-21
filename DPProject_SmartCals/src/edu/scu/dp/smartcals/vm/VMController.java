@@ -31,7 +31,7 @@ import edu.scu.dp.smartcals.ui.VendingMachineView;
  * @author Aparna Ganesh
  * @author Nisha Narayanaswamy VMController class decides the views to be
  *         displayed on user action, delegates the call to required classes
- *
+ * testing
  */
 public class VMController {
 
