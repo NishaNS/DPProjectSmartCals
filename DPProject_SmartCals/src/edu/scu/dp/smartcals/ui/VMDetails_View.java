@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 
+import edu.scu.dp.smartcals.exception.EmptyResultException;
+
 
 /**
  *@author Aparna Ganesh
@@ -83,7 +85,12 @@ public class VMDetails_View extends javax.swing.JPanel {
         btnNutritionalInfo.setName("btnNutritionalInfo"); // NOI18N
         btnNutritionalInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNutritionalInfoActionPerformed(evt);
+                try {
+					btnNutritionalInfoActionPerformed(evt);
+				} catch (EmptyResultException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -395,8 +402,9 @@ public class VMDetails_View extends javax.swing.JPanel {
     //start - Nisha - 8/20 - method body defined
 	/**
 	 * @param evt  On button click display the nutritional info for selected product
+	 * @throws EmptyResultException 
 	 */
-	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) throws EmptyResultException {                                                   
 		long ProdID = Integer.parseInt(txtEnterProdID.getText());
 		String nutriInfo = parentView.getVMController().displayNutritionalInfo(ProdID);
 		lblDisplay.setText(nutriInfo);

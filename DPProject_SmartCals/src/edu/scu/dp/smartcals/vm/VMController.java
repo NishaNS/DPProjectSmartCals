@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import edu.scu.dp.smartcals.constants.ProductCategory;
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
@@ -20,6 +22,8 @@ import edu.scu.dp.smartcals.ui.LoginView;
 import edu.scu.dp.smartcals.ui.MonitoringStationView;
 import edu.scu.dp.smartcals.ui.TabbedView;
 import edu.scu.dp.smartcals.ui.VMClient;
+import edu.scu.dp.smartcals.ui.VMDetails_View;
+import edu.scu.dp.smartcals.ui.VMProdCategory;
 import edu.scu.dp.smartcals.ui.VMSelectionView;
 import edu.scu.dp.smartcals.ui.VendingMachineView;
 
@@ -119,6 +123,16 @@ public class VMController {
 	public LoginView getLoginView() {
 		return loginView;
 	}
+	
+	//code change in progress- Aparna 21/8
+	public TabbedView getTabbedView() {
+		return tabbedView;
+	}
+
+	public void setTabbedView(TabbedView tabbedView) {
+		this.tabbedView = tabbedView;
+	}
+	//-------------------------------------------------------------
 	//end - Nisha - 8/19
 	
 	// $$$$$$ add getter methods for other views here $$$$$$
@@ -136,7 +150,7 @@ public class VMController {
 		List<VendingMachine> vendingMachines = new ArrayList<>();
 		try {
 			vendingMachineModels = vendingMachineDao.getAllVMBasicInfo();
-		} catch (EmptyResultException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Collections.emptyList();
@@ -144,10 +158,8 @@ public class VMController {
 
 		for (VendingMachineModel vmModel : vendingMachineModels) {
 
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory
-					.getFactory(vmModel.getType());
-			VendingMachine vendingMachine = vendingMachineFactory
-					.createVendingMachine(vmModel);
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
+			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
 		return vendingMachines;
@@ -173,28 +185,26 @@ public class VMController {
 
 		try {
 			vmModel = vendingMachineDao.getVendingMachine(vmId);
-		} catch (SQLException | EmptyResultException e) {
+		} catch (SQLException e) {
 
 			e.printStackTrace();
 			return null;
 
 		}
 
-		VendingMachineFactory vendingMachineFactory = VendingMachineFactory
-				.getFactory(vmModel.getType());
+		VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
 
-		VendingMachine vendingMachine = vendingMachineFactory
-				.createVendingMachine(vmModel);
+		VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 
 		List<ProductModel> productModels = vmModel.getProductModels();
-		System.out
-				.println("Product Model contains " + productModels.toString());
+		
+		System.out.println("Product Model contains " + productModels.toString());
+		
 		for (ProductModel productModel : productModels) {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
-				Beverage breverage = vendingMachineFactory
-						.createBreverage(productModel);
+				Beverage breverage = vendingMachineFactory.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -222,15 +232,13 @@ public class VMController {
 	 * @throws EmptyResultException 
 	 * @throws SQLException 
 	 */
-	public String displayNutritionalInfo(long ProdID) {
+	public String displayNutritionalInfo(long ProdID) throws EmptyResultException {
 		NutritionalInfoModel nutriInfoModel = null;
 		
 		try {
 			nutriInfoModel = nutriInfoDao.getNutriInfo(ProdID);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (EmptyResultException e) {
-			return "No nutritional information available";
 		}
 		return nutriInfoModel.toString();	
 	}	

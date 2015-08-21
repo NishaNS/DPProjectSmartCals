@@ -101,7 +101,10 @@ public class VMSelectionView extends javax.swing.JPanel  {
 			vmView.setVendingMachine(vendingMachine);
 			
 			vmController.getSelectView().setVisible(false);
-			vmController.getView().addPanels(vmController.getVendingMachineView());
+			//vmController.getView().addPanels(vmController.getVendingMachineView());
+			
+			//code change done-Aparna 8/21
+			vmController.getView().addPanels(vmController.getTabbedView());
 			
 		}
 		

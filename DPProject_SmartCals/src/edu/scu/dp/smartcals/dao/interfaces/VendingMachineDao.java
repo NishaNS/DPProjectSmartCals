@@ -6,6 +6,7 @@ package edu.scu.dp.smartcals.dao.interfaces;
 import java.sql.SQLException;
 import java.util.List;
 
+import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
@@ -45,6 +46,16 @@ public interface VendingMachineDao {
 	 * @throws EmptyResultException 
 	 */
 		public List<ProductModel> getProductsByVMId(long vmId) throws SQLException;
+
+
+	/**
+	 * code change -Aparna -8/21
+	 * Returns the vending machine type
+	 * @param vmId
+	 * @return
+	 * @throws SQLException 
+	 */
+	public VMLocationType getVendingMachineType(long vmId) throws SQLException;
 	
 
 }
