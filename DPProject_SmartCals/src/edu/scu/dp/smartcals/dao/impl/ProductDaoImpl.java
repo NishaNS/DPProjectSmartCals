@@ -103,8 +103,6 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 	
 
 }

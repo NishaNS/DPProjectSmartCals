@@ -17,13 +17,13 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
  */
 public class VendingMachineView extends JPanel {
 	
-	private VMController vmController;
+	public VMController vmController;
 	//code change - Aparna
 	// Holds the vending machine object for this vending machine view 
 	private VendingMachine vendingMachine;
 	private VMProdCategory vmProdCategory;
 	
-	private VMDetails_View vmDetailsView;
+	public VMDetails_View vmDetailsView;
 	private GridBagLayout gridLayout;
 	private GridBagConstraints gridConstraints;
 	
