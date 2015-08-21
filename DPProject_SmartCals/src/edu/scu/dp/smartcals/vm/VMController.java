@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import edu.scu.dp.smartcals.constants.ProductCategory;
-import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
@@ -22,8 +20,6 @@ import edu.scu.dp.smartcals.ui.LoginView;
 import edu.scu.dp.smartcals.ui.MonitoringStationView;
 import edu.scu.dp.smartcals.ui.TabbedView;
 import edu.scu.dp.smartcals.ui.VMClient;
-import edu.scu.dp.smartcals.ui.VMDetails_View;
-import edu.scu.dp.smartcals.ui.VMProdCategory;
 import edu.scu.dp.smartcals.ui.VMSelectionView;
 import edu.scu.dp.smartcals.ui.VendingMachineView;
 
@@ -75,7 +71,7 @@ public class VMController {
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 
-		mainWindow.addPanels(tabbedView);
+		mainWindow.addPanels(vmSelectionView);
 
 	}
 

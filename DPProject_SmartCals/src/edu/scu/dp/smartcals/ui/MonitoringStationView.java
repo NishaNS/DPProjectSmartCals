@@ -1,7 +1,5 @@
 package edu.scu.dp.smartcals.ui;
 
-import java.awt.image.ColorModel;
-
 import edu.scu.dp.smartcals.admin.Alert;
 import edu.scu.dp.smartcals.admin.AlertListener;
 import edu.scu.dp.smartcals.vm.VMController;

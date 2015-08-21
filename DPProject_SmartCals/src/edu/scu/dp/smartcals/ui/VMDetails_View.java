@@ -1,13 +1,9 @@
 package edu.scu.dp.smartcals.ui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
-
-import edu.scu.dp.smartcals.vm.VMController;
-import edu.scu.dp.smartcals.vm.VendingMachine;
 
 
 /**

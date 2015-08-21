@@ -1,19 +1,11 @@
 package edu.scu.dp.smartcals.ui;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-
-import edu.scu.dp.smartcals.exception.EmptyResultException;
-import edu.scu.dp.smartcals.test.SmartCardTest;
 
 
 /**

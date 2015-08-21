@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.scu.dp.smartcals.constants.VMStatus;
 import edu.scu.dp.smartcals.constants.VMLocationType;
+import edu.scu.dp.smartcals.constants.VMStatus;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;

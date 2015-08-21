@@ -1,9 +1,6 @@
 package edu.scu.dp.smartcals.test;
 
-import java.awt.Container;
 import java.sql.SQLException;
-
-import javax.swing.JFrame;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,7 +9,6 @@ import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.model.AdminLoginModel;
-import edu.scu.dp.smartcals.ui.LoginView;
 
 //test admin dao 
 public class TestAdminLoginDao {
