@@ -1,17 +1,11 @@
 package edu.scu.dp.smartcals.test;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Properties;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import edu.scu.dp.smartcals.constants.DbType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
-import edu.scu.dp.smartcals.dao.impl.NutritionalInfoDaoImpl;
-import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;

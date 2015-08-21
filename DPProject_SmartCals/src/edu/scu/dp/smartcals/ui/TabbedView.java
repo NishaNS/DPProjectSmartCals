@@ -1,14 +1,11 @@
 package edu.scu.dp.smartcals.ui;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import edu.scu.dp.smartcals.vm.LoginCheckPointStrategy;
 import edu.scu.dp.smartcals.vm.VMController;
 
 /**

@@ -5,7 +5,6 @@
  */
 package edu.scu.dp.smartcals.ui;
 
-import edu.scu.dp.smartcals.vm.VMController;
 
 /**
  *

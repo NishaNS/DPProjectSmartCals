@@ -32,7 +32,7 @@ public class VMSelectionView extends javax.swing.JPanel  {
 		
 		this.vmController = vmController;
 
-		//initComponents();
+		initComponents();
 		
 		//end - Nisha - 8/15
 
