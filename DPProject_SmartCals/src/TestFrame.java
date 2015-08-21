@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 /**
  * @author Aparna Ganesh
- * Sample Test Frame
+ * Sample Test Frame--
  */
 public class TestFrame extends JFrame{
 	
