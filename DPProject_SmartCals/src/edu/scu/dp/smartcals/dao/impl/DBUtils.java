@@ -14,14 +14,7 @@ import java.sql.Statement;
  */
 public class DBUtils {
 
-	public static void closeConnection(Connection connection) throws SQLException {
-
-		if (connection != null) {
-			connection.close();
-
-		}
-	}
-		public static void closeStatement(Statement statement) throws SQLException {
+			public static void closeStatement(Statement statement) throws SQLException {
 
 			if (statement != null) {
 				statement.close();
