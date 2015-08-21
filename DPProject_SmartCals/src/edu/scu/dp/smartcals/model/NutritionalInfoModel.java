@@ -133,18 +133,18 @@ public class NutritionalInfoModel {
 		//later on remove productID from display. 
 		//there is no need to display Smart Tag
 		
-		return "ProductID: " + productID 		
-		+ "\nServing Size: " + servingSize
-		+ "\nCalories: " + calories
-		+ "\nTotal Fat: " + totalFat
-		+ "\nSaturated Fat: " + saturatedFat
-		+ "\nTrans Fat: " + transFat
-		+ "\nCholestrol: " + cholestrol
-		+ "\nSodium: " + sodium
-		+ "\nTotal Carbs: " + totalCarbs
-		+ "\nDietary Fiber: " +  dietaryFiber
-		+ "\nSugars: " +  sugars
-		+ "\nProtein: " + protein
-		+ "\nIron: " + iron;
+		return "<html>\nProductID: " + productID 		
+		+ "\n<br> Serving Size: " + servingSize
+		+ "\n, Calories: " + calories
+		+ "\n, Total Fat: " + totalFat
+		+ "\n, Saturated Fat: " + saturatedFat
+		+ "\n<br> Trans Fat: " + transFat
+		+ "\n, Cholestrol: " + cholestrol
+		+ "\n, Sodium: " + sodium
+		+ "\n, Total Carbs: " + totalCarbs
+		+ "\n, Dietary Fiber: " +  dietaryFiber
+		+ "\n<br> Sugars: " +  sugars
+		+ "\n, Protein: " + protein
+		+ "\n, Iron: </html>" + iron;
 	}
 }

@@ -1,6 +1,7 @@
 package edu.scu.dp.smartcals.ui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
@@ -143,6 +144,7 @@ public class VMDetails_View extends javax.swing.JPanel {
 
         lblDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDisplay.setText("SmartCals Vending Machine");
+        lblDisplay.setFont(new java.awt.Font("Tahoma", 0, 14));
         lblDisplay.setName("lblDisplay"); // NOI18N
 
         pnlEnterProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -394,9 +396,17 @@ public class VMDetails_View extends javax.swing.JPanel {
 	}
     //end - Nisha 
 
+    //start - Nisha - 8/20 - method body defined
+	/**
+	 * @param evt  On button click display the nutritional info for selected product
+	 */
 	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        // TODO add your handling code here:
-    }                                                  
+		long ProdID = Integer.parseInt(txtEnterProdID.getText());
+		String nutriInfo = parentView.getVMController().displayNutritionalInfo(ProdID);
+		lblDisplay.setText(nutriInfo);
+		
+    }   
+	//end - Nisha
 
     private void chkLowFatActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:

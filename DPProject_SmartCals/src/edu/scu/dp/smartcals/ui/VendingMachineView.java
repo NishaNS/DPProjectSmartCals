@@ -18,6 +18,7 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
 public class VendingMachineView extends JPanel {
 	
 	private VMController vmController;
+	
 	//code change - Aparna
 	// Holds the vending machine object for this vending machine view 
 	private VendingMachine vendingMachine;
@@ -84,6 +85,8 @@ public class VendingMachineView extends JPanel {
 		this.vendingMachine = vendingMachine;
 	}
 	
-	
+	public VMController getVMController() {
+		return vmController;
+	}
 
 }

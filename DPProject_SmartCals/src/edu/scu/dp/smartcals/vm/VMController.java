@@ -9,11 +9,13 @@ import edu.scu.dp.smartcals.constants.ProductCategory;
 import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
+import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.AdminLoginModel;
+import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 import edu.scu.dp.smartcals.ui.LoginView;
@@ -36,6 +38,9 @@ public class VMController {
 	private VendingMachineDao vendingMachineDao;
 	private ProductDao productDao;
 	private AdminLoginDao adminLoginDao;
+	//start - Nisha - 8/20 
+	private NutritionalInfoDao nutriInfoDao;
+	//end - Nisha
 
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;
@@ -70,7 +75,7 @@ public class VMController {
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 
-		mainWindow.addPanels(vmSelectionView);
+		mainWindow.addPanels(tabbedView);
 
 	}
 
@@ -88,10 +93,11 @@ public class VMController {
 		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
-
-		// start - Nisha - 8/17
 		adminLoginDao = DaoFactory.getAdminLoginDao();
-		// end - Nisha - 8/17
+	
+		//start - Nisha - 8/20 
+		nutriInfoDao = DaoFactory.getNutritionalInfoDao();
+		//end - Nisha
 	}
 
 	/**
@@ -213,6 +219,27 @@ public class VMController {
 		return vendingMachine;
 	}
 
+	
+	//start - Nisha - 8/20 - display nutri info
+	/**
+	 * Display Nutritional Info on the view for selected product
+	 * @throws EmptyResultException 
+	 * @throws SQLException 
+	 */
+	public String displayNutritionalInfo(long ProdID) {
+		NutritionalInfoModel nutriInfoModel = null;
+		
+		try {
+			nutriInfoModel = nutriInfoDao.getNutriInfo(ProdID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (EmptyResultException e) {
+			return "No nutritional information available";
+		}
+		return nutriInfoModel.toString();	
+	}	
+	//end - Nisha - 8/20
+	
 	/**
 	 * Authenticates the user login with database
 	 * 
@@ -239,8 +266,7 @@ public class VMController {
 				tabbedView.getTabPane().removeTabAt(1);
 				tabbedView.getTabPane().setSelectedIndex(1);
 				tabbedView.getTabPane().addTab("Monitoring Station",
-						monitoringStationView);
-				
+						monitoringStationView);				
 				//end - Nisha - 8/19
 
 			} else {
@@ -250,15 +276,15 @@ public class VMController {
 
 				// set strategy
 				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
-				System.out
-						.println(loginStrategy.performSecurityCheck(username));
+				if(loginStrategy.performSecurityCheck(username) == false)
+					loginView.setMessage("<html>You have failed your login attempt for 3 times consecutively. <br>Your account will be locked for 30 minutes.</html>");
 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * @param strategy 
 	 *            Client to provide the strategy for failed login attempts
@@ -271,4 +297,5 @@ public class VMController {
 		new VMController();
 	}
 
+	
 }
