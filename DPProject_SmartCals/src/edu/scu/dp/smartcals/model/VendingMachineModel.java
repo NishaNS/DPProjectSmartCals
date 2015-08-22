@@ -5,8 +5,8 @@ package edu.scu.dp.smartcals.model;
 
 import java.util.List;
 
-import edu.scu.dp.smartcals.constants.VMStatus;
 import edu.scu.dp.smartcals.constants.VMLocationType;
+import edu.scu.dp.smartcals.constants.VMStatus;
 
 /**
  * Model representing a VendingMachine DB Table

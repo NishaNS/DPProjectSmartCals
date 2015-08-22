@@ -2,31 +2,17 @@ package edu.scu.dp.smartcals.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Properties;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import edu.scu.dp.smartcals.constants.DbType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
-import edu.scu.dp.smartcals.dao.impl.ProductDaoImpl;
-import edu.scu.dp.smartcals.dao.impl.VendingMachineDaoImpl;
-import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.ProductModel;
-import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
  * Junit Test file to test Database operations

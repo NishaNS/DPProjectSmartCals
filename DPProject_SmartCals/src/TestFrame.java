@@ -1,5 +1,3 @@
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +9,7 @@ import javax.swing.JPanel;
 
 /**
  * @author Aparna Ganesh
- *
+ * Sample Test Frame--
  */
 public class TestFrame extends JFrame{
 	

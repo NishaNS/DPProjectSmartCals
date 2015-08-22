@@ -9,6 +9,7 @@ import edu.scu.dp.smartcals.constants.ProductCategory;
 import edu.scu.dp.smartcals.constants.VMLocationType;
 import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
+import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
@@ -16,6 +17,7 @@ import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.AdminLoginModel;
 import edu.scu.dp.smartcals.model.NullSmartCardModel;
+import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.SmartCardModelInterface;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
@@ -34,13 +36,16 @@ import edu.scu.dp.smartcals.ui.VendingMachineView;
  * @author Aparna Ganesh
  * @author Nisha Narayanaswamy VMController class decides the views to be
  *         displayed on user action, delegates the call to required classes
- *
+ * testing
  */
 public class VMController {
 
 	private VendingMachineDao vendingMachineDao;
 	private ProductDao productDao;
 	private AdminLoginDao adminLoginDao;
+	//start - Nisha - 8/20 
+	private NutritionalInfoDao nutriInfoDao;
+	//end - Nisha
 
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;
@@ -51,10 +56,10 @@ public class VMController {
 	
 	private TabbedView tabbedView;
 	
-	public static SmartCardDao smctDao;
+	private static SmartCardDao smctDao;
 	private PaymentCreator pc;
 	private PaymentProduct p;
-	public SmartCardModelInterface smct;
+	private SmartCardModelInterface smct;
 	private long cardNo;
 
 
@@ -82,8 +87,7 @@ public class VMController {
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 
-		//mainWindow.addPanels(vmSelectionView);
-		mainWindow.addPanels(vendingMachineView);
+		mainWindow.addPanels(tabbedView);
 
 	}
 
@@ -101,12 +105,12 @@ public class VMController {
 		// initializing the daos' used here
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
-
-		// start - Nisha - 8/17
 		adminLoginDao = DaoFactory.getAdminLoginDao();
-		// end - Nisha - 8/17
-		
-		//Sharadha
+	
+		//start - Nisha - 8/20 
+		nutriInfoDao = DaoFactory.getNutritionalInfoDao();
+		//end - Nisha
+//Sharadha
 		smctDao = DaoFactory.getSmartCardDao();
 	}
 
@@ -133,6 +137,16 @@ public class VMController {
 	public LoginView getLoginView() {
 		return loginView;
 	}
+	
+	//code change in progress- Aparna 21/8
+	public TabbedView getTabbedView() {
+		return tabbedView;
+	}
+
+	public void setTabbedView(TabbedView tabbedView) {
+		this.tabbedView = tabbedView;
+	}
+	//-------------------------------------------------------------
 	//end - Nisha - 8/19
 	
 	// $$$$$$ add getter methods for other views here $$$$$$
@@ -150,7 +164,7 @@ public class VMController {
 		List<VendingMachine> vendingMachines = new ArrayList<>();
 		try {
 			vendingMachineModels = vendingMachineDao.getAllVMBasicInfo();
-		} catch (EmptyResultException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Collections.emptyList();
@@ -158,10 +172,8 @@ public class VMController {
 
 		for (VendingMachineModel vmModel : vendingMachineModels) {
 
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory
-					.getFactory(vmModel.getType());
-			VendingMachine vendingMachine = vendingMachineFactory
-					.createVendingMachine(vmModel);
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
+			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
 		return vendingMachines;
@@ -187,28 +199,26 @@ public class VMController {
 
 		try {
 			vmModel = vendingMachineDao.getVendingMachine(vmId);
-		} catch (SQLException | EmptyResultException e) {
+		} catch (SQLException e) {
 
 			e.printStackTrace();
 			return null;
 
 		}
 
-		VendingMachineFactory vendingMachineFactory = VendingMachineFactory
-				.getFactory(vmModel.getType());
+		VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
 
-		VendingMachine vendingMachine = vendingMachineFactory
-				.createVendingMachine(vmModel);
+		VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
 
 		List<ProductModel> productModels = vmModel.getProductModels();
-		System.out
-				.println("Product Model contains " + productModels.toString());
+		
+		System.out.println("Product Model contains " + productModels.toString());
+		
 		for (ProductModel productModel : productModels) {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
-				Beverage breverage = vendingMachineFactory
-						.createBreverage(productModel);
+				Beverage breverage = vendingMachineFactory.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -229,6 +239,25 @@ public class VMController {
 		return vendingMachine;
 	}
 
+	
+	//start - Nisha - 8/20 - display nutri info
+	/**
+	 * Display Nutritional Info on the view for selected product
+	 * @throws EmptyResultException 
+	 * @throws SQLException 
+	 */
+	public String displayNutritionalInfo(long ProdID) throws EmptyResultException {
+		NutritionalInfoModel nutriInfoModel = null;
+		
+		try {
+			nutriInfoModel = nutriInfoDao.getNutriInfo(ProdID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nutriInfoModel.toString();	
+	}	
+	//end - Nisha - 8/20
+	
 	/**
 	 * Authenticates the user login with database
 	 * 
@@ -255,8 +284,7 @@ public class VMController {
 				tabbedView.getTabPane().removeTabAt(1);
 				tabbedView.getTabPane().setSelectedIndex(1);
 				tabbedView.getTabPane().addTab("Monitoring Station",
-						monitoringStationView);
-				
+						monitoringStationView);				
 				//end - Nisha - 8/19
 
 			} else {
@@ -266,8 +294,8 @@ public class VMController {
 
 				// set strategy
 				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
-				System.out
-						.println(loginStrategy.performSecurityCheck(username));
+				if(loginStrategy.performSecurityCheck(username) == false)
+					loginView.setMessage("<html>You have failed your login attempt for 3 times consecutively. <br>Your account will be locked for 30 minutes.</html>");
 
 			}
 		} catch (SQLException e) {
@@ -285,6 +313,17 @@ public class VMController {
 		
 	}
 
+	public void loadTheSmartCard(double amtPayable){
+		try {
+			smctDao.loadSmartCard(smct.getSmartCard(),amtPayable);
+		} catch (EmptyResultException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public SmartCardModelInterface checkCardValidation(String cardNum) throws SQLException, EmptyResultException{
 		long cardNo;
@@ -310,4 +349,5 @@ public class VMController {
 		new VMController();
 	}
 
+	
 }

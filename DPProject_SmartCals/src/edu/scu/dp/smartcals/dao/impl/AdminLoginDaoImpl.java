@@ -1,7 +1,9 @@
 package edu.scu.dp.smartcals.dao.impl;
 
-import java.net.ConnectException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;

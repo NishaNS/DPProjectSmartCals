@@ -23,12 +23,12 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
 public class VMDetails_View extends javax.swing.JPanel {
 	
 	private VendingMachineView parentView;
-	public SmartCardPanel scPanel;
-	public ProductPaymentPanel prodPayPanel;
-	public ProductDao productDao;
-	public ProductModel product;
-	public InventoryDao invDao;
-	public InventoryModel invProduct;
+	private SmartCardPanel scPanel;
+	private ProductPaymentPanel prodPayPanel;
+	private ProductDao productDao;
+	private ProductModel product;
+	private InventoryDao invDao;
+	private InventoryModel invProduct;
 	
 	long prodIdToBuy;
 	
@@ -103,7 +103,12 @@ public class VMDetails_View extends javax.swing.JPanel {
         btnNutritionalInfo.setName("btnNutritionalInfo"); // NOI18N
         btnNutritionalInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNutritionalInfoActionPerformed(evt);
+                try {
+					btnNutritionalInfoActionPerformed(evt);
+				} catch (EmptyResultException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -170,6 +175,7 @@ public class VMDetails_View extends javax.swing.JPanel {
 
         lblDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDisplay.setText("SmartCals Vending Machine");
+        lblDisplay.setFont(new java.awt.Font("Tahoma", 0, 14));
         lblDisplay.setName("lblDisplay"); // NOI18N
 
         pnlEnterProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -447,7 +453,7 @@ public class VMDetails_View extends javax.swing.JPanel {
 						String data = "<html><body>Product ID:" + product.getProductId() + "<br> Product Name:" + product.getProductName() + "<br> Product Price:" + product.getProductPrice() + "</body></html>";
 						lblDisplay.setText(data);
 					}
-				} catch (SQLException | EmptyResultException e) {
+				} catch (SQLException e) {
 					lblDisplay.setText("Product Not Available");
 					e.printStackTrace();
 				}	
@@ -474,22 +480,31 @@ public class VMDetails_View extends javax.swing.JPanel {
 		}
 		
 	}
+	
+
+    //start - Nisha - 8/20 - method body defined
+	/**
+	 * @param evt  On button click display the nutritional info for selected product
+	 * @throws EmptyResultException 
+	 */
+	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) throws EmptyResultException {                                                   
+		long ProdID = Integer.parseInt(txtEnterProdID.getText());
+		String nutriInfo = parentView.getVMController().displayNutritionalInfo(ProdID);
+		lblDisplay.setText(nutriInfo);
+		
+    }   
 
     private void chkLowFatActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }  
     
-	private void btnNutritionalInfoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        // TODO add your handling code here:
-    }                                                  
-
     
     protected void btnBuySmartCardActionPerformed(ActionEvent evt) {
 		//this.addDynamicChildPanels(new JPanel());	
         String data = null;
         try {
-			data = parentView.vmController.getSmartCardInfo();
-		} catch (SQLException | EmptyResultException e) {
+			data = parentView.getVMController().getSmartCardInfo();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -499,6 +514,12 @@ public class VMDetails_View extends javax.swing.JPanel {
         lblDisplay.setName("lblDisplay"); 
 
 	}
+    
+    //Sharadha
+    public SmartCardPanel getSCPanel()
+    {
+    	return scPanel;
+    }
     
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnBuy;

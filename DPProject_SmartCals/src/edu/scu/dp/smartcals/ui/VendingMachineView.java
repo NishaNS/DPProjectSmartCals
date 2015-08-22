@@ -1,6 +1,5 @@
 package edu.scu.dp.smartcals.ui;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -17,13 +16,14 @@ import edu.scu.dp.smartcals.vm.VendingMachine;
  */
 public class VendingMachineView extends JPanel {
 	
-	public VMController vmController;
+	private VMController vmController;
+	
 	//code change - Aparna
 	// Holds the vending machine object for this vending machine view 
 	private VendingMachine vendingMachine;
 	private VMProdCategory vmProdCategory;
 	
-	public VMDetails_View vmDetailsView;
+	private VMDetails_View vmDetailsView;
 	private GridBagLayout gridLayout;
 	private GridBagConstraints gridConstraints;
 	
@@ -84,6 +84,13 @@ public class VendingMachineView extends JPanel {
 		this.vendingMachine = vendingMachine;
 	}
 	
+	public VMController getVMController() {
+		return vmController;
+	}
 	
+	//Sharadha
+	public VMDetails_View getVMDetails_View(){
+		return vmDetailsView;
+	}
 
 }

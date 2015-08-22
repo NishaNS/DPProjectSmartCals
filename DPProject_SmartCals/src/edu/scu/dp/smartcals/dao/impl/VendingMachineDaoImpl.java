@@ -12,6 +12,7 @@ import java.util.List;
 
 import edu.scu.dp.smartcals.constants.VMStatus;
 import edu.scu.dp.smartcals.constants.VMLocationType;
+import edu.scu.dp.smartcals.constants.VMStatus;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
@@ -136,6 +137,32 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 			databaseFactory.closeConnection();
 		}
 		return products;
+	}
+
+	@Override
+	public VMLocationType getVendingMachineType(long vmId) throws SQLException {
+		final String SQL = "select type from vendingmachine where VendingMachineID = ?";
+		Connection connection = databaseFactory.getConnection();
+		PreparedStatement statement = null;
+		VMLocationType result = null;
+		try {
+			statement = connection.prepareStatement(SQL);
+			statement.setLong(1, vmId);
+			ResultSet rs = statement.executeQuery();
+			if(rs.next()) {
+				result = VMLocationType.valueOf(rs.getString("type").toUpperCase());
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}
+		finally {
+			DBUtils.closeStatement(statement);
+			databaseFactory.closeConnection();
+		}
+
+		return result;
 	}
 
 	/**

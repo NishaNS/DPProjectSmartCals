@@ -4,17 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hamcrest.Factory;
-
-import edu.scu.dp.smartcals.constants.ProductCategory;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.ProductModel;
-import edu.scu.dp.smartcals.model.VendingMachineModel;
 
 /**
  * Class to perform operations from Product Table
@@ -103,6 +98,8 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 
 }

@@ -55,11 +55,11 @@ public class MySQLFactory extends DatabaseFactory {
 	@Override
 	public Connection getConnection() throws SQLException {
 
-		if (connection == null) {
+		//if (connection == null) {
 
 			connection = DriverManager.getConnection(connectionURL, username,
 					password);
-		}
+		//}
 
 		return connection;
 	}

@@ -4,7 +4,6 @@ package edu.scu.dp.smartcals.dao.interfaces;
  * @author Sharadha Ramaswamy
  */
 import java.sql.SQLException;
-import java.util.List;
 
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.SmartCardModel;

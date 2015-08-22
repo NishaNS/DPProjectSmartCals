@@ -1,6 +1,5 @@
 package edu.scu.dp.smartcals.ui;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +7,6 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 import edu.scu.dp.smartcals.vm.Beverage;
 import edu.scu.dp.smartcals.vm.VendingMachine;
