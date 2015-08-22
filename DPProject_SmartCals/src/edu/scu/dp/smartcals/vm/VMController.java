@@ -75,7 +75,7 @@ public class VMController {
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 
-		mainWindow.addPanels(vmSelectionView);
+		mainWindow.addPanels(tabbedView);
 
 	}
 
@@ -268,9 +268,9 @@ public class VMController {
 				
 				// load next view in tabbed view
 				tabbedView.getTabPane().removeTabAt(1);
-				tabbedView.getTabPane().setSelectedIndex(1);
 				tabbedView.getTabPane().addTab("Monitoring Station",
-						monitoringStationView);				
+						monitoringStationView);
+				tabbedView.getTabPane().setSelectedIndex(1);
 				//end - Nisha - 8/19
 
 			} else {
