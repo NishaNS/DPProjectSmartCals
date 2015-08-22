@@ -969,6 +969,11 @@ public class MonitoringStationView extends javax.swing.JPanel implements
 		add(pnlNutriInfo, gridBagConstraints);
 	}// </editor-fold>
 
+	/**
+	 * Generating Radio button dynamically
+	 * @param vmText
+	 * @param vmIdActionCommand
+	 */
 	// code change-Aparna -8/22
 	private void addToVendingMachineRadioGroupPanel(String vmText,
 			String vmIdActionCommand) {
@@ -1005,6 +1010,10 @@ public class MonitoringStationView extends javax.swing.JPanel implements
 		// TODO add your handling code here:
 	}
 
+	/**
+	 * Loads best selling products for a given VMId
+	 * @param vmIds
+	 */
 	// code change-Aparna -8/22
 	private void loadBestSellingPanel(final List<Long> vmIds) {
 		StringBuilder bestSellingBuilder = new StringBuilder();

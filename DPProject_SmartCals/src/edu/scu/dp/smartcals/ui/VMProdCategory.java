@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.scu.dp.smartcals.vm.Beverage;
+import edu.scu.dp.smartcals.vm.Candy;
+import edu.scu.dp.smartcals.vm.Snack;
 import edu.scu.dp.smartcals.vm.VendingMachine;
 
 
@@ -202,6 +204,31 @@ public class VMProdCategory extends javax.swing.JPanel {
 					System.out.println(beverage.getProductID());
 				}
 			}
+			 if (actionCommand.equals("Snack")) {
+				//code change done-Aparna
+				VendingMachine vendingMachine = parentView.getVendingMachine();
+				
+				List<Snack> snackList = vendingMachine.getSnacks();
+
+				for (Snack snack : snackList) {
+					JPanel prodInfoPanel = new ProductInfoPanel(snack.getProductID()+ "",snack.getProductName(),snack.getProductPrice()+"");
+					viewAllProductsPanel.add(prodInfoPanel);
+					System.out.println(snack.getProductID());
+				}
+			}
+			 if (actionCommand.equals("Candy")) {
+				//code change done-Aparna
+				VendingMachine vendingMachine = parentView.getVendingMachine();
+				
+				List<Candy> candyList = vendingMachine.getCandies();
+
+				for (Candy candy : candyList) {
+					JPanel prodInfoPanel = new ProductInfoPanel(candy.getProductID()+ "",candy.getProductName(),candy.getProductPrice()+"");
+					viewAllProductsPanel.add(prodInfoPanel);
+					System.out.println(candy.getProductID());
+				}
+			}
+			
 			
 			viewAllProductsPanel.revalidate();
 		}
