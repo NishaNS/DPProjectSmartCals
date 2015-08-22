@@ -57,5 +57,7 @@ public interface ProductDao {
 	
 	public List<ProductModel> getProductBySmartTag(List<String> smartTags) throws SQLException;
 	
+	
+	
 
 }

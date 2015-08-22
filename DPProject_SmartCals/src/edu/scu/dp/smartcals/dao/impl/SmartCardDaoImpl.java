@@ -1,5 +1,9 @@
 package edu.scu.dp.smartcals.dao.impl;
 
+/**
+ *  @author Sharadha Ramaswamy
+ * 16/8
+ */
 
 
 
@@ -11,13 +15,17 @@ import java.sql.SQLException;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
 import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
+import edu.scu.dp.smartcals.model.NullSmartCardModel;
 import edu.scu.dp.smartcals.model.SmartCardModel;
+import edu.scu.dp.smartcals.model.SmartCardModelInterface;
+import edu.scu.dp.smartcals.payment.ConcretePaymentCreator;
+import edu.scu.dp.smartcals.payment.PaymentCreator;
 
 public class SmartCardDaoImpl implements SmartCardDao{
 	
 	private DatabaseFactory databaseFactory;
 	private PreparedStatement statement;
-	private SmartCardModel sc;
+	private SmartCardModelInterface sc;
 	private String query;
 	private static SmartCardDao INSTANCE;
 
@@ -49,40 +57,36 @@ public class SmartCardDaoImpl implements SmartCardDao{
 	}
 
 	@Override
-	public SmartCardModel buySmartCard() throws SQLException, EmptyResultException{
+	public SmartCardModelInterface buySmartCard() throws SQLException, EmptyResultException{
+	
 		Connection connection = databaseFactory.getConnection();
-		query = "insert into customer(CustomerName) values(?)";
-		String name = "Sharadha";
 		long no = 0;
 		int cnt;
-		try 
-		{
+		  
+		try{
+			System.out.println("buySmartCard");
+			query = "insert into smartcalcarddetails(CardBalance) values(?)";
+		    statement = connection.prepareStatement(query);
+		    statement.setDouble(1,0.0);
+		    cnt = statement.executeUpdate();
+		    if(cnt == 0)
+		    	System.out.println("Error");
+		    query = "select max(SmartCalCardNumber) from smartcalcarddetails";
 			statement = connection.prepareStatement(query);
-			statement.setString(1,name);
-		    cnt = statement.executeUpdate();
-		    if(cnt == 0)
-		    	System.out.println("Error");
-		    query = "select max(SmartCalCardNumber) from customer";
+			ResultSet rs = statement.executeQuery();
+			if(rs.next()){
+			    	no = rs.getLong(1);
+			    }
+			rs.close();
+		    query = "select * from smartcalcarddetails where SmartCalCardNumber = '"+no+"'";
 		    statement = connection.prepareStatement(query);
-		    ResultSet rs = statement.executeQuery();
-		    if(rs.next()){
-		    	no = rs.getLong(1);
-		    }
-		    rs.close();
-		    query = "insert into smartcalcarddetails(SmartCalCardNumber,CardBalance) values(?,?)";
-		    statement = connection.prepareStatement(query);
-		    statement.setLong(1,no);
-		    statement.setDouble(2,0.0);
-		    cnt = statement.executeUpdate();
-		    if(cnt == 0)
-		    	System.out.println("Error");
-		    query = "select * from customer join smartcalcarddetails on customer.SmartCalCardNumber = smartcalcarddetails.SmartCalCardNumber where customer.SmartCalCardNumber = ?";
-		    statement = connection.prepareStatement(query);
-		    statement.setLong(1, no);
+		   
 		    rs = statement.executeQuery();
 			if(rs.next()) 
 			{
-				sc = mapRow(rs);
+				//sc = mapRow(rs);
+				System.out.println("maprow");
+				sc = new SmartCardModel(rs.getLong("SmartCalCardNumber"),rs.getDouble("cardBalance"));
 			}
 			else 
 			{
@@ -102,52 +106,53 @@ public class SmartCardDaoImpl implements SmartCardDao{
 		return sc;
 	}
 
-	private SmartCardModel mapRow(ResultSet resultSet) throws SQLException {
-		SmartCardModel smt = new SmartCardModel();
-		smt.setSmartCard(resultSet.getLong("SmartCalCardNumber"));
-		smt.setName(resultSet.getString("CustomerName"));
-		smt.setBalance(resultSet.getDouble("cardBalance"));
+	private SmartCardModelInterface mapRow(ResultSet resultSet) throws SQLException {
+		
+		System.out.println(resultSet.getLong("SmartCalCardNumber"));
+		SmartCardModelInterface smt = new SmartCardModel(resultSet.getLong("SmartCalCardNumber"),resultSet.getDouble("cardBalance"));
+		//smt.setSmartCard(resultSet.getLong("SmartCalCardNumber"));
+		//smt.setBalance(resultSet.getDouble("cardBalance"));
 		return smt;
 	}
 	
 	@Override
-	public SmartCardModel loadSmartCard(long SmartCalCardNumber,double balance) throws SQLException, EmptyResultException{
-		Connection connection = databaseFactory.getConnection();
+	public SmartCardModelInterface loadSmartCard(long SmartCalCardNumber,double balance) throws SQLException, EmptyResultException{
+		int cnt;
+		 ResultSet rs;
 		double avail = 0.0;
-		ResultSet rs ;
-		query = "select CardBalance from smartcalcarddetails where SmartCalCardNumber = ?";
-		statement = connection.prepareStatement(query);
-		statement.setLong(1,SmartCalCardNumber);
-		rs = statement.executeQuery();
-		if(rs.next()){
-			avail = rs.getDouble("CardBalance");
-		}
-		rs.close();
-		balance = balance + avail;
+		System.out.println("yes");
+		System.out.println(SmartCalCardNumber);
 		System.out.println(balance);
-		query = "update smartcalcarddetails set CardBalance = ? where SmartCalCardNumber = ?";  
-	    int cnt;
-		try 
-		{
+		Connection connection = databaseFactory.getConnection();
+		try{
+			query = "select CardBalance from smartcalcarddetails where SmartCalCardNumber = '"+SmartCalCardNumber+"'";
 			statement = connection.prepareStatement(query);
-			statement.setLong(2,SmartCalCardNumber);
-			statement.setDouble(1,balance);
-			cnt = statement.executeUpdate();
-			rs.close();
-			if(cnt > 0)
+			rs = statement.executeQuery();
+			if(rs.next()){
+				System.out.println("balance");
+				avail = rs.getDouble("CardBalance");
+			}
+			balance = balance + avail;
+
+			query = "update smartcalcarddetails set CardBalance = '"+balance+"' where SmartCalCardNumber = '"+SmartCalCardNumber+"'";
+		    statement = connection.prepareStatement(query);
+		    cnt = statement.executeUpdate();
+		    if(cnt == 0)
+		    	System.out.println("Error");
+		    query = "select * from smartcalcarddetails where SmartCalCardNumber = '"+SmartCalCardNumber+"'";
+		    statement = connection.prepareStatement(query);
+		   
+		    rs = statement.executeQuery();
+			if(rs.next()) 
 			{
-				query = "select * from customer join smartcalcarddetails on customer.SmartCalCardNumber = smartcalcarddetails.SmartCalCardNumber where customer.SmartCalCardNumber = '" +SmartCalCardNumber+"'";
-				statement = connection.prepareStatement(query);
-				rs = statement.executeQuery();
-				if(rs.next()) 
-				{
-					sc = mapRow(rs);
-				}
-				else 
-				{
-					throw new EmptyResultException();
-				}
-			}	
+				System.out.println("hello");
+				//sc = mapRow(rs);
+				sc = new SmartCardModel(rs.getLong("SmartCalCardNumber"),rs.getDouble("cardBalance"));
+			}
+			else 
+			{
+				throw new EmptyResultException();
+		    }
 		}
 		catch(SQLException e) 
 		{
@@ -166,5 +171,42 @@ public class SmartCardDaoImpl implements SmartCardDao{
 	public void checkBalance(SmartCardModel smtcd) throws SQLException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public SmartCardModelInterface checkValidity(Long SmartCalCardNumber)
+			throws SQLException, EmptyResultException {
+		    int count = 0;
+		    System.out.println("yes");
+		Connection connection = databaseFactory.getConnection();
+		try{
+			query = "select * from smartcalcarddetails where SmartCalCardNumber = '"+SmartCalCardNumber+"'";
+			statement = connection.prepareStatement(query);
+			ResultSet rs = statement.executeQuery();
+			
+			if(rs.next()){
+				System.out.println("hello");
+			    	//count = rs.getInt(1);
+				//sc = mapRow(rs);
+				sc = new SmartCardModel(rs.getLong("SmartCalCardNumber"),rs.getDouble("cardBalance"));
+				
+			    }
+			else{
+				sc = new NullSmartCardModel();
+				System.out.println("smart" +sc.getValidity());
+			}
+			rs.close();
+		}
+		catch(SQLException e) 
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		finally 
+		{
+			DBUtils.closeStatement(statement);
+			databaseFactory.closeConnection();
+		}
+	return sc;
 	}
 }

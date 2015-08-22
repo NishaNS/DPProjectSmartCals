@@ -11,13 +11,18 @@ import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
+import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
 import edu.scu.dp.smartcals.model.AdminLoginModel;
+import edu.scu.dp.smartcals.model.NullSmartCardModel;
 import edu.scu.dp.smartcals.model.NutritionalInfoModel;
 import edu.scu.dp.smartcals.model.ProductModel;
+import edu.scu.dp.smartcals.model.SmartCardModelInterface;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
+import edu.scu.dp.smartcals.payment.PaymentCreator;
+import edu.scu.dp.smartcals.payment.PaymentProduct;
 import edu.scu.dp.smartcals.ui.LoginView;
 import edu.scu.dp.smartcals.ui.MonitoringStationView;
 import edu.scu.dp.smartcals.ui.TabbedView;
@@ -50,6 +55,13 @@ public class VMController {
 	private LoginCheckPointStrategy loginStrategy;
 
 	private TabbedView tabbedView;
+	
+	private static SmartCardDao smctDao;
+	private PaymentCreator pc;
+	private PaymentProduct p;
+	private SmartCardModelInterface smct;
+	private long cardNo;
+
 
 	public VMController() {
 		// Code change done-Aparna
@@ -119,7 +131,9 @@ public class VMController {
 
 		// start - Nisha - 8/20
 		nutriInfoDao = DaoFactory.getNutritionalInfoDao();
-		// end - Nisha
+		//end - Nisha
+//Sharadha
+		smctDao = DaoFactory.getSmartCardDao();
 	}
 
 	/**
@@ -319,7 +333,41 @@ public class VMController {
 			e.printStackTrace();
 		}
 	}
+	
+	//Sharadha Ramaswamy
+	public String getSmartCardInfo() throws SQLException, EmptyResultException{
+		System.out.println("getSmartCardInfo");
+	    smct = smctDao.buySmartCard();
+		String text = "Your Smart Card Number is:" +smct.getSmartCard()+ "\n Your Balance is:"+smct.getBalance();
+		System.out.println(text);
+		return text;
+		
+	}
 
+	public void loadTheSmartCard(double amtPayable){
+		try {
+			smctDao.loadSmartCard(smct.getSmartCard(),amtPayable);
+		} catch (EmptyResultException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public SmartCardModelInterface checkCardValidation(String cardNum) throws SQLException, EmptyResultException{
+		long cardNo;
+		if(cardNum.isEmpty())
+			smct = new NullSmartCardModel();
+		else{
+			cardNo = Long.parseLong(cardNum);
+			System.out.println("here"+cardNo);
+			smct = smctDao.checkValidity(cardNo);
+		}
+		return smct;
+	}
+	
 	/**
 	 * @param strategy
 	 *            Client to provide the strategy for failed login attempts

@@ -3,6 +3,7 @@ package edu.scu.dp.smartcals.ui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.scu.dp.smartcals.vm.VMController;
@@ -85,6 +86,11 @@ public class VendingMachineView extends JPanel {
 	
 	public VMController getVMController() {
 		return vmController;
+	}
+	
+	//Sharadha
+	public VMDetails_View getVMDetails_View(){
+		return vmDetailsView;
 	}
 
 }

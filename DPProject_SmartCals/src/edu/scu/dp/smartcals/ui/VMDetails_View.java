@@ -2,10 +2,18 @@ package edu.scu.dp.smartcals.ui;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
+import edu.scu.dp.smartcals.dao.impl.DaoFactory;
+import edu.scu.dp.smartcals.dao.interfaces.InventoryDao;
+import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
 import edu.scu.dp.smartcals.exception.EmptyResultException;
+import edu.scu.dp.smartcals.model.InventoryModel;
+import edu.scu.dp.smartcals.model.ProductModel;
+import edu.scu.dp.smartcals.vm.VMController;
+import edu.scu.dp.smartcals.vm.VendingMachine;
 
 
 /**
@@ -15,6 +23,14 @@ import edu.scu.dp.smartcals.exception.EmptyResultException;
 public class VMDetails_View extends javax.swing.JPanel {
 	
 	private VendingMachineView parentView;
+	private SmartCardPanel scPanel;
+	private ProductPaymentPanel prodPayPanel;
+	private ProductDao productDao;
+	private ProductModel product;
+	private InventoryDao invDao;
+	private InventoryModel invProduct;
+	
+	long prodIdToBuy;
 	
 
     /**
@@ -32,9 +48,11 @@ public class VMDetails_View extends javax.swing.JPanel {
      * @param pnlChild Add inner child panels dynamically
      */
     public void addDynamicChildPanels (JPanel pnlChild){
+    	System.out.println("dynamic");
 		pnlPayment.add(pnlChild);
 		pnlChild.setSize(pnlPayment.getWidth(), pnlPayment.getHeight());
-		pnlChild.setBackground(Color.GREEN);
+		//pnlChild.setBackground(Color.GREEN);
+		pnlPayment.revalidate();
 		pnlChild.setVisible(true);	
 	}
     //end - Nisha - 8/19
@@ -106,8 +124,18 @@ public class VMDetails_View extends javax.swing.JPanel {
 
         btnBuySmartCard.setText("Buy Smart Card");
         btnBuySmartCard.setName("btnBuySmartCard"); // NOI18N
+        btnBuySmartCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuySmartCardActionPerformed(evt);
+            }
+        });
 
         btnBuy.setText("Buy");
+        btnBuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSelectOrderLayout = new javax.swing.GroupLayout(pnlSelectOrder);
         pnlSelectOrder.setLayout(pnlSelectOrderLayout);
@@ -155,6 +183,11 @@ public class VMDetails_View extends javax.swing.JPanel {
         lblEnterProdID.setText("Enter a Product ID");
 
         btnOK.setText("OK");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEnterProductLayout = new javax.swing.GroupLayout(pnlEnterProduct);
         pnlEnterProduct.setLayout(pnlEnterProductLayout);
@@ -395,9 +428,59 @@ public class VMDetails_View extends javax.swing.JPanel {
     
     //start - Nisha - 8/19 - method body defined
     protected void btnLoadCardActionPerformed(ActionEvent evt) {
-		this.addDynamicChildPanels(new JPanel());		
+    	//vmController.vmDet.setVisible(false);
+        // vmController.scPanel = new SmartCardPanel(vmController);
+     	//vmController.mainWindow.addPanels(scPanel);       
+        scPanel = new SmartCardPanel(parentView);
+        System.out.println("load");
+		this.addDynamicChildPanels(scPanel);		
 	}
     //end - Nisha 
+
+	private void btnOKActionPerformed(java.awt.event.ActionEvent evt) { 
+		   long prodId;
+			productDao = DaoFactory.getProductDao();
+			invDao =  DaoFactory.getInventoryDao();
+			if(txtEnterProdID.getText().isEmpty())
+				lblDisplay.setText("Product Id Empty");
+			else{
+				prodId = Long.parseLong(txtEnterProdID.getText());
+				try {
+					product = productDao.getProductById(prodId);
+					invProduct = invDao.getProductById(prodId);
+					if(invProduct.getqty() > 0)
+					{
+						String data = "<html><body>Product ID:" + product.getProductId() + "<br> Product Name:" + product.getProductName() + "<br> Product Price:" + product.getProductPrice() + "</body></html>";
+						lblDisplay.setText(data);
+					}
+				} catch (SQLException e) {
+					lblDisplay.setText("Product Not Available");
+					e.printStackTrace();
+				}	
+			}
+    }         
+	
+	private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) { 
+		String data = lblDisplay.getText();
+		if(data.matches("(.*)Product ID:(.*)"))
+		{
+			prodIdToBuy = Long.parseLong(data.substring(23,26));
+			prodPayPanel = new ProductPaymentPanel(parentView);
+			this.addDynamicChildPanels(prodPayPanel);	
+		/*	invDao =  DaoFactory.getInventoryDao();
+			try {
+				invProduct = invDao.getProductById(id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (EmptyResultException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}
+		
+	}
+	
 
     //start - Nisha - 8/20 - method body defined
 	/**
@@ -410,13 +493,33 @@ public class VMDetails_View extends javax.swing.JPanel {
 		lblDisplay.setText(nutriInfo);
 		
     }   
-	//end - Nisha
 
     private void chkLowFatActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }   
+    }  
     
     
+    protected void btnBuySmartCardActionPerformed(ActionEvent evt) {
+		//this.addDynamicChildPanels(new JPanel());	
+        String data = null;
+        try {
+			data = parentView.getVMController().getSmartCardInfo();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        lblDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDisplay.setText(data);
+        lblDisplay.setName("lblDisplay"); 
+
+	}
+    
+    //Sharadha
+    public SmartCardPanel getSCPanel()
+    {
+    	return scPanel;
+    }
     
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnBuy;
@@ -432,9 +535,9 @@ public class VMDetails_View extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkLowSugar;
     private javax.swing.JLabel lblCalorieRange;
     private javax.swing.JLabel lblCardDispense;
-    private javax.swing.JLabel lblCashDispense;
-    private javax.swing.JLabel lblCoinDispense;
-    private javax.swing.JLabel lblDisplay;
+    public javax.swing.JLabel lblCashDispense;
+    public javax.swing.JLabel lblCoinDispense;
+    public javax.swing.JLabel lblDisplay;
     private javax.swing.JLabel lblEnterProdID;
     private javax.swing.JLabel lblItemDispense;
     private javax.swing.JPanel pnlDispenser;

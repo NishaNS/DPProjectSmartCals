@@ -9,9 +9,11 @@ import edu.scu.dp.smartcals.constants.Constants;
 import edu.scu.dp.smartcals.constants.DbType;
 import edu.scu.dp.smartcals.dao.interfaces.AdminLoginDao;
 import edu.scu.dp.smartcals.dao.interfaces.DatabaseFactory;
+import edu.scu.dp.smartcals.dao.interfaces.InventoryDao;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.OrderHistoryDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
+import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
 
@@ -77,8 +79,21 @@ public class DaoFactory {
 		return AdminLoginDaoImpl.getInstance(databaseFactory);
 	}
 	
+
 	public static OrderHistoryDao getOrderHistoryDao() {
 		return OrderHistoryDaoImpl.getInstance(databaseFactory);
 	}
+
+	//Sharadha
+	public static SmartCardDao getSmartCardDao(){
+		return SmartCardDaoImpl.getInstance(databaseFactory);
+	}
+	
+	public static InventoryDao getInventoryDao(){
+		return InventoryDaoImpl.getInstance(databaseFactory);
+	}
+	
+	
+
 
 }
