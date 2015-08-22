@@ -44,20 +44,20 @@ CREATE TABLE IF NOT EXISTS Inventory (
 );
 
 
-CREATE TABLE IF NOT EXISTS OrderDetails (	
-	OrderNumber INT PRIMARY KEY,
-    SmartCalCardNumber INT,
-    FOREIGN KEY(SmartCalCardNumber) REFERENCES smartcalcarddetails(SmartCalCardNumber) ON DELETE CASCADE,
-	PaymentType varchar(100),
-	SKU INT,
-	LineItemPrice DOUBLE,
-	LineItemQuantity INT,
-	TotalAmount DOUBLE,
-	SalesTax DOUBLE,
-	OrderTimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	OrderStatus varchar(100),
-    Currency varchar(3)    
-);
+--CREATE TABLE IF NOT EXISTS OrderDetails (	
+--	OrderNumber INT PRIMARY KEY,
+--    SmartCalCardNumber INT,
+--    FOREIGN KEY(SmartCalCardNumber) REFERENCES smartcalcarddetails(SmartCalCardNumber) ON DELETE CASCADE,
+--	PaymentType varchar(100),
+--	SKU INT,
+--	LineItemPrice DOUBLE,
+--	LineItemQuantity INT,
+--	TotalAmount DOUBLE,
+--	SalesTax DOUBLE,
+--	OrderTimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--	OrderStatus varchar(100),
+--    Currency varchar(3)    
+--);
 
 CREATE TABLE IF NOT EXISTS SalesSummary (
 	OrderNumber INT,

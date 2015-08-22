@@ -1,4 +1,4 @@
-Insert into product (ProductID,ProductName,Category) values(100,"diet coke","beverage"),(101,"Diet Pepsi","beverage"),(102,"AppleJuice","Beverage"),(103,"frappuccino","Beverage"),(104,"Green o2 water","Beverage"),(105,"vita coco water","Beverage"),(106,"simply orange","beverage"),(200,"Chocolate Peanut Butter","Snacks"),(201,"Salted Cashews","Snacks"),(202,"pistchios","Snacks"),(203,"lays BBQ","Snacks"),(204,"dorittos nacho's cheese","Snacks"),(205,"Natural Valley Oats & Honey Granolaa Bar","Snacks"),(206,"salted peanuts","Snacks"),(207,"almonds","Snacks"),(208,"wheat thins","Snacks"),(300,"kitkat","Candy"),(301,"Twix","Candy"),(302,"MilkyWay","Candy"),(303,"Hershey's Alomond Bar","Candy"),(304,"Snickers","Candy"),(305,"M&M peamut","Candy");
+Insert into product (ProductID,ProductName,Category) values(100,"diet coke","beverage"),(101,"Diet Pepsi","beverage"),(102,"AppleJuice","Beverage"),(103,"frappuccino","Beverage"),(104,"Green o2 water","Beverage"),(105,"vita coco water","Beverage"),(106,"simply orange","beverage"),(200,"Chocolate Peanut Butter","snack"),(201,"Salted Cashews","snack"),(202,"pistchios","snack"),(203,"lays BBQ","snack"),(204,"dorittos nacho's cheese","snack"),(205,"Natural Valley Oats & Honey Granolaa Bar","snack"),(206,"salted peanuts","snack"),(207,"almonds","snack"),(208,"wheat thins","snack"),(300,"kitkat","Candy"),(301,"Twix","Candy"),(302,"MilkyWay","Candy"),(303,"Hershey's Alomond Bar","Candy"),(304,"Snickers","Candy"),(305,"M&M peamut","Candy");
 
 
 alter table nutritionalinfo
@@ -69,7 +69,7 @@ alter table vendingmachine
 add type varchar(50);
 
 insert into vendingmachine values(1000,"santa clara","active","school");
-insert into vendingmachine values(2000,"santa clara","active","hospital");
+insert into vendingmachine values(2000,"santa clara","active","school");
 
 insert into inventory(SKU,ProductID,VendingMachineID,Price,Quantity,InventoryStatus) values(1001,100,1000,12.99,1,"available"),(1011,101,1000,12.99,1,"available"),(1021,102,1000,2.69,1,"available"),(1031,103,1000,2.25,1,"available"),(1041,104,1000,2.00,1,"available");
 insert into inventory(SKU,ProductID,VendingMachineID,Price,Quantity,InventoryStatus) values(10321,103,2000,2.25,1,"available"),(1051,105,2000,3.26,1,"available"),(1061,106,2000,1,1,"available");
