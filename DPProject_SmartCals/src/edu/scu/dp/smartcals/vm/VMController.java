@@ -75,7 +75,7 @@ public class VMController {
 		// TODO load Selection View to run-Aparna
 		// load first view from this page only
 
-		mainWindow.addPanels(tabbedView);
+		mainWindow.addPanels(vmSelectionView);
 
 	}
 
