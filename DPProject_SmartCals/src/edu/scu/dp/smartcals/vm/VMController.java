@@ -1,3 +1,4 @@
+
 package edu.scu.dp.smartcals.vm;
 
 import java.sql.SQLException;
@@ -32,12 +33,6 @@ import edu.scu.dp.smartcals.ui.VMProdCategory;
 import edu.scu.dp.smartcals.ui.VMSelectionView;
 import edu.scu.dp.smartcals.ui.VendingMachineView;
 
-/**
- * @author Aparna Ganesh
- * @author Nisha Narayanaswamy VMController class decides the views to be
- *         displayed on user action, delegates the call to required classes
- * testing
- */
 public class VMController {
 
 	private VendingMachineDao vendingMachineDao;
@@ -282,9 +277,9 @@ public class VMController {
 				
 				// load next view in tabbed view
 				tabbedView.getTabPane().removeTabAt(1);
-				tabbedView.getTabPane().setSelectedIndex(1);
 				tabbedView.getTabPane().addTab("Monitoring Station",
-						monitoringStationView);				
+						monitoringStationView);
+				tabbedView.getTabPane().setSelectedIndex(1);
 				//end - Nisha - 8/19
 
 			} else {
