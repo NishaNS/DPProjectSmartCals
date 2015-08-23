@@ -1,5 +1,8 @@
 package edu.scu.dp.smartcals.dao.interfaces;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import edu.scu.dp.smartcals.model.SalesSummaryModel;
 
 /**
@@ -9,8 +12,12 @@ import edu.scu.dp.smartcals.model.SalesSummaryModel;
  */
 public interface SalesSummaryDao {
 	
-	public SalesSummaryModel getAllSalesStatistics();
+	public List<String> getColumnNames() throws SQLException;
 	
-	public SalesSummaryModel getVMSalesStatistics(long vendingMachineId);
+	public List<SalesSummaryModel> getAllSalesStatistics(String username) throws SQLException ;
+	
+	public List<SalesSummaryModel> getVMSalesStatistics(long vendingMachineId) throws SQLException ;
+
+
 
 }

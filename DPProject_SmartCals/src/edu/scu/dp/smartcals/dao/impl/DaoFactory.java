@@ -13,6 +13,7 @@ import edu.scu.dp.smartcals.dao.interfaces.InventoryDao;
 import edu.scu.dp.smartcals.dao.interfaces.NutritionalInfoDao;
 import edu.scu.dp.smartcals.dao.interfaces.OrderHistoryDao;
 import edu.scu.dp.smartcals.dao.interfaces.ProductDao;
+import edu.scu.dp.smartcals.dao.interfaces.SalesSummaryDao;
 import edu.scu.dp.smartcals.dao.interfaces.SmartCardDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
 import edu.scu.dp.smartcals.exception.DatabaseInitializationException;
@@ -91,6 +92,11 @@ public class DaoFactory {
 	
 	public static InventoryDao getInventoryDao(){
 		return InventoryDaoImpl.getInstance(databaseFactory);
+	}
+	
+	//Nisha - 8/22
+	public static SalesSummaryDao getSalesSummaryDao(){
+		return SalesSummaryDaoImpl.getInstance(databaseFactory);
 	}
 	
 	
