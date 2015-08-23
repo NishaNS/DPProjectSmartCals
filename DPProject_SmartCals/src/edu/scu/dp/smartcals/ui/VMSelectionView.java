@@ -1,3 +1,4 @@
+
 package edu.scu.dp.smartcals.ui;
 
 import java.awt.FlowLayout;
@@ -31,7 +32,14 @@ public class VMSelectionView extends javax.swing.JPanel  {
 	public VMSelectionView(VMController vmController) {		//Nisha - 8/15 - added argument to constr
 		
 		this.vmController = vmController;
+
 		initComponents();
+		
+		//end - Nisha - 8/15
+
+		
+		//initComponents();
+
 	}
 
 	/**
@@ -94,8 +102,6 @@ public class VMSelectionView extends javax.swing.JPanel  {
 			vmView.setVendingMachine(vendingMachine);
 			
 			vmController.getSelectView().setVisible(false);
-			//vmController.getView().addPanels(vmController.getVendingMachineView());
-			
 			//code change done-Aparna 8/21
 			vmController.getView().addPanels(vmController.getTabbedView());
 			

@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -31,6 +32,7 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 		beverageProduct.setProductID(productModel.getProductId());
 		beverageProduct.setProductName(productModel.getProductName());
 		beverageProduct.setProductPrice(productModel.getProductPrice());
+		beverageProduct.setProdCategory(productModel.getCategory().toString());
 		
 		return beverageProduct;
 		
@@ -43,7 +45,7 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 		candyProduct.setProductID(productModel.getProductId());
 		candyProduct.setProductName(productModel.getProductName());
 		candyProduct.setProductPrice(productModel.getProductPrice());
-		
+		candyProduct.setProdCategory(productModel.getCategory().toString());
 		return candyProduct;
 	}
 
@@ -54,7 +56,7 @@ public class SchoolVendingMachineFactory extends VendingMachineFactory {
 		snackProduct.setProductID(productModel.getProductId());
 		snackProduct.setProductName(productModel.getProductName());
 		snackProduct.setProductPrice(productModel.getProductPrice());
-		
+		snackProduct.setProdCategory(productModel.getCategory().toString());
 		return snackProduct;
 	}
 

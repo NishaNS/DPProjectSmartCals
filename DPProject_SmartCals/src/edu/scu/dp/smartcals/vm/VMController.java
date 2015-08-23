@@ -1,4 +1,3 @@
-
 package edu.scu.dp.smartcals.vm;
 
 import java.sql.SQLException;
@@ -33,22 +32,28 @@ import edu.scu.dp.smartcals.ui.VMProdCategory;
 import edu.scu.dp.smartcals.ui.VMSelectionView;
 import edu.scu.dp.smartcals.ui.VendingMachineView;
 
+/**
+ * @author Aparna Ganesh
+ * @author Nisha Narayanaswamy VMController class decides the views to be
+ *         displayed on user action, delegates the call to required classes
+ *         testing
+ */
 public class VMController {
 
 	private VendingMachineDao vendingMachineDao;
 	private ProductDao productDao;
 	private AdminLoginDao adminLoginDao;
-	//start - Nisha - 8/20 
+	// start - Nisha - 8/20
 	private NutritionalInfoDao nutriInfoDao;
-	//end - Nisha
+	// end - Nisha
 
 	private VMClient mainWindow;
 	private VMSelectionView vmSelectionView;
 	private VendingMachineView vendingMachineView;
 	private LoginView loginView;
-	private MonitoringStationView monitoringStationView;	
+	private MonitoringStationView monitoringStationView;
 	private LoginCheckPointStrategy loginStrategy;
-	
+
 	private TabbedView tabbedView;
 	
 	private static SmartCardDao smctDao;
@@ -62,6 +67,31 @@ public class VMController {
 		// Code change done-Aparna
 		initialiseDao();
 
+		// code change- Aparna 22/8
+		
+		/*
+		 * // launch in following sequence - JFrame, SelectionView..etc if
+		 * (mainWindow == null) this.mainWindow = new VMClient(); if
+		 * (vmSelectionView == null) this.vmSelectionView = new
+		 * VMSelectionView(this); if (vendingMachineView == null)
+		 * this.vendingMachineView = new VendingMachineView(this); if (loginView
+		 * == null) this.loginView = new LoginView(this); if
+		 * (monitoringStationView == null) this.monitoringStationView = new
+		 * MonitoringStationView(this);
+		 * 
+		 * //start - Nisha - 8/19 if(tabbedView == null) this.tabbedView = new
+		 * TabbedView(this); //end - Nisha - 8/19
+		 * 
+		 * // TODO load Selection View to run-Aparna // load first view from
+		 * this page only
+		 * 
+		 * mainWindow.addPanels(vmSelectionView);
+		 */
+//Code change-Aparna 8/22
+	}
+
+	// aparna - initialize the components
+	private void initComponents() {
 		// launch in following sequence - JFrame, SelectionView..etc
 		if (mainWindow == null)
 			this.mainWindow = new VMClient();
@@ -73,14 +103,11 @@ public class VMController {
 			this.loginView = new LoginView(this);
 		if (monitoringStationView == null)
 			this.monitoringStationView = new MonitoringStationView(this);
-		
-		//start - Nisha - 8/19
-		if(tabbedView == null)
+
+		// start - Nisha - 8/19
+		if (tabbedView == null)
 			this.tabbedView = new TabbedView(this);
-		//end - Nisha - 8/19
-		
-		// TODO load Selection View to run-Aparna
-		// load first view from this page only
+		// end - Nisha - 8/19
 
 		mainWindow.addPanels(vmSelectionView);
 
@@ -101,8 +128,8 @@ public class VMController {
 		vendingMachineDao = DaoFactory.getVendingMachineDao();
 		productDao = DaoFactory.getProductDao();
 		adminLoginDao = DaoFactory.getAdminLoginDao();
-	
-		//start - Nisha - 8/20 
+
+		// start - Nisha - 8/20
 		nutriInfoDao = DaoFactory.getNutritionalInfoDao();
 		//end - Nisha
 //Sharadha
@@ -123,17 +150,17 @@ public class VMController {
 	public VendingMachineView getVendingMachineView() {
 		return vendingMachineView;
 	}
-	
-	//start - Nisha - 8/19 - new methods
+
+	// start - Nisha - 8/19 - new methods
 	public MonitoringStationView getMonitoringStationView() {
 		return monitoringStationView;
 	}
-	
+
 	public LoginView getLoginView() {
 		return loginView;
 	}
-	
-	//code change in progress- Aparna 21/8
+
+	// code change in progress- Aparna 21/8
 	public TabbedView getTabbedView() {
 		return tabbedView;
 	}
@@ -141,11 +168,11 @@ public class VMController {
 	public void setTabbedView(TabbedView tabbedView) {
 		this.tabbedView = tabbedView;
 	}
-	//-------------------------------------------------------------
-	//end - Nisha - 8/19
-	
-	// $$$$$$ add getter methods for other views here $$$$$$
 
+	// -------------------------------------------------------------
+	// end - Nisha - 8/19
+
+	// $$$$$$ add getter methods for other views here $$$$$$
 
 	/**
 	 * Returns all the Vending Machines from Database to ViewAllVendingMachines
@@ -167,8 +194,10 @@ public class VMController {
 
 		for (VendingMachineModel vmModel : vendingMachineModels) {
 
-			VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
-			VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
+			VendingMachineFactory vendingMachineFactory = VendingMachineFactory
+					.getFactory(vmModel.getType());
+			VendingMachine vendingMachine = vendingMachineFactory
+					.createVendingMachine(vmModel);
 			vendingMachines.add(vendingMachine);
 		}
 		return vendingMachines;
@@ -201,19 +230,23 @@ public class VMController {
 
 		}
 
-		VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(vmModel.getType());
+		VendingMachineFactory vendingMachineFactory = VendingMachineFactory
+				.getFactory(vmModel.getType());
 
-		VendingMachine vendingMachine = vendingMachineFactory.createVendingMachine(vmModel);
+		VendingMachine vendingMachine = vendingMachineFactory
+				.createVendingMachine(vmModel);
 
 		List<ProductModel> productModels = vmModel.getProductModels();
-		
-		System.out.println("Product Model contains " + productModels.toString());
-		
+
+		System.out
+				.println("Product Model contains " + productModels.toString());
+
 		for (ProductModel productModel : productModels) {
 
 			switch (productModel.getCategory()) {
 			case BEVERAGE:
-				Beverage breverage = vendingMachineFactory.createBreverage(productModel);
+				Beverage breverage = vendingMachineFactory
+						.createBreverage(productModel);
 				beverages.add(breverage);
 				break;
 			case CANDY:
@@ -234,25 +267,27 @@ public class VMController {
 		return vendingMachine;
 	}
 
-	
-	//start - Nisha - 8/20 - display nutri info
+	// start - Nisha - 8/20 - display nutri info
 	/**
 	 * Display Nutritional Info on the view for selected product
-	 * @throws EmptyResultException 
-	 * @throws SQLException 
+	 * 
+	 * @throws EmptyResultException
+	 * @throws SQLException
 	 */
-	public String displayNutritionalInfo(long ProdID) throws EmptyResultException {
+	public String displayNutritionalInfo(long ProdID)
+			throws EmptyResultException {
 		NutritionalInfoModel nutriInfoModel = null;
-		
+
 		try {
 			nutriInfoModel = nutriInfoDao.getNutriInfo(ProdID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return nutriInfoModel.toString();	
-	}	
-	//end - Nisha - 8/20
-	
+		return nutriInfoModel.toString();
+	}
+
+	// end - Nisha - 8/20
+
 	/**
 	 * Authenticates the user login with database
 	 * 
@@ -273,14 +308,14 @@ public class VMController {
 				// update DB table with time of latest login
 				adminLoginDao.setLastLoginTime(username);
 
-				//start - Nisha - 8/19 - tabbed view
-				
+				// start - Nisha - 8/19 - tabbed view
+
 				// load next view in tabbed view
 				tabbedView.getTabPane().removeTabAt(1);
 				tabbedView.getTabPane().addTab("Monitoring Station",
 						monitoringStationView);
 				tabbedView.getTabPane().setSelectedIndex(1);
-				//end - Nisha - 8/19
+				// end - Nisha - 8/19
 
 			} else {
 
@@ -289,8 +324,9 @@ public class VMController {
 
 				// set strategy
 				this.setLoginCheckPointStrategy(new FailedLoginAttemptStrategy());
-				if(loginStrategy.performSecurityCheck(username) == false)
-					loginView.setMessage("<html>You have failed your login attempt for 3 times consecutively. <br>Your account will be locked for 30 minutes.</html>");
+				if (loginStrategy.performSecurityCheck(username) == false)
+					loginView
+							.setMessage("<html>You have failed your login attempt for 3 times consecutively. <br>Your account will be locked for 30 minutes.</html>");
 
 			}
 		} catch (SQLException e) {
@@ -333,7 +369,7 @@ public class VMController {
 	}
 	
 	/**
-	 * @param strategy 
+	 * @param strategy
 	 *            Client to provide the strategy for failed login attempts
 	 */
 	public void setLoginCheckPointStrategy(LoginCheckPointStrategy loginStrategy) {
@@ -341,8 +377,8 @@ public class VMController {
 	}
 
 	public static void main(String[] args) {
-		new VMController();
+		VMController vmController = new VMController();
+		vmController.initComponents();
 	}
 
-	
 }

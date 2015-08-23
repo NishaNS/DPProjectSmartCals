@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -13,6 +14,7 @@ import edu.scu.dp.smartcals.dao.impl.DaoFactory;
 import edu.scu.dp.smartcals.dao.impl.OrderHistoryDaoImpl;
 import edu.scu.dp.smartcals.dao.interfaces.OrderHistoryDao;
 import edu.scu.dp.smartcals.dao.interfaces.VendingMachineDao;
+import edu.scu.dp.smartcals.exception.AdminOperationsException;
 import edu.scu.dp.smartcals.model.ProductModel;
 import edu.scu.dp.smartcals.model.VendingMachineModel;
 import edu.scu.dp.smartcals.vm.Beverage;
@@ -88,20 +90,21 @@ public class AdminOperationsImpl implements AdminOperations, VMUpdateListener {
  * @throws SQLException 
  */
 	@Override
-	public List<Product> getBestSellingProduct(long vmId) throws SQLException {
+	public List<Product> getBestSellingProduct(long vmId) throws AdminOperationsException {
 		
 		List<Product> products = new ArrayList<>();		
-		List<ProductModel> productModels = orderHistoryDao.getBestSellingProduct(vmId);
-		
+		List<ProductModel> productModels;
 		VMLocationType type;
+		
 		try {
-			type = vendingMachineDao.getVendingMachineType(vmId);
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-			return null;
-
+		productModels = orderHistoryDao.getBestSellingProduct(vmId);
+		type = vendingMachineDao.getVendingMachineType(vmId);
 		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			throw new AdminOperationsException("Error getting best selling product for VM : " + vmId, e);
+		}
+		
 		VendingMachineFactory vendingMachineFactory = VendingMachineFactory.getFactory(type);
 		
 		for (ProductModel productModel : productModels) {
